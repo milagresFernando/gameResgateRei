@@ -336,6 +336,7 @@ function InterativeChangeByVideoSvg(props) {
     player.on("ended", function (evt) {
       setIsEnd(true);
     });
+
     setReady(true);
   };
 
@@ -556,63 +557,76 @@ function InterativeChangeByVideoSvg(props) {
         `#${randomId} .video-js .vjs-tech`
       );
       if (!isTouch) {
-        qualityBtn.addEventListener("click", function (event) {
-          if (
-            this.querySelector(".vjs-menu").classList.contains(
-              "vjs-lock-showing"
-            )
-          ) {
-            wrapper.current.classList.add("noPointerEvents");
-          }
-        });
+        if (qualityBtn != null) {
+          qualityBtn.addEventListener("click", function (event) {
+            if (
+              this.querySelector(".vjs-menu").classList.contains(
+                "vjs-lock-showing"
+              )
+            ) {
+              wrapper.current.classList.add("noPointerEvents");
+            }
+          });
 
-        qualityBtn.addEventListener("mousemove", function (event) {
-          if (this.classList.contains("vjs-hover")) {
-            wrapper.current.classList.add("noPointerEvents");
-          }
-        });
+          qualityBtn.addEventListener("mousemove", function (event) {
+            if (this.classList.contains("vjs-hover")) {
+              wrapper.current.classList.add("noPointerEvents");
+            }
+          });
+        }
+        if (subTitleBtn != null) {
+          subTitleBtn.addEventListener("click", function (event) {
+            if (
+              this.querySelector(".vjs-menu").classList.contains(
+                "vjs-lock-showing"
+              )
+            ) {
+              wrapper.current.classList.add("noPointerEvents");
+            }
+          });
 
-        subTitleBtn.addEventListener("click", function (event) {
-          if (
-            this.querySelector(".vjs-menu").classList.contains(
-              "vjs-lock-showing"
-            )
-          ) {
-            wrapper.current.classList.add("noPointerEvents");
-          }
-        });
+          subTitleBtn.addEventListener("mousemove", function (event) {
+            if (this.classList.contains("vjs-hover")) {
+              wrapper.current.classList.add("noPointerEvents");
+            }
+          });
+        }
 
-        subTitleBtn.addEventListener("mousemove", function (event) {
-          if (this.classList.contains("vjs-hover")) {
-            wrapper.current.classList.add("noPointerEvents");
-          }
-        });
-        controlBar.addEventListener("mouseleave", function (event) {
-          wrapper.current.classList.remove("noPointerEvents");
-        });
+        if (controlBar != null) {
+          controlBar.addEventListener("mouseleave", function (event) {
+            wrapper.current.classList.remove("noPointerEvents");
+          });
+        }
       } else {
-        videoArea.addEventListener("touchstart", function (event) {
-          wrapper.current.classList.remove("noPointerEvents");
-        });
-        qualityBtn.addEventListener("touchstart", function (event) {
-          if (
-            !subTitleBtn
-              .querySelector(".vjs-menu")
-              .classList.contains("vjs-lock-showing")
-          ) {
-            wrapper.current.classList.toggle("noPointerEvents");
-          }
-        });
+        if (videoArea != null) {
+          videoArea.addEventListener("touchstart", function (event) {
+            wrapper.current.classList.remove("noPointerEvents");
+          });
+        }
 
-        subTitleBtn.addEventListener("touchstart", function (event) {
-          if (
-            !qualityBtn
-              .querySelector(".vjs-menu")
-              .classList.contains("vjs-lock-showing")
-          ) {
-            wrapper.current.classList.toggle("noPointerEvents");
-          }
-        });
+        if (qualityBtn != null) {
+          qualityBtn.addEventListener("touchstart", function (event) {
+            if (
+              !subTitleBtn
+                .querySelector(".vjs-menu")
+                .classList.contains("vjs-lock-showing")
+            ) {
+              wrapper.current.classList.toggle("noPointerEvents");
+            }
+          });
+        }
+
+        if (subTitleBtn != null) {
+          subTitleBtn.addEventListener("touchstart", function (event) {
+            if (
+              !qualityBtn
+                .querySelector(".vjs-menu")
+                .classList.contains("vjs-lock-showing")
+            ) {
+              wrapper.current.classList.toggle("noPointerEvents");
+            }
+          });
+        }
       }
     }
   }, [load, ready, randomId]);

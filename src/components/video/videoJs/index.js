@@ -12,6 +12,10 @@ export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
   const playerRef = React.useRef(null);
 
+  const dataSetup = props.dontHideControlBar
+    ? '{ "inactivityTimeout": 0 }'
+    : "";
+
   const { isIos, isIphone, isSafari } = useContext(GlobalState);
 
   const [firstClickIosSafari, setFirstClickIosSafari] = useState(false);
@@ -149,8 +153,10 @@ export const VideoJS = (props) => {
   React.useEffect(() => {
     // make sure Video.js player is only initialized once
     if (!playerRef.current) {
-      const videoElement = videoRef.current;
-      if (!videoElement) return;
+      const videoElement = document.createElement("video-js");
+      videoElement.classList.add("vjs-big-play-centered");
+      videoElement.setAttribute("data-setup", dataSetup);
+      videoRef.current.appendChild(videoElement);
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
         onReady && onReady(player);
@@ -209,7 +215,7 @@ export const VideoJS = (props) => {
     const player = playerRef.current;
 
     return () => {
-      if (player) {
+      if (player && !player.isDisposed()) {
         player.dispose();
         playerRef.current = null;
       }
@@ -231,13 +237,7 @@ export const VideoJS = (props) => {
         )}
 
       <div data-vjs-player>
-        <video
-          ref={videoRef}
-          className="video-js vjs-big-play-centered"
-          data-setup={
-            props.dontHideControlBar ? '{ "inactivityTimeout": 0 }' : ""
-          }
-        />
+        <div ref={videoRef} />
       </div>
     </div>
   );

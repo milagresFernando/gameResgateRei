@@ -1,0 +1,27 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Vídeo apresentacao",
+		"video": "apresentacao",		
+		"id":0
+    },
+        {
+		"name": "briefing caminho da Floresta",
+		"video": "briefingFloresta",
+        "id":1
+		
+    },
+        {
+		"name": "briefing caminho do Mar",
+		"video": "briefingMar",
+        "id":2
+		
+    },
+        {
+		"name": "briefing caminho do Saara",
+		"video": "briefingSaara",
+        "id":3
+	
+    }
+	]
+}

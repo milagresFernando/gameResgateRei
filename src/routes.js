@@ -8,6 +8,7 @@ import Page5 from "./screens/page5";
 import Page6 from "./screens/page6";
 import Page7 from "./screens/page7";
 import Page8 from "./screens/page8";
+import Page9 from "./screens/page9";
 
 import Quizz from "./screens/quizz";
 import ArvoreDecisao from "./screens/arvoreDecisao";
@@ -26,6 +27,7 @@ function ScreenRoutes(props) {
     Page6,
     Page7,
     Page8,
+    Page9,
   ]; // adicione as chamadas de pagina desse array
 
   const { pagesData, setPagesData } = useContext(GlobalState);

@@ -49,6 +49,11 @@
 					"route": "page8",
 					"titulo": "Carrossel",
 					"trava" : false
+				},
+				{					
+					"route": "page9",
+					"titulo": "Game",
+					"trava" : false
 				}
 				
 				
