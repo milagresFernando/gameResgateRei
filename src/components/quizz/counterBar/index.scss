@@ -1,0 +1,50 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    // CONTADOR
+    .counter-wrapper {
+      border-top: solid 5px $cor1;
+      position: relative;
+      top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+
+      .counter-step {
+        background: $cor1;
+        border-bottom-left-radius: $radius-padrao;
+        border-bottom-right-radius: $radius-padrao;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 40px;
+        width: auto;
+        min-width: 320px;
+
+        .textBlock {
+          color: #ffffff;
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

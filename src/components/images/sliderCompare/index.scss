@@ -1,0 +1,68 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    img-comparison-slider {
+      border: 5px solid $cor1;
+      --divider-width: 5px;
+      --divider-color: #{$cor1};
+      --default-handle-opacity: 1;
+      --default-handle-color: #{$cor1};
+
+      &.slider-with-animated-handle {
+        .handle-slider {
+          width: 18px;
+          height: 60px;
+          background-color: $cor1;
+          position: relative;
+          &::before,
+          &::after {
+            position: absolute;
+            content: "";
+            top: 50%;
+            @include transform(translateY(-50%));
+            @include transition(all 0.2s ease);
+            border-style: solid;
+          }
+          &::before {
+            left: 25px;
+            border-width: 8px 0px 8px 8px;
+            border-color: transparent transparent transparent $cor1;
+          }
+          &::after {
+            right: 25px;
+            border-width: 8px 8px 8px 0;
+            border-color: transparent $cor1 transparent transparent;
+          }
+          @include transition(all 0.2s ease);
+        }
+
+        &:hover {
+          .handle-slider {
+            &::before {
+              left: 30px;
+            }
+            &::after {
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

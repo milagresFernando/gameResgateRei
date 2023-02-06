@@ -1,0 +1,105 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    // BOTAO CONFIRMAR
+    .button-wrapper {
+      display: none;
+      border: none;
+      margin-top: 20px;
+      @include transition(all 0.5s ease);
+
+      &.showButton {
+        display: block;
+      }
+
+      &.tenteNovamente {
+        .button-content {
+          justify-content: flex-start;
+
+          button {
+            width: auto;
+          }
+        }
+      }
+
+      .button-content {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+
+        button {
+          background: $colorQuiz2;
+          border: 4px solid rgba($colorQuiz2, 0);
+          border-top: 0;
+          color: #fff;
+          cursor: pointer;
+          font-family: $fonte;
+          font-weight: 700;
+          font-size: 25px;
+          outline: none;
+          padding: 8px 12px;
+          position: relative;
+          width: 220px;
+
+          &.btnProxima {
+            width: 280px;
+            background: $colorQuiz;
+            border: 4px solid rgba($colorQuiz2, 0);
+          }
+
+          @include transition(all 0.5s ease);
+
+          &:hover {
+            background: rgba($colorQuiz2, 0.85);
+            border-color: $colorQuiz2;
+            color: #ddd;
+
+            &.btnProxima {
+              background: rgba($colorQuiz, 0.85);
+              border-color: $colorQuiz;
+            }
+          }
+        }
+      }
+      @media #{$bp-desktop} {
+      }
+      @media #{$bp-tablet} {
+        .button-content {
+          button {
+            font-size: 22px;
+            width: auto;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+      }
+
+      @media #{$bp-phone} {
+        margin-top: 5px;
+        .button-content {
+          button {
+            font-size: 1.125rem;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

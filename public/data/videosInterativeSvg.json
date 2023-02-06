@@ -1,0 +1,27 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Vídeo interativo Svg 1",
+		"video": "videoSvgI1",		
+		"id":0
+    },
+        {
+		"name": "Vídeo interativo Svg 2",
+		"video": "videoSvgI2",
+        "id":1
+		
+    },
+        {
+		"name": "Vídeo interativo Svg 3",
+		"video": "videoSvgI3",
+        "id":2
+		
+    },
+        {
+		"name": "Vídeo interativo Svg 4",
+		"video": "videoSvgI4",
+        "id":3
+	
+    }
+	]
+}

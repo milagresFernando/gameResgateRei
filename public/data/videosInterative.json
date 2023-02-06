@@ -1,0 +1,27 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Vídeo interativo 1",
+		"video": "videoI1",		
+		"id":0
+    },
+        {
+		"name": "Vídeo interativo 2",
+		"video": "videoI2",
+        "id":1
+		
+    },
+        {
+		"name": "Vídeo interativo 3",
+		"video": "videoI3",
+        "id":2
+		
+    },
+        {
+		"name": "Vídeo interativo 4",
+		"video": "videoI4",
+        "id":3
+	
+    }
+	]
+}

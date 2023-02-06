@@ -1,0 +1,179 @@
+@import "src/styles/default/_init.scss";
+
+// FEEDBACK
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .feedback-wrapper {
+      display: block;
+      text-align: left;
+      margin-bottom: 1rem;
+      &.hideFeed {
+        display: none;
+      }
+      .p-notImg {
+        padding: 1.5rem;
+      }
+      &.correct {
+        background-color: #00543d;
+      }
+      &.wrong {
+        background-color: #a93838;
+      }
+      &.neutral {
+        background-color: #f3ab15;
+      }
+      &.finalFeed {
+        background-color: $colorQuiz2;
+        position: relative;
+        text-align: center;
+      }
+
+      &.bodyWithImg {
+        padding: 0 1.5rem;
+        &.fullLeft {
+          padding-left: 0;
+          .flexImgWithText {
+            padding-left: 0.75rem;
+          }
+        }
+        &.fullRight {
+          padding-right: 0;
+          .flexImgWithText {
+            padding-right: 0.75rem;
+          }
+        }
+        &.fullTop,
+        &.fullBottom {
+          padding: 0;
+          .flexImgWithText {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+          }
+          img {
+            height: 300px !important;
+          }
+        }
+        &.fullBottom,
+        &.bottom {
+          padding-top: 1.5rem;
+        }
+        &.fullTop {
+          padding-bottom: 1.5rem;
+        }
+      }
+
+      .title {
+        color: #fff;
+        font-family: $fonte;
+        font-weight: 700;
+        font-size: 30px;
+      }
+
+      .textBlock {
+        color: #fff;
+        &:last-child {
+          margin: 0px;
+        }
+      }
+
+      .feedTriesText {
+        color: #fff;
+      }
+      .flexImgWithText {
+        background-color: transparent;
+      }
+
+      &.break {
+        padding-left: 0;
+        padding-right: 0;
+        &.top,
+        &.left,
+        &.right {
+          .flexImgWithText {
+            padding-top: 0.75rem;
+          }
+        }
+        &.bottom {
+          .flexImgWithText {
+            padding-bottom: 0.75rem;
+          }
+        }
+
+        &.fullBottom {
+          .flexImgWithText {
+            padding-bottom: 0;
+          }
+        }
+        &.fullLeft,
+        &.fullRight,
+        &.fullTop,
+        &.fullBottom {
+          .flexImgWithText {
+            padding-left: 0;
+            padding-right: 0;
+          }
+        }
+
+        &.top,
+        &.bottom,
+        &.left,
+        &.right {
+          .flexImgWithText {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+          }
+        }
+
+        &.fullTop,
+        &.fullBottom,
+        &.fullLeft,
+        &.fullRight {
+          img {
+            height: 150px !important;
+          }
+        }
+
+        .flexImgWithText {
+          margin-left: 0;
+          margin-right: 0;
+          padding-bottom: 0.75rem;
+        }
+      }
+
+      @media #{$bp-desktop} {
+      }
+      @media #{$bp-tablet} {
+        .title {
+          font-size: 26px;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+      }
+
+      @media #{$bp-phone} {
+        .title {
+          font-size: 21px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}

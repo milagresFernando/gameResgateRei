@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: initial;
+  }
+}
+
+$z: 0;
+@while $z <= 10 {
+  .zindex#{$z} {
+    z-index: #{$z};
+  }
+  .zindex-#{$z} {
+    z-index: -#{$z};
+  }
+  $z: $z + 1;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
+body {
+  background: $cor-pagina;
+  color: $cor-texto;
+  font-family: $fonte;
+  font-weight: 400;
+  line-height: 1.5;
+  position: relative;
+
+  &.initOverflow {
+    overflow: hidden;
+  }
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.leitorTela,
+.visuallyhidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.rounded-border {
+  border-radius: $radius-padrao;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.defaultCursor {
+  cursor: default !important;
+}
+
+/* NO SELECT */
+.no_select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+$i: 0;
+@while $i <= 100 {
+  .left#{$i} {
+    left: #{$i} + "%";
+  }
+  .left-#{$i} {
+    left: -#{$i} + "%";
+  }
+  .right#{$i} {
+    right: #{$i} + "%";
+  }
+  .right-#{$i} {
+    right: -#{$i} + "%";
+  }
+  .top#{$i} {
+    top: #{$i} + "%";
+  }
+  .top-#{$i} {
+    top: -#{$i} + "%";
+  }
+  .bottom#{$i} {
+    bottom: #{$i} + "%";
+  }
+  .bottom-#{$i} {
+    bottom: -#{$i} + "%";
+  }
+  $i: $i + 5;
+}
+
+.rotate180 {
+  @include transform(rotate(180deg));
+}
+
+.bgCor4 {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $cor4;
+    z-index: -1;
+  }
+}

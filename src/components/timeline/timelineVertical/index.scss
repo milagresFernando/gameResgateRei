@@ -1,0 +1,282 @@
+@import "src/styles/default/_init.scss";
+@import "src/styles/default/init/_plugin_aos.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    // TIMELINE SCROLL
+    .scrollTimeline {
+      position: relative;
+      margin: $espaco-margin 0;
+      counter-reset: scroll-number;
+
+      .item-scroll {
+        counter-increment: line-number;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        min-height: 140px;
+        margin-bottom: $espaco-margin;
+        width: 100%;
+
+        .image-timeline {
+          background: $cor1;
+          height: 140px;
+          width: 140px;
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          @include transform-origin(0 0);
+          z-index: 11;
+
+          &::before {
+            color: $cor5;
+            font-size: 3em;
+            content: counter(line-number);
+            position: absolute;
+            z-index: 11;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .content-timeline {
+          background: $cor3;
+          border-radius: $radius-padrao 0 0 $radius-padrao;
+          padding: 1em 2.5em 1em 1em;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+          height: auto;
+          min-height: 140px;
+          width: calc(50% - 60px);
+          @include transform-origin(0 0);
+          z-index: 9;
+
+          &::before {
+            background: $cor-pagina;
+            border-radius: 140px 0 0 140px;
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -75px;
+            width: 100px;
+            height: 140px;
+            @include transform(translateY(-50%));
+          }
+
+          .title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 20px 0 0;
+          }
+
+          .textBlock {
+            color: #fff;
+
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
+
+        &.alternate {
+          justify-content: flex-end;
+
+          .content-timeline {
+            border-radius: 0 $radius-padrao $radius-padrao 0;
+            padding: 1em 1em 1em 2.5em;
+
+            &::before {
+              border-radius: 0 140px 140px 0;
+              left: -75px;
+              right: inherit;
+            }
+          }
+        }
+        &.left {
+          .image-timeline {
+            left: 5%;
+          }
+          .content-timeline {
+            border-radius: 0 $radius-padrao $radius-padrao 0;
+            width: calc(95% - 60px);
+            left: calc(5% + 60px);
+            padding: 1em 1em 1em 2.5em;
+
+            &::before {
+              border-radius: 0 140px 140px 0;
+              left: -75px;
+              right: inherit;
+            }
+          }
+        }
+        &.right {
+          .image-timeline {
+            right: calc(-5% - 30px);
+            left: initial;
+          }
+          .content-timeline {
+            width: calc(95% - 60px);
+            right: calc(-5% + 60px);
+          }
+        }
+      }
+
+      @media #{$bp-tablet} {
+        .item-scroll {
+          min-height: 110px;
+
+          .image-timeline {
+            height: 110px;
+            width: 110px;
+          }
+
+          .content-timeline {
+            min-height: 110px;
+            width: calc(50% - 40px);
+
+            &::before {
+              border-radius: 110px 0 0 110px;
+              right: -60px;
+              width: 90px;
+              height: 120px;
+            }
+          }
+
+          &.alternate {
+            .content-timeline {
+              &::before {
+                border-radius: 0 110px 110px 0;
+                left: -60px;
+                right: inherit;
+              }
+            }
+          }
+          &.left {
+            .image-timeline {
+              left: 55px;
+            }
+            .content-timeline {
+              padding-left: 3.5rem;
+              &::before {
+                border-radius: 0 110px 110px 0;
+                left: -55px;
+              }
+            }
+          }
+          &.right {
+            .image-timeline {
+              right: -55px;
+            }
+            .content-timeline {
+              padding-right: 3.5rem;
+              right: 0;
+              &::before {
+                right: -55px;
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-phone} {
+        .item-scroll {
+          min-height: 80px;
+
+          .image-timeline {
+            height: 80px;
+            width: 80px;
+            left: inherit;
+            right: 0%;
+
+            @include transform(
+              translate3d(0, 0, 0) scale(1) translate(0%, -50%) !important
+            );
+
+            &::before {
+              font-size: 2em;
+            }
+          }
+
+          .content-timeline {
+            padding: 1em 2.5em 1em 1em;
+            min-height: 80px;
+            width: calc(100% - 80px);
+
+            &::before {
+              border-radius: 80px 0 0 80px;
+              right: -25px;
+              width: 40px;
+              height: 80px;
+            }
+          }
+
+          &.alternate,
+          &.left {
+            .image-timeline {
+              left: 0%;
+            }
+
+            .content-timeline {
+              padding: 1em 1em 1em 2.5em;
+
+              &::before {
+                border-radius: 0 80px 80px 0;
+                left: -25px;
+                right: inherit;
+              }
+            }
+          }
+          &.right {
+            .image-timeline {
+              right: 0%;
+            }
+            .content-timeline {
+              padding-right: 2.5rem;
+              right: 0;
+              &::before {
+                right: -25px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @keyframes enterContent {
+      0% {
+        transform: translateX(150%) scaleX(1);
+      }
+      75% {
+        transform: translateX(-15%) scaleX(0.9);
+      }
+      100% {
+        transform: translateX(0) scaleX(1);
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import "src/styles/default/_init.scss";
+
+.title {
+  @at-root {
+    h1#{&},
+    h2#{&},
+    h3#{&},
+    h4#{&},
+    h5#{&},
+    h6#{&} {
+      color: $cor3;
+      display: block;
+      font-family: $fonte2;
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 auto $espaco-margin;
+      padding: 0;
+      position: relative;
+
+      &.titleDivisor {
+        background: $cor5;
+        padding: 5px 15px;
+        border-radius: 8px;
+      }
+    }
+
+    h1#{&} {
+      color: $cor1;
+      font-size: 4rem;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    h2#{&} {
+      font-size: 3.5rem;
+      position: relative;
+      font-weight: 600;
+    }
+
+    h3#{&} {
+      font-size: 2.5rem;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    h4#{&} {
+      font-size: 2rem;
+    }
+
+    h5#{&} {
+      font-size: 1.5rem;
+    }
+
+    h6#{&} {
+      font-size: 1.2rem;
+    }
+
+    @media #{$bp-phone} {
+      h1#{&} {
+        font-size: 3rem;
+      }
+      h2#{&} {
+        font-size: 2rem;
+      }
+      h3#{&} {
+        font-size: 1.5rem;
+      }
+      h4#{&} {
+        font-size: 1.5rem;
+      }
+      h5#{&} {
+        font-size: 1.2rem;
+      }
+      h6#{&} {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .title {
+      @at-root {
+        // TEXTOS
+        h1#{&} {
+          color: $cor1;
+        }
+        h2#{&},
+        h3#{&},
+        h4#{&},
+        h5#{&},
+        h6 #{&} {
+          color: $cor3;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,252 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .table-flex {
+      display: flex;
+      height: auto;
+      margin: $espaco-margin auto;
+      width: 100%;
+
+      .div_column {
+        height: 100%;
+
+        .div_tableRow {
+          width: 100%;
+          display: flex;
+
+          .div_tableHeader {
+            background: $cor1;
+            border: solid 2px $cor1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            margin: 0;
+
+            width: 100%;
+            z-index: 2;
+
+            .title {
+              color: #fff;
+              font-size: 26px;
+              text-align: center;
+              margin-bottom: 0;
+            }
+
+            strong {
+              color: #fff;
+            }
+
+            &:first-child {
+              border-left-width: 4px;
+            }
+            &:last-child {
+              border-right-width: 4px;
+            }
+          }
+
+          .div_tableCol {
+            background: $cor5;
+            padding: 15px;
+            border: solid 2px $cor1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            p {
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+
+            a {
+              color: $cor-texto;
+              text-decoration: underline;
+            }
+
+            &:first-child {
+              border-left-width: 4px;
+            }
+            &:last-child {
+              border-right-width: 4px;
+            }
+          }
+
+          &:first-child {
+            .div_tableHeader {
+              border-top-width: 4px;
+            }
+          }
+
+          &:last-child {
+            .div_tableCol {
+              border-bottom-width: 4px;
+            }
+          }
+        }
+
+        &:first-child {
+          .div_tableRow {
+            &:first-child {
+              .div_tableHeader {
+                &:first-child {
+                  border-top-left-radius: $radius-padrao;
+                }
+                &:last-child {
+                  border-top-right-radius: $radius-padrao;
+                }
+              }
+            }
+
+            &:last-child {
+              .div_tableCol {
+                &:first-child {
+                  border-bottom-left-radius: $radius-padrao;
+                }
+                &:last-child {
+                  border-bottom-right-radius: $radius-padrao;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-phone} {
+        flex-direction: column;
+
+        .div_column {
+          display: block;
+          margin-bottom: $espaco-margin;
+          width: 100%;
+          border: solid 4px $cor3;
+          border-radius: $radius-padrao;
+
+          .div_tableRow {
+            .div_tableHeader {
+              display: block;
+              border: 0;
+              min-height: inherit;
+              padding: 10px 5px;
+              text-align: center;
+
+              &::before {
+                height: 60px;
+              }
+
+              h4 {
+                font-size: 21px;
+              }
+              p {
+                margin: 0 0 10px;
+                &:last-child {
+                  margin: 0;
+                }
+              }
+
+              &.col6 {
+                float: inherit;
+                width: 100%;
+              }
+            }
+
+            .div_tableCol {
+              border: 0;
+              padding: 20px;
+
+              p {
+                margin: 0 0 10px;
+
+                &:last-child {
+                  margin: 0;
+                }
+
+                &.numero {
+                  font-size: 32px;
+                }
+              }
+
+              &.col6 {
+                display: block;
+                width: 100%;
+              }
+            }
+
+            &:first-child {
+              .div_tableHeader {
+                border-top-width: 0;
+                &:first-child {
+                  border-top-left-radius: $radius-padrao - 4;
+                }
+                &:last-child {
+                  border-top-right-radius: $radius-padrao - 4;
+                }
+              }
+            }
+
+            &:last-child {
+              .div_tableCol {
+                border-bottom-width: 0;
+                &:first-child {
+                  border-bottom-left-radius: $radius-padrao - 4;
+                }
+                &:last-child {
+                  border-bottom-right-radius: $radius-padrao - 4;
+                }
+              }
+            }
+          }
+
+          &.div_col1,
+          &.div_col2 {
+            width: 100%;
+          }
+
+          &:first-child {
+            .div_tableRow {
+              &:first-child {
+                .div_tableHeader {
+                  &:first-child {
+                    border-top-left-radius: $radius-padrao - 4;
+                  }
+                  &:last-child {
+                    border-top-right-radius: $radius-padrao - 4;
+                  }
+                }
+              }
+
+              &:last-child {
+                .div_tableCol {
+                  &:first-child {
+                    border-bottom-left-radius: $radius-padrao;
+                  }
+                  &:last-child {
+                    border-bottom-right-radius: $radius-padrao;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

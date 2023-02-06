@@ -1,0 +1,664 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .carousel {
+      margin: 0 auto $espaco-margin;
+
+      .carousel-inner {
+        background-color: $cor5;
+        height: 100%;
+
+        .carousel-item {
+          padding-bottom: 50px;
+
+          &.textOverImg {
+            padding-bottom: 0;
+            .carousel-caption {
+              padding: 50px 7%;
+            }
+          }
+
+          &.withOutImg {
+            .carousel-caption {
+              position: relative;
+              right: 0;
+              left: 0;
+              bottom: 0;
+              padding-top: 50px;
+              padding-bottom: 20px;
+            }
+          }
+
+          .carousel-caption {
+            text-align: start;
+            padding: 0 7%;
+
+            .flexImgWithText {
+              background-color: transparent;
+              .p-carousel-full-vertical {
+                padding: 0 4.8rem;
+              }
+            }
+
+            &.relative {
+              top: 0;
+              left: 0;
+            }
+
+            &.bodyWithImg {
+              padding: 0 4.8rem;
+              &.fullLeft {
+                padding-left: 0;
+                padding-right: 4.8rem;
+              }
+              &.fullRight {
+                padding-right: 0;
+                padding-left: 4.8rem;
+              }
+              &.fullTop,
+              &.fullBottom {
+                padding: 0;
+                img {
+                  height: 300px !important;
+                }
+              }
+              &.fullBottom,
+              &.bottom {
+                padding-top: 1.5rem;
+              }
+            }
+
+            p {
+              padding: 0;
+            }
+          }
+
+          p {
+            margin: $espaco-margin 0;
+            padding: 0 7%;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+
+          a,
+          strong {
+            color: #fff;
+          }
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      /* INDICATORS */
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        bottom: 20px;
+        left: 30%;
+        margin: 0;
+        width: 40%;
+
+        button {
+          background-color: $cor1;
+          border: solid 2px transparent;
+          border-radius: 50%;
+          height: 20px;
+          margin: 0 5px;
+          padding: 0;
+          position: relative;
+          outline: none;
+          width: 20px;
+
+          &.active {
+            background-color: $cor3;
+          }
+        }
+      }
+
+      /* CONTADOR */
+      .carousel-counter {
+        color: $cor-texto;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        margin: 0;
+        text-align: center;
+        width: 10%;
+        z-index: 10;
+      }
+
+      /* CONTROLS */
+      .carousel-control-prev,
+      .carousel-control-next {
+        background-color: transparent;
+        margin: 0;
+        opacity: 1;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 5%;
+
+        @include transition(all 0.4s);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0);
+
+          .carousel-control-prev-icon,
+          .carousel-control-next-icon {
+            background-color: $cor3;
+          }
+        }
+      }
+
+      .carousel-control-prev {
+        .carousel-control-prev-icon {
+          background-color: $cor1;
+          background-size: 65%;
+          border-radius: 50%;
+          height: 3em;
+          width: 3em;
+          @include transition(all 0.4s);
+        }
+      }
+
+      .carousel-control-next {
+        .carousel-control-next-icon {
+          background-color: $cor1;
+          background-size: 65%;
+          border-radius: 50%;
+          height: 3em;
+          width: 3em;
+          @include transition(all 0.4s);
+        }
+      }
+
+      &.moldura {
+        margin-bottom: $espaco-margin + 30px;
+
+        .carousel-inner {
+          border: solid 5px $cor3;
+          border-radius: $radius-padrao;
+          margin: 0 auto;
+          width: 90%;
+        }
+
+        /* INDICATORS */
+        .carousel-indicators {
+          background: $cor3;
+          border-radius: $radius-padrao;
+          padding: 8px;
+          bottom: -15px;
+          left: 50%;
+          margin: 0;
+          width: fit-content;
+
+          @include transform(translateX(-50%));
+
+          button {
+            &.active {
+              background-color: transparent;
+              border: solid 2px $cor1;
+            }
+          }
+        }
+
+        /* CONTADOR */
+        .carousel-counter {
+          background: $cor3;
+          border-radius: $radius-padrao;
+          bottom: -7px;
+          color: $cor1;
+          padding: 4px;
+          right: 8%;
+          z-index: 1;
+        }
+
+        /* CONTROLS */
+        .carousel-control-prev,
+        .carousel-control-next {
+          width: 10%;
+        }
+      }
+
+      &.animado {
+        .carousel-inner {
+          // background: rgba($cor1, 0.85);
+          background: transparent;
+
+          .carousel-item {
+            position: relative;
+            display: none;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+            @include transition(all 0.6s ease);
+            z-index: 0;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 90%;
+              background: rgba($cor1, 0.85);
+              z-index: -1;
+              @include transition(all 0.2s ease);
+            }
+
+            &.active {
+              display: flex;
+              opacity: 1;
+
+              &::before {
+                height: 100%;
+              }
+              @include transform(translateX(0) translate3d(0, 0, 0));
+
+              &.carousel-item-start,
+              &.carousel-item-end {
+                @include transform(translateX(0));
+                opacity: 0;
+              }
+            }
+
+            .mask {
+              display: flex;
+              position: relative;
+              margin: 0 auto;
+              height: 100%;
+              width: 100%;
+              .title {
+                color: $cor5;
+                letter-spacing: 0.5px;
+                margin: 0 0 $espaco-margin;
+
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+              }
+              //@include animation(slideInDown 1.2s ease forwards);}
+              .textBlock {
+                color: $cor5;
+                margin: 0 0 $espaco-margin;
+                padding: 0;
+
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                //@include animation(slideInLeft 1.2s ease forwards);}
+              }
+
+              a {
+                background: $cor3;
+                color: #fff;
+                display: inline-block;
+                padding: 8px 25px;
+                text-decoration: none;
+
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                //@include animation(slideInUp 1.2s ease forwards);
+                @include transition(all 0.6s);
+
+                &:hover {
+                  background: darken($cor3, 10);
+                  text-decoration: none;
+                }
+              }
+
+              img {
+                display: block;
+                height: auto;
+                max-width: 100%;
+
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                //@include animation(slideInRight 1.2s ease forwards);
+              }
+            }
+          }
+
+          .carousel-item-prev {
+            display: flex;
+            @include transform(translate3d(0, 0, 0));
+
+            &.carousel-item-end {
+              opacity: 1;
+            }
+          }
+          .carousel-item-next {
+            display: flex;
+            @include transform(translate3d(0, 0, 0));
+
+            &.carousel-item-start {
+              opacity: 1;
+            }
+          }
+
+          @supports (transform-style: preserve-3d) {
+            .carousel-item-left.active,
+            .carousel-item-next,
+            .carousel-item-prev,
+            .carousel-item-prev.active {
+              @include transform(translate3d(0, 0, 0));
+            }
+          }
+        }
+
+        .carousel-control-prev {
+          .carousel-control-prev-icon {
+            background-color: $cor3;
+          }
+        }
+
+        .carousel-control-next {
+          .carousel-control-next-icon {
+            background-color: $cor3;
+          }
+        }
+      }
+
+      &.break {
+        pointer-events: none;
+        .carousel-inner {
+          background-color: transparent;
+          height: 100%;
+
+          .carousel-item {
+            background-color: $cor5;
+            display: block;
+            float: none;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0;
+            .carousel-caption {
+              .flexImgWithText {
+                .p-carousel-full-vertical {
+                  padding: 0 1rem;
+                }
+
+                .p-default {
+                  padding: 0 1rem;
+                }
+              }
+
+              &.bodyWithImg {
+                padding-bottom: 2rem;
+
+                &.fullTop,
+                &.fullRight,
+                &.fullLeft,
+                &.left,
+                &.right,
+                &.bottom,
+                &.top {
+                  padding-right: 0;
+                  padding-left: 0;
+                }
+
+                &.bottom,
+                &.fullBottom {
+                  padding-bottom: 0;
+                  padding-top: 1.5rem;
+                }
+                &.fullTop {
+                  padding-bottom: 2rem;
+                }
+
+                &.fullTop,
+                &.fullBottom {
+                  img {
+                    height: auto !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .carousel-indicators,
+        .carousel-counter,
+        .carousel-control-prev,
+        .carousel-control-next {
+          display: none;
+        }
+
+        &.moldura {
+          margin-bottom: $espaco-margin + 30px;
+
+          .carousel-inner {
+            border: none;
+            .carousel-item {
+              position: relative;
+              z-index: 0;
+              &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: solid 5px $cor3;
+                border-radius: $radius-padrao;
+                z-index: 1;
+              }
+            }
+          }
+        }
+        &.animado {
+          .carousel-inner {
+            .carousel-item {
+              &::before {
+                height: 100%;
+              }
+              .carousel-caption {
+                &.bodyWithImg,
+                &.fullTop,
+                &.fullBottom {
+                  padding-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-tablet} {
+        /* INDICATORS */
+        .carousel-indicators {
+          bottom: 10px;
+
+          button {
+            border: solid 1px transparent;
+            height: 16px;
+            margin: 0 3px;
+            width: 16px;
+          }
+        }
+
+        /* CONTADOR */
+        .carousel-counter {
+          color: $cor-texto;
+          bottom: 5px;
+          width: 30%;
+        }
+
+        /* CONTROLS */
+        .carousel-control-prev,
+        .carousel-control-next {
+          width: 8%;
+
+          .carousel-control-prev-icon,
+          .carousel-control-next-icon {
+            height: 2.5em;
+            width: 2.5em;
+          }
+        }
+
+        // INNER
+        .carousel-inner {
+          .carousel-item {
+            .carousel-caption {
+              .flexImgWithText {
+                .p-carousel-full-vertical {
+                  padding: 0 3.8rem;
+                }
+              }
+
+              &.bodyWithImg {
+                padding: 0 3.8rem;
+                &.fullLeft {
+                  padding-left: 0;
+                  padding-right: 3.8rem;
+                }
+                &.fullRight {
+                  padding-right: 0;
+                  padding-left: 3.8rem;
+                }
+                &.fullTop,
+                &.fullBottom {
+                  img {
+                    height: 200px !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.moldura {
+          /* INDICATORS */
+          .carousel-indicators {
+            left: 8%;
+            min-width: 20%;
+
+            @include transform(none);
+
+            button {
+              &.active {
+                border: solid 1px $cor1;
+              }
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        // INNER
+        .carousel-inner {
+          .carousel-item {
+            .carousel-caption {
+              .flexImgWithText {
+                .p-carousel-full-vertical {
+                  padding: 0 3.8rem;
+                }
+
+                .p-default {
+                  padding: 0 3.8rem;
+                }
+              }
+
+              &.bodyWithImg {
+                padding: 0 3.8rem;
+
+                &.fullRight,
+                &.fullLeft,
+                &.left,
+                &.right,
+                &.top,
+                &.bottom {
+                  padding-right: 0;
+                  padding-left: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-phone} {
+        /* INDICATORS */
+        .carousel-indicators {
+          button {
+            height: 12px;
+            width: 12px;
+          }
+        }
+
+        /* CONTROLS */
+        .carousel-control-prev,
+        .carousel-control-next {
+          width: 10%;
+
+          .carousel-control-prev-icon,
+          .carousel-control-next-icon {
+            height: 2em;
+            width: 2em;
+          }
+        }
+
+        // INNER
+        .carousel-inner {
+          .carousel-item {
+            .carousel-caption {
+              .flexImgWithText {
+                .p-carousel-full-vertical {
+                  padding: 0 3.8rem;
+                }
+              }
+
+              &.bodyWithImg {
+                padding: 0 3.8rem;
+                &.fullLeft {
+                  padding-left: 0;
+                  padding-right: 0;
+                }
+                &.fullTop,
+                &.fullBottom {
+                  img {
+                    height: 200px !important;
+                  }
+                }
+
+                &.fullRight {
+                  padding-right: 0;
+                  padding-left: 0;
+                }
+              }
+            }
+          }
+        }
+
+        &.moldura {
+          .carousel-indicators {
+            min-width: 30%;
+          }
+        }
+      }
+    }
+  }
+}

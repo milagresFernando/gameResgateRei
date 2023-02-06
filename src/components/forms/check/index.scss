@@ -1,0 +1,209 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    /* CHECKBOX */
+    .check-option {
+      position: relative;
+      padding-left: 0;
+
+      input[type="checkbox"]:not(old) {
+        cursor: pointer;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        width: 1px;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        + label {
+          color: $cor-texto;
+          cursor: pointer;
+          display: inline-block;
+          font-family: $fonte;
+          margin: 0 0 $espaco-margin/2;
+          max-width: 95%;
+
+          padding: 0 0 0 35px;
+          position: relative;
+
+          &::before {
+            background: $cor5;
+            border: solid 2px $cor3;
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+
+            @include transition(all 0.4s);
+          }
+          .textBlock {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &:checked {
+          + label {
+            &::before {
+              background: $cor3;
+              border-color: $cor1;
+
+              @include transform(rotate(90deg));
+            }
+          }
+        }
+
+        &:disabled {
+          + label {
+            color: #ccc;
+            cursor: default;
+
+            &::before {
+              background: rgba(#ccc, 0.2);
+              border: solid 2px #ccc;
+            }
+          }
+        }
+      }
+    }
+
+    /* RADIO */
+    .radio-option {
+      position: relative;
+      padding-left: 0;
+
+      input[type="radio"]:not(old) {
+        cursor: pointer;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        width: 1px;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        + label {
+          color: $cor-texto;
+          cursor: pointer;
+          display: inline-block;
+          font-family: $fonte;
+          line-height: 22px;
+          margin: 0 0 $espaco-margin/2;
+          max-width: 95%;
+
+          padding: 0 0 0 35px;
+          position: relative;
+
+          &::before {
+            background: $cor5;
+            border: solid 2px $cor3;
+            border-radius: $radius-padrao;
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+
+            @include transition(all 0.4s);
+          }
+          .textBlock {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &:checked {
+          + label {
+            &::before {
+              background: $cor3;
+              border-color: $cor1;
+            }
+          }
+        }
+
+        &:disabled {
+          + label {
+            color: #ccc;
+            cursor: default;
+
+            &::before {
+              background: rgba(#ccc, 0.2);
+              border: solid 2px #ccc;
+            }
+          }
+        }
+      }
+    }
+
+    /* SWITCH */
+    .switch-option {
+      position: relative;
+
+      input[type="checkbox"]:not(old) {
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='55' style='fill: %23" + $svg3 + ";'/%3E%3C/svg%3E");
+        border-color: $cor3;
+        cursor: pointer;
+        &:focus {
+          @include box-shadow(none);
+          background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='55' style='fill: %23" + $svg3 + ";'/%3E%3C/svg%3E");
+        }
+
+        + label {
+          color: $cor-texto;
+          cursor: pointer;
+          display: inline-block;
+          font-family: $fonte;
+          margin: 0 0 $espaco-margin/2;
+          position: relative;
+          .textBlock {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &:checked {
+          background-color: $cor3;
+          border-color: $cor3;
+          &:focus,
+          &:active {
+            @include box-shadow(none);
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='55' style='fill: %23" + $svg5 + ";'/%3E%3C/svg%3E");
+          }
+
+          + label {
+          }
+        }
+
+        &:disabled {
+          + label {
+            color: #ccc;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}

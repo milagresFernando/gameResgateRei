@@ -1,0 +1,280 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    $primary-foreground-color: $cor5; // #fff default
+    $primary-hover-color: $cor3;
+    $primary-background-color: $cor1; // #2B333F default
+    $center-big-play-button: true; // true default
+    $slider-bg-color: $cor3;
+
+    .btnForSafariIos {
+      position: absolute;
+      z-index: 70;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+    // PLAYER VIDEO
+    .player {
+      border-radius: 8px;
+      margin: 0 auto ($espaco-margin * 2);
+      overflow: hidden;
+      padding: 0;
+      padding-bottom: 56.25%;
+      position: relative;
+      width: 100%;
+      z-index: 60;
+
+      @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));
+
+      .video-js {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &.vjs-layout-x-small {
+          .vjs-progress-control {
+            display: flex !important;
+          }
+        }
+      }
+    }
+
+    .singleVideoWrapper {
+      &:fullscreen {
+        width: 100%;
+        video {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+        }
+
+        .player {
+          padding: initial;
+          height: 100%;
+
+          .vjs-control-bar {
+            position: fixed;
+
+            bottom: 0;
+          }
+        }
+      }
+
+      &.iphoneClass {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 5000;
+        .player {
+          height: 100vh;
+          padding-bottom: initial;
+          position: fixed;
+          .video-js {
+            .vjs-tech {
+              position: fixed;
+            }
+
+            .vjs-control-bar {
+              position: fixed;
+              z-index: 1000;
+            }
+          }
+        }
+      }
+    }
+
+    // VIDEO-JS
+    .video-js {
+      color: $primary-foreground-color;
+      font-size: 10px;
+
+      @include transition(all 0.4s);
+
+      .vjs-fullscreen-control {
+        .vjs-icon-placeholder {
+          &.exitFull {
+            &::before {
+              content: "\f109";
+            }
+          }
+        }
+      }
+
+      .vjs-control-bar {
+        justify-content: flex-end;
+      }
+
+      .vjs-control-bar,
+      .vjs-big-play-button,
+      .vjs-menu-button .vjs-menu-content {
+        background-color: $primary-background-color;
+        background-color: rgba($primary-background-color, 0.7);
+      }
+
+      .vjs-control-bar {
+        .vjs-quality-selector {
+          .vjs-menu-button {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+          }
+          .vjs-icon-placeholder {
+            font-family: "VideoJS";
+            font-weight: normal;
+            font-style: normal;
+
+            &::before {
+              content: "\f110";
+            }
+          }
+        }
+      }
+
+      &:not(.vjs-has-started.vjs-user-inactive.vjs-playing.vjs-paused) {
+        .vjs-text-track-cue {
+          @include transition(all 0.2s ease);
+          margin-top: -20px;
+        }
+      }
+
+      &.vjs-has-started {
+        &.vjs-user-inactive {
+          &.vjs-playing {
+            .vjs-text-track-cue {
+              @include transition(all 0.2s ease);
+              margin-top: initial !important;
+            }
+          }
+        }
+      }
+
+      .vjs-text-track-cue {
+        &.vjs-text-track-cue-pt-br {
+          font-size: 1rem !important;
+        }
+      }
+
+      .vjs-quality-changing {
+        .vjs-big-play-button {
+          display: none;
+        }
+
+        .vjs-control-bar {
+          display: flex;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      // POSTER
+      .vjs-poster {
+        background-color: $cor1;
+        background-size: contain;
+      }
+
+      // TEXT TRACK
+      .vjs-texttrack-settings {
+        display: none;
+      }
+
+      .vjs-text-track-display {
+        .vjs-text-track-cue {
+          div {
+            background: rgba($cor1, 0.8) !important;
+            display: inline-block !important;
+            padding: 6px 12px;
+          }
+        }
+      }
+
+      &:hover {
+        .vjs-big-play-button {
+          background-color: rgba($primary-background-color, 0.6);
+          border-color: $primary-hover-color;
+          color: $primary-hover-color;
+
+          @include transition(all 0.4s);
+        }
+      }
+
+      // PLAY BUTTON
+      .vjs-big-play-button {
+        font-size: 3em;
+        $big-play-width: 5em;
+        $big-play-height: 2.5em;
+        line-height: $big-play-height;
+        height: $big-play-height;
+        width: $big-play-width;
+        border: 0.08em solid $primary-foreground-color;
+        border-radius: 0.3em;
+
+        @if $center-big-play-button {
+          left: 50%;
+          top: 50%;
+          margin-left: -($big-play-width / 2);
+          margin-top: -($big-play-height / 2);
+        } @else {
+          left: 0.5em;
+          top: 0.5em;
+        }
+      }
+
+      // SLIDER
+      .vjs-slider {
+        background-color: $slider-bg-color;
+        background-color: rgba($slider-bg-color, 0.5);
+      }
+
+      .vjs-volume-level,
+      .vjs-play-progress,
+      .vjs-slider-bar {
+        background: $primary-foreground-color;
+      }
+
+      // PROGRESS
+      .vjs-load-progress {
+        background: lighten($slider-bg-color, 25%);
+        background: rgba($slider-bg-color, 0.5);
+
+        div {
+          background: lighten($slider-bg-color, 50%);
+          background: rgba($slider-bg-color, 0.75);
+        }
+      }
+
+      @media #{$bp-phone} {
+        // PLAY BUTTON
+        .vjs-big-play-button {
+          line-height: 1.5em;
+          height: 1.5em;
+          width: 3em;
+
+          @if $center-big-play-button {
+            margin-left: -(3em / 2);
+            margin-top: -(1.5em / 2);
+          }
+        }
+      }
+    }
+  }
+}

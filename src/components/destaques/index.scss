@@ -1,0 +1,138 @@
+@import "src/styles/default/_init.scss";
+
+.blocoPadrao {
+  border-radius: $radius-padrao;
+  margin: 0 auto $espaco-margin;
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(to right, $cor3 0%, $cor4 100%);
+  border: solid 3px $cor2;
+
+  h4 {
+    color: #fff !important;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.2em;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  $importanteBg: linear-gradient(to right, #2ed3ae 0%, #2eacae 100%);
+  $saibaBg: linear-gradient(to right, #4ec0ef 0%, #2784c3 100%);
+  $atencaoBg: linear-gradient(to right, #ebc44f 0%, #ca9b0e 100%);
+  &.atencao {
+    background: $atencaoBg;
+    &.full,
+    &.fullLeft,
+    &.fullRight {
+      &::before {
+        background: $atencaoBg;
+      }
+    }
+  }
+  &.importante {
+    background: $importanteBg;
+    &.full,
+    &.fullLeft,
+    &.fullRight {
+      &::before {
+        background: $importanteBg;
+      }
+    }
+  }
+  &.saibaMais {
+    background: $saibaBg;
+
+    &.full,
+    &.fullLeft,
+    &.fullRight {
+      &::before {
+        background: $saibaBg;
+      }
+    }
+  }
+
+  @media #{$bp-tablet} {
+    border: solid 2px $cor2;
+    padding: 15px;
+
+    p {
+      font-size: 1em;
+    }
+
+    $importanteBg: linear-gradient(to bottom, #2ed3ae 0%, #2eacae 100%);
+    $saibaBg: linear-gradient(to bottom, #4ec0ef 0%, #2784c3 100%);
+    $atencaoBg: linear-gradient(to bottom, #ebc44f 0%, #ca9b0e 100%);
+
+    &.atencao {
+      background: $atencaoBg;
+      &.full,
+      &.fullLeft,
+      &.fullRight {
+        &::before {
+          background: $atencaoBg;
+        }
+      }
+    }
+    &.importante {
+      background: $importanteBg;
+      &.full,
+      &.fullLeft,
+      &.fullRight {
+        &::before {
+          background: $importanteBg;
+        }
+      }
+    }
+    &.saibaMais {
+      background: $saibaBg;
+
+      &.full,
+      &.fullLeft,
+      &.fullRight {
+        &::before {
+          background: $saibaBg;
+        }
+      }
+    }
+  }
+
+  &.typeFull {
+    background: none;
+    border: none;
+    border-radius: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100vw;
+      height: 100%;
+      border-radius: $radius-padrao;
+      border: solid 3px $cor2;
+      top: 0;
+      z-index: -1;
+    }
+
+    &.full {
+      &::before {
+        left: 50%;
+        @include transform(translateX(-50%));
+      }
+    }
+
+    &.fullLeft {
+      &::before {
+        right: 0;
+      }
+    }
+    &.fullRight {
+      &::before {
+        left: 0;
+      }
+    }
+  }
+}

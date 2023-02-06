@@ -1,0 +1,22 @@
+@import "src/App.scss";
+
+.animatedWrapper {
+  // pointer-events: none;
+  // cursor: pointer;
+  display: flex;
+  .itemLottie {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.boxLottieRelative {
+  background-color: $cor2;
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+  .textBlock {
+    color: #fff;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,29 @@
+@import "src/App.scss";
+
+.parallaxWrapper {
+  min-height: 400px;
+  align-items: center;
+
+  .boxItemExample {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: gray;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media #{$bp-tablet} {
+    .boxItemExample {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  @media #{$bp-phone} {
+    min-height: 500px;
+    .boxItemExample {
+    }
+  }
+}

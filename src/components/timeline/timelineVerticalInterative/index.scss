@@ -1,0 +1,296 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .verticalTimeline {
+      counter-reset: line-number;
+      position: relative;
+      padding: 20px 0;
+      margin: $espaco-margin 0;
+
+      li {
+        list-style: none;
+        position: relative;
+        counter-increment: line-number;
+        width: 80px;
+        height: 80px;
+        margin: 0 0 $espaco-margin;
+        min-height: 80px;
+        cursor: pointer;
+        padding: 0;
+
+        &::before {
+          color: $cor5;
+          font-size: 1.75em;
+          content: counter(line-number);
+          position: absolute;
+          z-index: 11;
+          top: 0;
+          left: 0;
+          width: 80px;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @include transition(all 600ms ease-in);
+        }
+
+        span {
+          height: 80px;
+          width: 80px;
+          top: 50%;
+
+          @include transform(translateY(-50%));
+
+          &::before {
+            border: solid 3px $cor1;
+            background: transparent;
+            border-radius: 50%;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 11;
+            @include transform(translateY(-50%));
+            @include transition(all 600ms ease-in);
+          }
+
+          &::after {
+            background-color: $cor2;
+            border-radius: 50%;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            z-index: 10;
+            @include transform(translate(-50%, -50%));
+            @include transition(all 600ms ease-in);
+          }
+
+          &.pulse {
+            &::before {
+              @include animation(pulse 2s ease-in infinite);
+            }
+          }
+
+          .check {
+            position: absolute;
+            bottom: 0;
+            right: -5%;
+            width: 35%;
+            height: 35%;
+            background: url(../../../globalAssets/images/check.svg)
+              no-repeat
+              center;
+            z-index: 11;
+            opacity: 1;
+            @include transform(scale(1));
+            @include transition(all 500ms ease-in-out);
+          }
+
+          .notCheck {
+            @include transform(scale(0));
+            opacity: 0;
+          }
+        }
+
+        // CONTEUDO
+        .content-timeline {
+          background: $cor3;
+          padding: 0;
+          margin: 0;
+          height: 0;
+          display: table-cell;
+          opacity: 0;
+          width: 100%;
+          .title {
+            color: $cor5;
+            margin-bottom: 0;
+          }
+        }
+
+        &.selected {
+          pointer-events: none;
+          border: 0;
+          display: flex;
+          height: auto;
+          width: 100%;
+
+          &::before {
+            top: 50%;
+            @include transform(translateY(-50%));
+          }
+
+          span {
+            position: absolute;
+            width: 80px;
+            z-index: 10;
+
+            &::before {
+              background: #fff;
+              border: solid 3px $cor3;
+              z-index: 10;
+            }
+            &::after {
+              background-color: $cor1;
+              height: 60px;
+              width: 60px;
+              z-index: 12;
+            }
+
+            &.pulse {
+              &::before {
+                animation: none;
+              }
+            }
+          }
+
+          .content-timeline {
+            padding: 1em 1em 1em 2.5em;
+            border-top-right-radius: $radius-padrao;
+            border-bottom-right-radius: $radius-padrao;
+
+            opacity: 1;
+            height: auto;
+            width: calc(100% - 70px);
+            left: 70px;
+            position: relative;
+            display: block;
+            z-index: 9;
+
+            @include animation(
+              enterContent 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+            );
+
+            &::before {
+              background: $cor-pagina;
+              border-top-right-radius: 90px;
+              border-bottom-right-radius: 90px;
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: -20px;
+              width: 45px;
+              height: 90px;
+
+              @include transform(translateY(-50%));
+              @include transition(all 400ms ease-in);
+            }
+
+            opacity: 1;
+
+            strong {
+              color: #fff;
+              font-size: 1.5rem;
+            }
+
+            .textBlock {
+              color: #fff;
+
+              &:last-child {
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          &::before {
+            z-index: 13;
+          }
+
+          span {
+            z-index: 10;
+
+            &::before {
+              background: #fff;
+              border-color: $cor3;
+              z-index: 10;
+            }
+            &::after {
+              background-color: $cor1;
+              height: 60px;
+              width: 60px;
+              z-index: 12;
+            }
+          }
+        }
+      }
+
+      @media #{$bp-phone} {
+        li {
+          width: 50px;
+          height: 50px;
+          min-height: 50px;
+
+          &::before {
+            font-size: 1.25em;
+            width: 50px;
+            height: 50px;
+          }
+
+          span {
+            height: 50px;
+            width: 50px;
+
+            &::before {
+              border: solid 2px $cor1;
+            }
+
+            &::after {
+              height: 50px;
+              width: 50px;
+            }
+          }
+
+          &.selected {
+            span {
+              width: 50px;
+
+              &::before {
+                border: solid 2px $cor3;
+              }
+              &::after {
+                height: 40px;
+                width: 40px;
+              }
+            }
+
+            .content-timeline {
+              padding: 1em 1em 1em 1.5em;
+              width: calc(100% - 40px);
+              left: 40px;
+
+              &::before {
+                border-top-right-radius: 60px;
+                border-bottom-right-radius: 60px;
+                left: -25px;
+                width: 40px;
+                height: 60px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

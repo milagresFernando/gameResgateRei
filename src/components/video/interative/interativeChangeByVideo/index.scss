@@ -1,0 +1,195 @@
+@import "src/styles/default/_init.scss";
+
+// NARRADA
+
+.interativeChangeByVideo {
+  justify-content: center;
+  position: relative;
+  margin-bottom: 2rem;
+
+  .video {
+    position: relative;
+    width: 100%;
+
+    &:fullscreen {
+      width: 100%;
+      video {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+      .player {
+        padding: initial;
+        height: 100%;
+        .video-js {
+          .vjs-control-bar {
+            position: fixed;
+            bottom: 0;
+          }
+        }
+      }
+    }
+
+    .player {
+      .video-js {
+        .vjs-control-bar {
+          .vjs-progress-control {
+            opacity: 0;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    .icoReiniciar {
+      position: absolute;
+      padding-left: 40px;
+      z-index: 80;
+      top: 3%;
+      @include transition(all ease 1s);
+
+      &.topLeft {
+        left: 3%;
+      }
+      &.topRight {
+        right: 3%;
+      }
+
+      &::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        @include transform(translateY(-50%));
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='uuid-71a360e4-be7e-41e4-adbe-b0a1087f89d3' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cdefs%3E%3Cstyle%3E .uuid-da119fdb-bed0-4e10-85df-8b1b833fec62 %7B fill: none; stroke: %2300a075; stroke-linecap: round; stroke-linejoin: round; stroke-width: 4px; %7D .uuid-a7256856-2796-4b8f-ad71-e3edbe359ba9 %7B fill: %2300a075; %7D %3C/style%3E%3C/defs%3E%3Cpath class='uuid-da119fdb-bed0-4e10-85df-8b1b833fec62' d='M6.68,6.68c4.59-4.59,12.04-4.59,16.63,0,4.59,4.59,4.59,12.04,0,16.63-4.59,4.59-12.04,4.59-16.63,0'/%3E%3Cpolygon class='uuid-a7256856-2796-4b8f-ad71-e3edbe359ba9' points='2.52 1.23 12.14 10.85 2.52 10.85 2.52 1.23'/%3E%3C/svg%3E")
+          no-repeat center;
+      }
+    }
+    .showReset {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hideReset {
+      pointer-events: none;
+      opacity: 0;
+    }
+    &.iphoneClass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 5000;
+      .player {
+        height: 100vh;
+        padding-bottom: initial;
+        .video-js {
+          .vjs-tech {
+            position: fixed;
+          }
+          .vjs-control-bar {
+            position: fixed;
+            z-index: 1000;
+          }
+        }
+      }
+    }
+
+    .wrapperElements {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-wrap: wrap;
+      bottom: 10%;
+      z-index: 70;
+
+      &:fullscreen::backdrop {
+        background: transparent;
+      }
+      .counter {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        .counterItem {
+          margin: 0 auto;
+          background-color: $cor3;
+          opacity: 0;
+          height: 5px;
+          @include transition(all 0.2s);
+          @include transform(scale(0));
+
+          &.classInCounter {
+            opacity: 1;
+            @include transform(scale(1));
+
+            &.time {
+              margin-top: 2px;
+              color: #fff;
+              border-radius: 1rem;
+              height: auto;
+              padding: 0px 20px;
+            }
+          }
+        }
+      }
+
+      .barAndTime {
+        .time {
+          background-color: rgba($cor2, 0.5);
+          max-width: 150px;
+        }
+      }
+
+      .interativeElement {
+        display: none;
+        opacity: 0;
+        margin-bottom: 0;
+        @include transition(all 0.2s);
+
+        &.inInterative {
+          opacity: 1;
+          @include transform(translateY(0%));
+        }
+
+        &.outInterative {
+          opacity: 0;
+          @include transform(translateY(50%));
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .video {
+      .icoReiniciar {
+        padding-left: 30px;
+        font-size: 0.75rem;
+        &::before {
+          left: 10px;
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+  }
+
+  @media #{$bp-phone} {
+    .video {
+      width: 100%;
+
+      .wrapperElements {
+        bottom: 18%;
+
+        .interativeElement {
+          padding: 5px 10px;
+          font-size: 0.9rem;
+        }
+      }
+      .player {
+        border-radius: $radius-padrao;
+      }
+    }
+  }
+}

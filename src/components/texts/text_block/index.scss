@@ -1,0 +1,27 @@
+@import "src/styles/default/_init.scss";
+
+.textBlock {
+  @at-root {
+    p#{&} {
+      display: block;
+      font-family: $fonte;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0 0 $espaco-margin;
+      padding: 0;
+    }
+    span#{&} {
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+  color: $cor-texto;
+}

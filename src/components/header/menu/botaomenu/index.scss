@@ -1,0 +1,81 @@
+@import "src/styles/default/_init.scss";
+
+.botaoMenu {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  display: table;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  z-index: 100;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .tracoBotao {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    @include transform(translate(-50%, -50%) rotate(0deg));
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: 0;
+      display: block;
+      float: none;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+
+      @include transform(none);
+      @include transition(all 600ms cubic-bezier(1, -1.63, 0.56, 1.83));
+    }
+    &::after {
+      top: 10px;
+      left: 0;
+    }
+    span {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 0;
+      opacity: 1;
+
+      @include transform(scaleX(1) rotate(180deg));
+      @include transition(all 600ms cubic-bezier(1, -1.63, 0.56, 1.83));
+    }
+  }
+
+  &.ativo {
+    &::before {
+      opacity: 0;
+    }
+
+    .tracoBotao {
+      &::before {
+        top: 0;
+        @include transform(rotate(-45deg));
+      }
+
+      &::after {
+        top: 0;
+        @include transform(rotate(45deg));
+      }
+
+      span {
+        opacity: 0;
+        @include transform(scaleX(0) rotate(180deg));
+      }
+    }
+  }
+}

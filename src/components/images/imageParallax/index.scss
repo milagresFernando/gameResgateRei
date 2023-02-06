@@ -1,0 +1,18 @@
+@import "src/styles/default/_init.scss";
+
+.img-parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 450px;
+  opacity: 1;
+  position: relative;
+}
+
+.ios {
+  .img-parallax {
+    background-attachment: initial;
+    background-size: initial;
+  }
+}

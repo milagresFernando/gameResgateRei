@@ -1,0 +1,12 @@
+@import "src/styles/default/_init.scss";
+
+.feedBackSelectionItems {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  .feedBackSelectionItemsWrapper {
+    background-color: #c6c6c6;
+    padding: 0.75rem;
+  }
+}

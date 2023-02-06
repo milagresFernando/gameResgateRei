@@ -1,0 +1,61 @@
+@import "src/styles/default/_init.scss";
+
+/* TEXT - TEXTAREA */
+.text-box {
+  margin: 0 0 $espaco-margin;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  resize: none;
+  cursor: text;
+
+  &::placeholder {
+    color: rgba($cor1, 0.15);
+  }
+
+  &.group {
+    margin: 0;
+  }
+}
+.input-group > .form-control {
+  width: 1%;
+}
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+  body,
+  body.#{$tema} {
+    /* TEXT - TEXTAREA */
+    .text-box {
+      background: $cor5;
+      border: solid 2px $cor3;
+      color: $cor-texto;
+
+      &::placeholder {
+        color: rgba($cor1, 0.15);
+      }
+
+      &.placeholder {
+        &::placeholder {
+          color: rgba($cor3, 0.55);
+        }
+      }
+    }
+    .input-group-text {
+      border: solid 2px $cor3;
+      color: $cor-texto;
+    }
+  }
+}

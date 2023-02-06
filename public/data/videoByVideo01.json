@@ -1,0 +1,24 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Líder Coach",
+		"video": "opcao1"		
+		
+    },
+        {
+		"name": "Escuta Ativa",
+		"video": "opcao2"
+		
+    },
+        {
+		"name": "Perguntas Poderosas",
+		"video": "opcao3"
+		
+    },
+        {
+		"name": "Comunicação Direta",
+		"video": "opcao4"
+	
+    }
+	]
+}

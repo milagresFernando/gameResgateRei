@@ -1,0 +1,200 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .accordion {
+      margin: $espaco-margin 0;
+      counter-reset: numPanels;
+
+      .accordion-item {
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+        margin: 0 auto 5px;
+        padding: 0;
+        position: relative;
+        @include box-shadow(none);
+
+        &.ativo {
+          margin-top: 20px;
+          margin-bottom: 30px;
+
+          &::before {
+          }
+
+          .title {
+            &.accordion-header {
+              .accordion-button {
+                font-size: 1.25rem;
+              }
+            }
+          }
+        }
+
+        .accordion-header {
+          position: relative;
+          z-index: 0;
+          &.title {
+            margin: 0;
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            background: $cor1;
+            border-radius: $radius-padrao;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            @include transition(all 0.6s);
+          }
+
+          &.typeFull {
+            &::before {
+              width: 100vw;
+              left: initial;
+            }
+
+            &.full {
+              &::before {
+                left: 50%;
+                @include transform(translateX(-50%));
+              }
+            }
+
+            &.fullLeft {
+              &::before {
+                right: 0;
+              }
+            }
+            &.fullRight {
+              &::before {
+                left: 0;
+              }
+            }
+          }
+
+          &:hover {
+            &::before {
+              background: lighten($color: $cor1, $amount: 10);
+            }
+          }
+
+          .accordion-button {
+            padding: 20px 0 20px 20px;
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+
+            position: relative;
+            z-index: 4;
+
+            &::before {
+              counter-increment: numPanels;
+              color: #fff;
+              content: counter(numPanels) ".";
+              display: flex;
+              margin-right: 10px;
+              z-index: 3;
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 2%;
+
+              @include triangle(up, 15px);
+              @include transform(translateY(-50%));
+            }
+
+            &.collapsed {
+              &::after {
+                @include triangle(down, 15px);
+              }
+            }
+          }
+        }
+      }
+      .accordion-collapse {
+        background-color: $cor5;
+        border: 0;
+        border-radius: 0 0 $radius-padrao $radius-padrao;
+        margin-top: -15px;
+        padding: 15px 0 0;
+        position: relative;
+
+        z-index: -1;
+        &:last-of-type {
+          border-radius: 0 0 $radius-padrao $radius-padrao;
+        }
+
+        .accordion-body {
+          border: 0;
+          padding: 15px 25px;
+          position: relative;
+
+          .flexImgWithText {
+            background-color: $cor5;
+          }
+          &.bodyWithImg {
+            padding: 0 25px;
+            &.fullLeft {
+              padding-left: 0.8rem;
+            }
+            &.fullRight {
+              padding-right: 0.8rem;
+            }
+          }
+
+          p {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .accordion-collapse {
+          .accordion-body {
+            &.bodyWithImg {
+              padding: 0 0.8rem;
+              &.bottom {
+                padding-top: 1rem;
+              }
+              &.top,
+              &.left,
+              &.right,
+              &.fullLeft,
+              &.fullRight {
+                padding-bottom: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // IOS
+    .ios {
+    }
+  }
+}

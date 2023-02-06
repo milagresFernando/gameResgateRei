@@ -1,0 +1,646 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .oneAnswer {
+      position: relative;
+      // PERGUNTA
+      .questionWrapper {
+        // background-color: $cor4;
+        margin-bottom: 1rem;
+
+        &.notImg {
+          padding-top: 1rem;
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+        }
+
+        &.bodyWithImg {
+          &.fullTop,
+          &.fullBottom {
+            padding: 0;
+
+            img {
+              height: 300px !important;
+            }
+          }
+          &.fullBottom,
+          &.bottom {
+            .flexImgWithText {
+              padding-top: 1.5rem;
+            }
+          }
+          &.fullTop {
+            .flexImgWithText {
+              padding-bottom: 1.5rem;
+            }
+          }
+          &.fullTop,
+          &.fullBottom {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+          &.top,
+          &.bottom {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+          &.fullLeft {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+            }
+          }
+          &.fullRight,
+          &.right {
+            .flexImgWithText {
+              padding-right: 0.75rem;
+              .p-default {
+                padding-left: 0.75rem;
+              }
+            }
+          }
+        }
+
+        &.break {
+          padding-left: 0;
+          padding-right: 0;
+
+          &.top {
+            .flexImgWithText {
+              padding-top: 0.75rem;
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+
+          &.left,
+          &.right {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+
+          &.bottom,
+          &.fullBottom {
+            .flexImgWithText {
+              padding-bottom: 0;
+            }
+          }
+          &.fullLeft {
+            .flexImgWithText {
+              padding-right: 0.75rem;
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+          &.fullRight {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+
+              .p-default {
+                padding: initial;
+              }
+            }
+          }
+
+          &.top,
+          &.bottom {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+            }
+          }
+
+          &.fullTop,
+          &.fullBottom,
+          &.fullLeft,
+          &.fullRight {
+            img {
+              height: 150px !important;
+            }
+          }
+
+          .flexImgWithText {
+            padding-bottom: 0.75rem;
+          }
+        }
+
+        .flexImgWithText {
+          background-color: transparent;
+
+          .p-default {
+            padding: 0.75rem;
+            padding-left: 2rem;
+          }
+        }
+
+        .questionNumber {
+          padding: initial;
+          position: relative;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+
+          &.withoutPreText {
+            border: solid 3px $colorQuiz;
+            width: 80px;
+            height: 80px;
+            align-items: center;
+          }
+
+          &.withPreText {
+            justify-content: start;
+            .title {
+              margin: 0;
+            }
+          }
+          .title {
+            margin-bottom: 0;
+          }
+
+          p {
+            font-family: $fonte2;
+            font-weight: 700;
+            font-size: 48px;
+            color: $colorQuiz;
+            margin-bottom: 0;
+            align-self: center;
+          }
+        }
+
+        .question {
+          margin-top: auto;
+          margin-bottom: auto;
+          padding: initial;
+
+          &.withoutPreText {
+            padding-left: 0.75rem;
+          }
+
+          .title {
+            font-family: $fonte2;
+            font-size: 1.5rem;
+            padding: 0;
+            color: $cor-texto;
+            font-weight: 400;
+            &:last-child {
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+
+      // ALTERNATIVAS
+      .answersWrapper {
+        background-color: $cor4;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        &.notImg {
+          padding-top: 1rem;
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+        }
+
+        &.bodyWithImg {
+          &.fullTop,
+          &.fullBottom {
+            padding: 0;
+
+            img {
+              height: 300px !important;
+            }
+          }
+          &.fullBottom,
+          &.bottom {
+            .flexImgWithText {
+              padding-top: 1.5rem;
+            }
+          }
+          &.fullTop {
+            .flexImgWithText {
+              padding-bottom: 1.5rem;
+            }
+          }
+          &.fullTop,
+          &.fullBottom {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+            }
+          }
+          &.fullLeft {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+            }
+          }
+          &.fullRight {
+            .flexImgWithText {
+              padding-right: 0.75rem;
+            }
+          }
+        }
+
+        &.break {
+          padding-left: 0;
+          padding-right: 0;
+          &.top,
+          &.left,
+          &.right {
+            .flexImgWithText {
+              padding-top: 0.75rem;
+            }
+          }
+          &.bottom,
+          &.fullBottom {
+            .flexImgWithText {
+              padding-bottom: 0;
+            }
+          }
+
+          &.top,
+          &.bottom {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+            }
+          }
+          &.fullLeft {
+            .flexImgWithText {
+              padding-right: 0.75rem;
+            }
+          }
+          &.fullRight {
+            .flexImgWithText {
+              padding-left: 0.75rem;
+            }
+          }
+          &.fullTop,
+          &.fullBottom,
+          &.fullLeft,
+          &.fullRight {
+            img {
+              height: 150px !important;
+            }
+          }
+          .flexImgWithText {
+            padding-bottom: 0.75rem;
+          }
+        }
+
+        .flexImgWithText {
+          background-color: transparent;
+
+          .p-default {
+            padding: 0.75rem;
+          }
+        }
+
+        @include transition(all 0.5s ease);
+
+        &.disabled {
+          cursor: default;
+          pointer-events: none;
+        }
+
+        // LETRAS / ALTERNATIVAS
+        .formAnswers {
+          counter-reset: answerType;
+
+          .answers {
+            // BOX ALTERNATIVAS SIZES
+            $sizeBoxAnswer: 5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            &.upper-alpha {
+              label {
+                &::after {
+                  content: counter(answerType, upper-alpha);
+                }
+              }
+            }
+            &.upper-roman {
+              label {
+                &::after {
+                  content: counter(answerType, upper-roman);
+                }
+              }
+            }
+            &.numbers {
+              label {
+                &::after {
+                  content: counter(answerType);
+                }
+              }
+            }
+            &.square {
+              label {
+                &::after {
+                  content: "";
+                  background-color: $cor3;
+                  @include transform(
+                    scale(1) rotate(0deg) translateY(-50%) translateX(0%)
+                  );
+                  @include transition(all 0.4s ease-in);
+                }
+              }
+            }
+            input {
+              + label {
+                display: flex;
+                flex: 1;
+                align-items: center;
+                border: 4px solid rgba($colorQuiz2, 0);
+                border-left: 0;
+                @include transition(all 0.5s ease);
+                padding: 0;
+
+                &::after {
+                  counter-increment: answerType;
+                  text-align: center;
+                  position: absolute;
+                  top: 50%;
+                  @include transform(translateY(-50%));
+                  line-height: calc($sizeBoxAnswer/2);
+                  left: calc($sizeBoxAnswer/4);
+                  height: calc($sizeBoxAnswer/2);
+                  width: calc($sizeBoxAnswer/2);
+                  color: rgb(255, 255, 255);
+                  font-family: $fonte3;
+                  font-weight: 700;
+                  font-size: calc($sizeBoxAnswer/2);
+                  z-index: 3;
+                }
+
+                &::before {
+                  margin-right: 1.5rem;
+                  background: rgba($colorQuiz2, 1);
+                  border: 4px solid $colorQuiz2;
+                  border-radius: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  z-index: 2;
+                  height: $sizeBoxAnswer;
+                  width: $sizeBoxAnswer;
+                  @include transition(all 0.5s ease-in);
+                }
+
+                &:hover {
+                  &::before {
+                    background: rgba($colorQuiz2, 0.75);
+                  }
+                }
+                .textBlock {
+                  flex: 1;
+                }
+              }
+
+              &:checked {
+                + label {
+                  background: rgba($colorQuiz2, 0.4);
+                  border: 4px solid rgba($cor3, 1);
+                  border-left: 0;
+                  color: #fff;
+                  &::before {
+                    background: $cor3;
+                    border: none;
+                  }
+                }
+              }
+              &:disabled {
+                + label {
+                  opacity: 1;
+                  border: none;
+                  color: #888;
+                  &::before {
+                    background-color: #aaa;
+                    border-color: #888;
+                  }
+                  &::after {
+                    color: #888;
+                  }
+                }
+              }
+              &.selected {
+                + label {
+                  background: rgba($colorQuiz2, 0.4);
+                  border: 4px solid rgba($cor3, 1);
+                  border-left: 0;
+                  color: #fff;
+                  &::before {
+                    background: $cor3;
+                    border: none;
+                  }
+                  &::after {
+                    color: rgb(255, 255, 255);
+                  }
+                }
+              }
+            }
+
+            &.square {
+              input {
+                &:checked {
+                  + label {
+                    &::after {
+                      content: "";
+                      background-color: $colorQuiz2;
+                      top: 44%;
+                      @include transform(
+                        scale(0.7) rotate(90deg) translateY(0%) translateX(-50%)
+                      );
+                    }
+                    &::before {
+                      border: 4px solid rgba($colorQuiz2, 1);
+                    }
+                  }
+                }
+              }
+            }
+
+            //ICONES FEED
+            .iconFeed {
+              background-size: 100%;
+              width: 30px;
+              height: 30px;
+              margin-right: calc($sizeBoxAnswer/4);
+              display: block;
+              @include transition(all 1.5s ease);
+
+              &.iconCorrect {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%2300543D' d='M2.4,25.5c-0.8-0.9-1.3-1.6-1.4-2.3c-0.1-0.7,0.2-1.4,0.9-2.2c0.1-0.1,0.3-0.3,0.5-0.5 c0.2-0.2,0.5-0.4,0.7-0.6c0.3-0.2,0.5-0.4,0.7-0.6c0.2-0.2,0.4-0.4,0.5-0.5C5,18.2,5.7,18,6.3,18.1s1.2,0.4,1.6,0.9 c0.3,0.3,0.6,0.6,1,1c0.4,0.4,0.8,0.9,1.3,1.3s0.8,0.9,1.2,1.3c0.4,0.4,0.7,0.7,0.9,1c0.5,0.5,1.1,0.7,1.8,0.6 c0.7-0.1,1.3-0.5,1.9-1c0.6-0.6,1.2-1.2,2-2.1c0.8-0.8,1.7-1.7,2.6-2.7c0.9-1,1.9-2,2.9-3c1-1.1,2-2.1,3-3.1c1-1,1.9-1.9,2.7-2.8 c0.9-0.9,1.6-1.7,2.3-2.3c0.4-0.4,0.7-0.7,1.1-1c0.4-0.3,0.7-0.5,1.1-0.7c0.4-0.2,0.8-0.2,1.2-0.2c0.4,0,0.8,0.2,1.2,0.4 c0.1,0.1,0.2,0.2,0.4,0.4c0.2,0.2,0.5,0.4,0.8,0.7L38,7.5l0.4,0.5C38.8,8.3,39,8.6,39,9c0,0.4,0,0.8-0.2,1.2 c-0.2,0.4-0.4,0.8-0.6,1.1c-0.3,0.4-0.5,0.7-0.8,0.9c-0.8,0.8-1.8,1.8-2.9,2.9s-2.4,2.4-3.7,3.8c-1.3,1.3-2.7,2.7-4.1,4.2 c-1.4,1.4-2.8,2.8-4.1,4.2c-1.3,1.3-2.5,2.6-3.6,3.7c-1.1,1.1-2.1,2.1-2.8,2.8c-0.3,0.3-0.7,0.5-1.2,0.7c-0.5,0.2-1,0.3-1.5,0.3 c-0.5,0-1,0-1.5-0.2s-0.9-0.3-1.2-0.6c-0.7-0.6-1.4-1.3-2.2-2c-0.8-0.8-1.5-1.5-2.3-2.3s-1.5-1.5-2.2-2.3C3.5,26.7,2.9,26,2.4,25.5 L2.4,25.5z'/%3E%3C/svg%3E");
+              }
+
+              &.iconIncorrect {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 370 370'%3E%3Cpath fill='%23DC3232' d='M251.7,185L351.8,84.9c12.3-12.3,12.3-32.2,0-44.5l-22.2-22.2c-12.3-12.3-32.2-12.3-44.5,0L185,118.3L84.9,18.2 c-12.3-12.3-32.2-12.3-44.5,0L18.2,40.4c-12.3,12.3-12.3,32.2,0,44.5L118.3,185L18.2,285.1c-12.3,12.3-12.3,32.2,0,44.5l22.2,22.2 c12.3,12.3,32.2,12.3,44.5,0L185,251.7l100.1,100.1c12.3,12.3,32.2,12.3,44.5,0l22.2-22.2c12.3-12.3,12.3-32.2,0-44.5L251.7,185z'/%3E%3C/svg%3E%0A");
+              }
+
+              &.iconNeutral {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 370 370'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23F3AB15;stroke-width:30;stroke-miterlimit:10;%7D .st1%7Bfill:none;stroke:%23F3AB15;stroke-width:30;stroke-linecap:round;stroke-miterlimit:10;%7D%0A%3C/style%3E%3Ccircle class='st0' cx='185' cy='185' r='160'/%3E%3Cline class='st1' x1='108.5' y1='185' x2='261.5' y2='185'/%3E%3C/svg%3E");
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-tablet} {
+        // PERGUNTA
+        .questionWrapper {
+          .questionNumber {
+            &.withoutPreText {
+              width: 60px;
+              height: 60px;
+            }
+
+            p {
+              font-size: 32px;
+            }
+          }
+          .question {
+            .title {
+              font-size: 1.3rem;
+            }
+          }
+        }
+        .answersWrapper {
+          // LETRAS / ALTERNATIVAS
+          .formAnswers {
+            .answers {
+              $sizeBoxAnswer: 3.5rem;
+              input {
+                + label {
+                  &::after {
+                    left: calc($sizeBoxAnswer/4);
+                    height: calc($sizeBoxAnswer/2);
+                    width: calc($sizeBoxAnswer/2);
+                    line-height: calc($sizeBoxAnswer/2);
+                    font-size: calc($sizeBoxAnswer/2);
+                  }
+
+                  &::before {
+                    margin-right: 1rem;
+                    height: $sizeBoxAnswer;
+                    width: $sizeBoxAnswer;
+                  }
+                }
+              }
+              //ICONES FEED
+              .iconFeed {
+                width: 25px;
+                height: 25px;
+                margin-right: calc($sizeBoxAnswer/4);
+              }
+            }
+          }
+        }
+      }
+
+      @media #{$bp-phone} {
+        // PERGUNTA
+        .questionWrapper {
+          margin-bottom: 0.5rem;
+          .questionNumber {
+            &.withoutPreText {
+              width: 40px;
+              height: 40px;
+            }
+
+            p {
+              font-size: 28px;
+            }
+          }
+          .question {
+            .title {
+              font-size: 1.1rem;
+            }
+          }
+          &.break {
+            .flexImgWithText {
+              padding-bottom: 0;
+            }
+          }
+          .flexImgWithText {
+            padding-bottom: 0;
+            .p-default {
+              padding: 0;
+            }
+          }
+        }
+        .answersWrapper {
+          // LETRAS / ALTERNATIVAS
+          &.notImg {
+            padding-left: 0;
+            padding-right: 0;
+          }
+
+          .formAnswers {
+            .answers {
+              $sizeBoxAnswer: 2.5rem;
+              input {
+                + label {
+                  &::after {
+                    left: calc($sizeBoxAnswer/4);
+                    height: calc($sizeBoxAnswer/2);
+                    width: calc($sizeBoxAnswer/2);
+                    line-height: calc($sizeBoxAnswer/2);
+                    font-size: calc($sizeBoxAnswer/2);
+                  }
+
+                  &::before {
+                    margin-right: 0.75rem;
+                    height: $sizeBoxAnswer;
+                    width: $sizeBoxAnswer;
+                  }
+                }
+              }
+              //ICONES FEED
+              .iconFeed {
+                margin-right: calc($sizeBoxAnswer/4);
+              }
+            }
+          }
+          .flexImgWithText {
+            .p-default {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

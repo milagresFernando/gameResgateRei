@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<video>
+	<chapters>
+		<chapter>
+			<nome>1. Racismo no Brasil</nome>
+			<video>Videocast_pt1</video>
+			<tempo>0</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>2. Percepções sobre racismo</nome>
+			<video>Videocast_pt2</video>
+			<tempo>208.6</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>3. Cotas raciais</nome>
+			<video>Videocast_pt3</video>
+			<tempo>1752</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>4. Representatividade</nome>
+			<video>Videocast_pt4</video>
+			<tempo>2856</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>5. “Vitimismo” e meritocracia</nome>
+			<video>Videocast_pt5</video>
+			<tempo>4280</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>6. Negritude e o mundo do trabalho</nome>
+			<video>Videocast_pt6</video>
+			<tempo>4779</tempo>
+		</chapter>
+	</chapters>
+</video>

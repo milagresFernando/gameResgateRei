@@ -1,0 +1,9 @@
+
+    RewriteEngine on
+    #for app in subdirectory
+    RewriteBase /gep/tae/react/
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^.*gep/tae/react/.* /gep/tae/react/index.html [L]

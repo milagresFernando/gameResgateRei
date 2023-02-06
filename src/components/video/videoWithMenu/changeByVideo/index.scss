@@ -1,0 +1,652 @@
+@import "src/styles/default/_init.scss";
+
+// NARRADA
+.playerChangeByVideo {
+  justify-content: flex-end;
+  position: relative;
+  margin-bottom: 2rem;
+
+  &:fullscreen {
+    width: 100%;
+    video {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+    .player {
+      padding: initial;
+      height: 100%;
+      .vjs-control-bar {
+        position: fixed;
+        bottom: 0;
+      }
+    }
+
+    .closeButton {
+      position: fixed;
+      z-index: 71;
+    }
+
+    .menu {
+      position: fixed;
+      z-index: 70;
+    }
+
+    &.left {
+      .menu {
+        right: 70%;
+      }
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            left: initial;
+            right: calc(100% - 2rem);
+            border-radius: 0 12px 12px 0;
+          }
+        }
+      }
+    }
+
+    &.right {
+      .menu {
+        left: 70%;
+      }
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            right: initial;
+            left: calc(100% - 2rem);
+            border-radius: 12px 0 0 12px;
+          }
+        }
+      }
+    }
+    @media #{$bp-tablet} {
+      &.left {
+        &.centerOnHide {
+          &.closed {
+            .closeButton {
+              right: calc(100% - 2.2rem);
+            }
+          }
+        }
+        .menu {
+          right: calc(60% - 0.35rem);
+        }
+        .closeButton {
+          right: calc(60% - 0.15rem);
+          left: initial;
+        }
+      }
+      &.right {
+        &.centerOnHide {
+          &.closed {
+            .closeButton {
+              left: calc(100% - 2.2rem);
+            }
+          }
+        }
+        .menu {
+          left: calc(60% - 0.35rem);
+        }
+        .closeButton {
+          left: calc(60% - 0.15rem);
+        }
+      }
+    }
+
+    @media #{$bp-phone} {
+      .menu {
+        width: 100%;
+        .menuChapter {
+          align-items: center;
+        }
+      }
+      &.left {
+        &.centerOnHide {
+          &.closed {
+            .closeButton {
+              right: calc(100% - 2.2rem);
+            }
+          }
+        }
+        .closeButton {
+          right: calc(100% - 2.2rem);
+          &.opened {
+            right: 0;
+          }
+        }
+        .menu {
+          right: initial;
+          left: 0;
+        }
+      }
+      &.right {
+        &.centerOnHide {
+          &.closed {
+            .closeButton {
+              left: calc(100% - 2.2rem);
+            }
+          }
+        }
+
+        .closeButton {
+          left: calc(100% - 2.2rem);
+          &.opened {
+            left: 0;
+          }
+        }
+        .menu {
+          left: initial;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &.iphoneClass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+
+    &.left {
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            left: initial;
+            right: calc(100% - 2rem);
+          }
+        }
+      }
+    }
+
+    &.right {
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            right: initial;
+            left: calc(100% - 2rem);
+          }
+        }
+      }
+    }
+
+    .closeButton {
+      position: fixed;
+      z-index: 71;
+    }
+
+    .menu {
+      position: fixed;
+      z-index: 70;
+
+      .menuChapter {
+        &.iphoneClassMenuChapter {
+          padding-left: 30px;
+          align-items: center;
+
+          &.oveflowOn {
+            align-items: flex-start !important;
+            overflow-y: scroll;
+            overflow-x: hidden;
+          }
+        }
+        .iphoneClassList {
+          width: 100%;
+        }
+      }
+    }
+    .player {
+      height: 100vh;
+      padding-bottom: initial;
+      .video-js {
+        position: fixed;
+        .vjs-tech {
+          position: fixed;
+          width: 70%;
+          @include transition(all 0.5s ease);
+        }
+
+        .vjs-control-bar {
+          position: fixed;
+          z-index: 1000;
+        }
+      }
+    }
+    &.closed {
+      .closeButton {
+        border-radius: 12px 0 0 12px;
+      }
+      .player {
+        .video-js {
+          .vjs-tech {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .closeButton {
+    height: 40px;
+    width: 40px;
+    background-color: $cor3;
+    border-color: $cor3;
+    position: absolute;
+    top: 50%;
+    z-index: 80;
+    @include transform(translateY(-50%));
+    @include transition(all 0.5s);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 100%;
+      width: 100%;
+      @include transform(translate(-50%, -50%) rotate(0));
+      @include transition(all 0.5s);
+      @include triangle(left, 8px, #fff);
+    }
+    &:hover {
+      background-color: $cor2;
+      border-color: $cor2;
+    }
+
+    &.closed {
+      &::before {
+        @include transform(translate(-50%, -50%) rotate(180deg));
+      }
+    }
+  }
+
+  .menu {
+    width: 30%;
+    position: absolute;
+    display: flex;
+    height: 100%;
+    background: rgba($cor1, 0.9);
+    padding-left: 0;
+    padding-right: 0;
+    @include transition(all 0.5s);
+
+    &.closed {
+      width: 7%;
+      overflow: hidden;
+      background: transparent;
+
+      .menuChapter {
+        .listItemsVideo {
+          clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 0 !important;
+          border: 0 !important;
+          height: 1px !important;
+          width: 1px !important;
+          opacity: 0;
+          position: absolute;
+        }
+      }
+    }
+
+    .menuChapter {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: relative;
+
+      &.oveflowOn {
+        align-items: flex-start;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .listItemsVideo {
+        cursor: pointer;
+        @include transition(all 0.5s 0.5s);
+        .listItemVideo {
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+          color: #fff;
+          cursor: pointer;
+          font-family: $fonte;
+          position: relative;
+          z-index: 0;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 95%;
+            background-color: $cor3;
+            opacity: 0;
+            z-index: -1;
+            @include transition(all 0.3s);
+          }
+
+          &.selected {
+            &::after {
+              opacity: 1;
+            }
+            &::before {
+              color: #fff;
+            }
+            cursor: default;
+          }
+
+          &:hover {
+            &::after {
+              opacity: 1;
+            }
+            &::before {
+              color: #fff;
+            }
+          }
+
+          &.visto {
+            position: relative;
+
+            &::after {
+              content: "✔";
+              display: flex;
+              align-items: center;
+              color: #fff;
+              font-size: 14px;
+              font-weight: 400;
+              height: 100%;
+              width: 15px;
+              position: absolute;
+              top: 0;
+              left: 10px;
+              z-index: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+  .video {
+    width: 70%;
+    @include transition(all 0.5s ease);
+  }
+
+  &.centerOnHide {
+    &.closed {
+      justify-content: center;
+    }
+  }
+
+  &.left {
+    &.centerOnHide {
+      &.closed {
+        .closeButton {
+          left: initial;
+          right: calc(85% - 0.5rem);
+        }
+      }
+    }
+    .closeButton {
+      border-radius: $radius-padrao 0 0 $radius-padrao;
+      left: calc(30% - 2.25rem);
+    }
+    .menu {
+      border-radius: $radius-padrao 0 0 $radius-padrao;
+      right: calc(70% - 0.35rem);
+      left: initial;
+
+      .menuChapter {
+        justify-content: flex-end;
+        margin-right: 40px;
+      }
+    }
+    .video {
+      .player {
+        border-radius: 0 $radius-padrao $radius-padrao 0;
+      }
+    }
+  }
+
+  &.right {
+    &.centerOnHide {
+      &.closed {
+        .closeButton {
+          right: initial;
+          left: calc(85% - 0.5rem);
+        }
+      }
+    }
+    justify-content: flex-start;
+    .closeButton {
+      left: calc(70% - 0.35rem);
+      order: 1;
+      border-radius: 0 $radius-padrao $radius-padrao 0;
+
+      &::before {
+        @include transform(translate(-50%, -50%) rotate(180deg));
+      }
+      &.closed {
+        &::before {
+          @include transform(translate(-50%, -50%) rotate(0deg));
+        }
+      }
+    }
+    .menu {
+      order: 2;
+      left: calc(70% - 0.35rem);
+      right: initial;
+      border-radius: 0 $radius-padrao $radius-padrao 0;
+
+      .menuChapter {
+        justify-content: flex-start;
+        margin-left: 40px;
+        margin-right: 0;
+
+        .listItemsVideo {
+          order: 2;
+        }
+      }
+    }
+    .video {
+      order: 1;
+      .player {
+        border-radius: $radius-padrao 0 0 $radius-padrao;
+      }
+    }
+  }
+  @media #{$bp-tablet} {
+    .menu {
+      width: 40%;
+    }
+    &.left {
+      &.centerOnHide {
+        &.closed {
+          .video {
+            width: 100%;
+          }
+          .closeButton {
+            right: calc(100% - 0.8rem);
+          }
+        }
+      }
+      .menu {
+        right: calc(60% - 0.35rem);
+        .menuChapter {
+          margin-right: 35px;
+        }
+      }
+      .closeButton {
+        right: calc(60% - 0.15rem);
+        left: initial;
+      }
+    }
+    &.right {
+      &.centerOnHide {
+        &.closed {
+          .video {
+            width: 100%;
+          }
+          .closeButton {
+            left: calc(100% - 0.8rem);
+          }
+        }
+      }
+      .menu {
+        left: calc(60% - 0.35rem);
+        .menuChapter {
+          margin-left: 35px;
+        }
+      }
+      .closeButton {
+        left: calc(60% - 0.15rem);
+      }
+    }
+    .video {
+      width: 60%;
+    }
+    .closeButton {
+      height: 35px;
+      width: 35px;
+    }
+  }
+
+  @media #{$bp-phone} {
+    .menu {
+      width: calc(100% - 1.5rem);
+      z-index: 70;
+      border-radius: $radius-padrao;
+      &.closed {
+        @include transform(scale(0));
+      }
+      .menuChapter {
+        justify-content: center;
+        align-items: flex-start;
+        margin: 0;
+        .listItemsVideo {
+          margin: 0 auto;
+        }
+
+        &.oveflowOn {
+          align-items: flex-start;
+        }
+      }
+    }
+    .video {
+      width: 100%;
+      .player {
+        border-radius: $radius-padrao;
+      }
+    }
+    .closeButton {
+      &::before {
+        display: none;
+      }
+      padding: 0 0.3rem;
+      span {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        border-radius: 0;
+        opacity: 1;
+        @include transform(scaleX(1) rotate(180deg));
+        @include transition(all 600ms cubic-bezier(1, -1.63, 0.56, 1.83));
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          display: block;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: #fff;
+          @include transform(none);
+          @include transition(all 600ms cubic-bezier(1, -1.63, 0.56, 1.83));
+        }
+        &::before {
+          top: -7px;
+        }
+        &::after {
+          top: 7px;
+          height: 1px;
+        }
+      }
+      &.opened {
+        span {
+          opacity: 1;
+          height: 0;
+          @include transform(scaleX(1) rotate(180deg));
+          &::before {
+            top: 0;
+            @include transform(rotate(-45deg));
+          }
+
+          &::after {
+            top: 0;
+            height: 2px;
+            @include transform(rotate(45deg));
+          }
+        }
+      }
+    }
+    &.left {
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            right: calc(100% - 2.95rem);
+          }
+        }
+      }
+      .closeButton {
+        border-radius: 0 $radius-padrao $radius-padrao 0;
+        right: calc(100% - 2.95rem);
+        &.opened {
+          right: 0.75rem;
+          border-radius: $radius-padrao 0 0 $radius-padrao;
+        }
+      }
+      .menu {
+        right: initial;
+        left: 0.75rem;
+
+        .menuChapter {
+          justify-content: center;
+          margin: 0;
+          margin-top: 20px;
+        }
+      }
+    }
+    &.right {
+      &.centerOnHide {
+        &.closed {
+          .closeButton {
+            left: calc(100% - 2.95rem);
+          }
+        }
+      }
+
+      .closeButton {
+        border-radius: $radius-padrao 0 0 $radius-padrao;
+        left: calc(100% - 2.95rem);
+        &.opened {
+          left: 0.75rem;
+          border-radius: 0 $radius-padrao $radius-padrao 0;
+        }
+      }
+      .menu {
+        left: initial;
+        right: 0.75rem;
+
+        .menuChapter {
+          justify-content: center;
+          margin: 0;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

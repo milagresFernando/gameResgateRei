@@ -1,0 +1,110 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .modal-open {
+      header,
+      footer {
+        padding-right: 15px;
+      }
+    }
+
+    .modal-content {
+      border: none;
+    }
+    .modal-header {
+      background: $cor3;
+      border: none;
+
+      .title {
+        color: #fff;
+        margin-left: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .modal-body {
+      &.bodyWithImg {
+        margin: 0 -0.25rem 0 -0.25rem;
+
+        padding-top: 0;
+
+        &.fullBottom {
+          padding-bottom: 0;
+
+          .imgFull {
+            padding-top: 1rem;
+          }
+        }
+        &.fullTop,
+        &.fullBottom {
+          img {
+            height: 300px !important;
+          }
+        }
+      }
+      .flexImgWithText {
+        background-color: transparent;
+      }
+      .textBlock {
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .modal-footer {
+      border-top: none;
+      .btn-padrao {
+        margin-bottom: 0;
+      }
+    }
+
+    .break {
+      .modal-body {
+        &.bodyWithImg {
+          &.top,
+          &.left,
+          &.right,
+          &.bottom {
+            .notImgFull {
+              padding-top: 0;
+              padding-bottom: 0;
+            }
+          }
+          &.bottom {
+            .notImgFull {
+              padding-bottom: 0;
+              padding-top: 1rem;
+            }
+          }
+
+          &.fullBottom,
+          &.bottom {
+            padding-bottom: 0;
+          }
+          &.fullTop,
+          &.fullBottom {
+            img {
+              height: auto !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

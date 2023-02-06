@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<video>
+	<chapters>
+		<chapter>
+			<nome>1. Líder Coach</nome>
+			<video>lider_coach</video>
+			<tempo>0</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>2. Escuta Ativa</nome>
+			<video>opcao1</video>
+			<tempo>0</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>3. Perguntas Poderosas</nome>
+			<video>opcao2</video>
+			<tempo>0</tempo>
+		</chapter>
+
+		<chapter>
+			<nome>4. Comunicação Direta</nome>
+			<video>opcao3</video>
+			<tempo>0</tempo>
+		</chapter>
+	</chapters>
+</video>

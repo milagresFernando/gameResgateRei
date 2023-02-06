@@ -1,0 +1,75 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .btn-padrao {
+      background: $cor3;
+      border: none;
+      color: #fff;
+      display: block;
+      font-family: $fonte2;
+      border-radius: 0;
+      height: auto;
+      margin: 0 0 $espaco-margin;
+      position: relative;
+      text-transform: uppercase;
+
+      &:disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        background: $cor3;
+        border: none;
+      }
+
+      &.btn-large {
+        width: 360px;
+        max-width: 100%;
+      }
+      &.btn-rounded {
+        border-radius: $radius-padrao;
+      }
+
+      &.btn-border {
+        color: $cor3;
+        border: solid 2px $cor3;
+        background: #fff;
+      }
+
+      @include transition(all 0.5s);
+
+      &:hover,
+      &:active,
+      &:focus {
+        @include box-shadow(0 0 0 0.15rem rgba($cor3, 0.5));
+        background: darken($color: $cor3, $amount: 10);
+        color: darken($color: #ffffff, $amount: 10);
+
+        &.btn-border {
+          background: darken($color: #ffffff, $amount: 10);
+          color: darken($color: $cor3, $amount: 10);
+        }
+      }
+
+      @media #{$bp-phone} {
+        &.btn-large {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

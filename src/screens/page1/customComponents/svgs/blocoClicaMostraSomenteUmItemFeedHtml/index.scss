@@ -1,0 +1,26 @@
+@import "src/App.scss";
+
+#blocoFeedSvgExemplo {
+  .check {
+    display: block;
+  }
+  .notCheck {
+    display: none;
+  }
+  .ativo {
+    display: block;
+  }
+  .notAtivo {
+    display: none;
+  }
+  .SvgBox {
+    width: 50%;
+    z-index: 2;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .SvgBox {
+      width: 100%;
+    }
+  }
+}

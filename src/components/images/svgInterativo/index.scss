@@ -1,0 +1,93 @@
+@import "src/styles/default/_init.scss";
+
+.botao {
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+
+  @include transition(all 0.4s);
+
+  &:hover {
+    opacity: 0.25;
+  }
+
+  &.ativo {
+    cursor: default;
+    &:hover {
+      opacity: 0;
+    }
+  }
+}
+
+.svgInteractive {
+  .botao {
+    cursor: pointer;
+    position: relative;
+    opacity: 0;
+
+    @include transition(all 0.4s);
+
+    &:hover {
+      opacity: 0.25;
+    }
+
+    &.ativo {
+      cursor: default;
+      &:hover {
+        opacity: 0;
+      }
+    }
+  }
+
+  .feed {
+    &.ativo {
+      display: block;
+    }
+    &.notAtivo {
+      display: none;
+    }
+  }
+
+  .check {
+    &.ativo {
+      display: block;
+    }
+    &.notAtivo {
+      display: none;
+    }
+  }
+}
+
+#Unidade08Img07 {
+  .check {
+    display: block;
+  }
+  .notCheck {
+    display: none;
+  }
+}
+
+#blocoFeedSvgExemplo {
+  .check {
+    display: block;
+  }
+  .notCheck {
+    display: none;
+  }
+  .ativo {
+    display: block;
+  }
+  .notAtivo {
+    display: none;
+  }
+  .SvgBox {
+    width: 50%;
+    z-index: 2;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .SvgBox {
+      width: 100%;
+    }
+  }
+}

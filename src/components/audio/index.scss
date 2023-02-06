@@ -1,0 +1,234 @@
+@import "src/styles/default/_init.scss";
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    //SVGS dos botões do player
+    $playButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg id='play'%3E%3Cpolygon points='4.4 14.97 4.4 1.57 16 8.27 27.6 14.97 16 21.77 4.4 28.47 4.4 14.97' style='fill: %23" +
+      $svg5 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $pauseButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg id='pause'%3E%3Crect x='3.55' y='1.57' width='7.9' height='26.9' style='fill: %23" +
+      $svg5 +
+      ";'/%3E%3Crect x='18.55' y='1.57' width='7.9' height='26.9' style='fill: %23" +
+      $svg5 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $fowardButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg id='forward'%3E%3Cpolygon points='1.5 4.03 1.5 14.33 10.5 9.23 1.5 4.03' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3Cpolygon points='7.5 4.03 7.5 14.33 16.5 9.23 7.5 4.03' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $rewindButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg id='rewind'%3E%3Cpolygon points='16.5 14.33 16.5 4.03 7.5 9.13 16.5 14.33' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3Cpolygon points='10.5 14.33 10.5 4.03 1.5 9.13 10.5 14.33' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $volumeButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg id='volume-alto'%3E%3Cpolygon points='2.39 6.68 2.39 11.58 4.39 11.58 8.59 15.68 10.29 15.68 10.29 2.68 8.59 2.68 4.39 6.68 2.39 6.68' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3Cpath d='M11.49,11.98c-.13,0-.27-.05-.37-.16-.19-.2-.17-.52,.03-.71,1.11-1.03,1.27-2.75,.35-3.92-.17-.22-.13-.53,.08-.7,.22-.17,.53-.13,.7,.08,1.24,1.58,1.04,3.9-.45,5.28-.1,.09-.22,.13-.34,.13Z' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3Cpath d='M13.79,13.63c-.19,0-.38-.07-.53-.22-.29-.29-.29-.77,0-1.06,1.87-1.87,2.13-4.72,.59-6.35-.28-.3-.27-.78,.03-1.06,.3-.28,.77-.27,1.06,.03,2.1,2.22,1.83,6.01-.61,8.45-.15,.15-.34,.22-.53,.22Z' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $muteButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg id='volume-mudo'%3E%3Cpolygon points='5 6.68 5 11.58 7.1 11.58 11.2 15.68 13 15.68 13 2.68 11.2 2.68 7.1 6.68 5 6.68' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    $downloadButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Crect x='3.65' y='13.33' width='10.7' height='1.9' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3Cpolygon points='9.02 13.25 9.03 13.26 13.06 9.23 11.72 7.88 9.85 9.75 9.85 3.13 7.95 3.13 7.95 9.5 6.33 7.88 4.98 9.22 9.01 13.25 9.02 13.25' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/svg%3E";
+
+    $trasncriptionButton: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg id='transcricao'%3E%3Cpath d='M.9,4.13V14.23H17.1V4.13H.9Zm6.1,4.7h7.6c.3,0,.6,.3,.6,.6h0c0,.3-.3,.6-.6,.6H7c-.3,0-.6-.3-.6-.6h0c0-.3,.3-.6,.6-.6Zm-4.4,0h2c.3,0,.6,.3,.6,.6s-.3,.6-.6,.6H2.6c-.3,0-.6-.3-.6-.6h0c0-.3,.3-.6,.6-.6h0Zm7.6,4H2.6c-.3,0-.6-.2-.7-.5,0-.3,.2-.6,.5-.7h7.8c.3,0,.6,.2,.7,.5,0,.3-.2,.6-.5,.7h-.2Zm5.3,0h-3.3c-.3,0-.6-.2-.7-.5,0-.3,.2-.6,.5-.7h3.5c.3,0,.6,.2,.7,.5,0,.3-.2,.6-.5,.7h-.2Z' style='fill: %23" +
+      $svg3 +
+      ";'/%3E%3C/g%3E%3C/svg%3E";
+
+    .rhap_container {
+      background-color: rgba($cor3, 0.2) !important;
+      border: 0;
+      border-radius: $radius-padrao;
+      margin: 0 auto $espaco-margin;
+      position: relative;
+      padding: 2em 2em 1.2em !important;
+      z-index: 4;
+      .rhap_header {
+        .title {
+          color: $cor3;
+          margin-bottom: 0;
+        }
+      }
+      .rhap_horizontal-reverse {
+        //PLAY E PAUSE BUTTONS
+        .rhap_controls-section {
+          flex: 0 1 auto;
+          margin-right: 25px;
+          .rhap_play-pause-button {
+            background: $cor3;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+
+            .play,
+            .pause {
+              width: 30px;
+              height: 30px;
+              margin: 0 auto;
+              display: block;
+              cursor: pointer;
+            }
+            .play {
+              background: url($playButton) center no-repeat;
+            }
+            .pause {
+              background: url($pauseButton) center no-repeat;
+            }
+          }
+        }
+
+        //BARRA DE PROGRESSO
+        .rhap_progress-section {
+          flex-wrap: wrap;
+          flex: 1 1 auto;
+
+          .rhap_progress-container {
+            margin: 0;
+            width: 100%;
+            // COR DA BARRA DE TRAS
+            .rhap_progress-bar {
+              &.rhap_progress-bar-show-download {
+                background: rgba(255, 255, 255, 1);
+              }
+              // COR DA BARRA DO DOWNLOAD
+              .rhap_download-progress {
+                background-color: rgba(255, 255, 255, 1);
+              }
+              // COR DA BARRA VISTA
+              .rhap_progress-filled {
+                background: linear-gradient(to right, $cor3, $cor4);
+              }
+              // COR DA BOLINHA DA PONTA DA BARRA
+              .rhap_progress-indicator {
+                background: linear-gradient(to right, $cor3, $cor4);
+              }
+            }
+          }
+          //  CONTADORES DE TEMPO
+          .rhap_time {
+            font-family: $fonte;
+            font-size: 14px;
+            color: $cor3;
+            line-height: 1;
+          }
+          // VOLUME
+          .rhap_volume-container {
+            margin: 0 15px;
+            .volumeButton {
+              background: url($volumeButton) center no-repeat;
+              cursor: pointer;
+              display: block;
+              height: 25px;
+              width: 25px;
+            }
+            .muteButton {
+              background: url($muteButton) center no-repeat;
+              cursor: pointer;
+              display: block;
+              height: 25px;
+              width: 25px;
+            }
+
+            .rhap_volume-bar-area {
+              .rhap_volume-bar {
+                background-color: rgba(255, 255, 255, 1);
+                .rhap_volume-indicator {
+                  background: linear-gradient(to right, $cor3, $cor4);
+                }
+              }
+            }
+          }
+
+          // DOWNLOAD E TRANCRICAO
+          .dTWrapper {
+            display: flex;
+
+            .download {
+              display: block;
+              border: 0;
+              margin: 0 5px;
+              padding: 0;
+              position: relative;
+              height: 30px;
+
+              .btn-download {
+                background: url($downloadButton) center no-repeat;
+                cursor: pointer;
+                margin: 0 auto;
+                display: block;
+                height: 30px;
+                width: 30px;
+              }
+            }
+            .transcricao {
+              display: block;
+              border: 0;
+              margin: 0 5px;
+              padding: 0;
+              position: relative;
+              height: 30px;
+
+              .btn-transcricao {
+                background: url($trasncriptionButton) center no-repeat;
+                cursor: pointer;
+                display: block;
+                height: 30px;
+                width: 30px;
+              }
+            }
+          }
+        }
+      }
+      @media #{$bp-phone} {
+        .rhap_main {
+          flex-wrap: wrap;
+          .rhap_progress-section {
+            width: 100%;
+            justify-content: center;
+            order: 1;
+            .dTWrapper {
+              width: 100%;
+              justify-content: end;
+            }
+          }
+          .rhap_controls-section {
+            width: 100%;
+            order: 0;
+            justify-content: center;
+            margin-bottom: 1rem;
+          }
+          .rhap_volume-controls {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

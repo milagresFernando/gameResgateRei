@@ -1,0 +1,64 @@
+{
+    "curso": {
+		"modulo": "",
+        "titulo": "Template React",
+		"mode" : "onepage",
+		"scorm" : false,
+		"loader": false,
+		"template": "custom",
+		"menu": "",
+		"logo":"data/logoSenac.png",
+		"conteudo": {
+			"telas":[
+				{					
+					"route": "page1",
+					"titulo": "Página 01",
+					"trava" : false
+				},
+				{					
+					"route": "page2",
+					"titulo": "Lotties",
+					"trava" : false
+				},
+				{					
+					"route": "page3",
+					"titulo": "Quizz",
+					"trava" : false
+				},
+				{					
+					"route": "page4",
+					"titulo": "Arvore de decisão",
+					"trava" : false
+				},
+				{					
+					"route": "page5",
+					"titulo": "Vídeo interativo",
+					"trava" : false
+				},
+				{					
+					"route": "page6",
+					"titulo": "Chart",
+					"trava" : false
+				},
+				{					
+					"route": "page7",
+					"titulo": "Transições",
+					"trava" : false
+				},
+				{					
+					"route": "page8",
+					"titulo": "Carrossel",
+					"trava" : false
+				}
+				
+				
+				
+				
+				
+			
+				
+			]
+		}
+	}
+}
+

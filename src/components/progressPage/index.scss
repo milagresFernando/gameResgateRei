@@ -1,0 +1,70 @@
+@import "src/styles/default/_init.scss";
+
+.progress {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  height: 20px;
+  top: 0;
+  left: 0;
+  z-index: 900;
+
+  span {
+    position: relative;
+    display: none;
+    color: #000;
+    text-align: center;
+  }
+
+  .progressBar {
+    background-color: rgb(148, 144, 203);
+    border-radius: 0;
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0;
+    left: 0;
+
+    @include transition(all 0.4s);
+  }
+
+  &.onlyText {
+    span {
+      display: block;
+    }
+
+    .progressBar {
+      display: none;
+    }
+  }
+
+  &.textBar {
+    span {
+      display: block;
+    }
+
+    .progressBar {
+      display: block;
+    }
+  }
+}
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor1: map-get($cor, color1);
+
+  body,
+  body.#{$tema} {
+    .progress {
+      span {
+        color: $cor-texto;
+      }
+
+      .progressBar {
+        background-color: rgba($cor1, 0.5);
+      }
+    }
+  }
+}

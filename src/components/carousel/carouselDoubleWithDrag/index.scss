@@ -1,0 +1,147 @@
+@import "src/styles/default/_init.scss";
+.bigItems {
+  &.mostra {
+    display: block;
+  }
+  &.esconde {
+    display: none;
+  }
+  .contentCol {
+    @include transition(all 0.2s ease);
+  }
+
+  @media only screen and (max-width: 768px) {
+    .contentCol {
+      margin-top: 1rem;
+    }
+  }
+}
+.carouselDoubleWithDrag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .controls {
+    background-color: $cor1;
+    background-size: 65%;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 3em;
+    width: 3em;
+    @include transition(all 0.4s ease);
+    &.controlPrev {
+      @include transform(rotate(180deg));
+    }
+    &.controlNext {
+    }
+    &:hover {
+      background-color: $cor3;
+    }
+  }
+
+  .containerThumbs {
+    display: flex;
+    overflow: hidden;
+    width: 50%;
+    scroll-behavior: smooth;
+
+    position: relative;
+    &.hasScroll {
+      overflow-x: scroll;
+    }
+    &.disabled {
+      pointer-events: none;
+    }
+    .thumbsWrapper {
+      position: absolute;
+      display: flex;
+      height: 100%;
+      .firstEmpty {
+        height: 0;
+        width: 0;
+      }
+      //   width: 100%;
+      .btnCarrosselDrag {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        position: relative;
+        background-color: transparent;
+
+        .absoluteItem {
+          position: absolute;
+          width: 100%;
+          background-color: transparent;
+          pointer-events: none;
+        }
+
+        // &::before {
+        //   content: "";
+        //   position: absolute;
+        //   pointer-events: none;
+        //   top: 0;
+        //   left: 0;
+        //   height: 100%;
+        //   width: 100%;
+        // }
+
+        &.active {
+          pointer-events: none;
+        }
+        &:hover {
+          .absoluteItem {
+            background-color: rgba(0, 0, 0, 0.3);
+          }
+        }
+
+        &:active,
+        &.active,
+        &:hover {
+          .absoluteItem {
+            background: rgba(0, 0, 0, 0.3)
+              url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='uuid-57f0a692-ece1-474c-9165-85bf32dc2d11' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3Cstyle%3E .uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592 %7B fill: %2344cc61; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592' points='38.96 11.98 32.05 5.07 16.01 21.11 7.95 13.06 1.04 19.97 9.1 28.02 9.1 28.02 16.01 34.93 22.91 28.02 22.91 28.02 38.96 11.98'/%3E%3C/svg%3E")
+              center no-repeat;
+            background-size: 30px 30px;
+          }
+        }
+        &:focus {
+          outline: 0;
+          @include box-shadow(none);
+        }
+
+        &.selected {
+          pointer-events: none;
+          .absoluteItem {
+            background: rgba($cor1, 0.8)
+              url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='uuid-57f0a692-ece1-474c-9165-85bf32dc2d11' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3Cstyle%3E .uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592 %7B fill: %2344cc61; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592' points='38.96 11.98 32.05 5.07 16.01 21.11 7.95 13.06 1.04 19.97 9.1 28.02 9.1 28.02 16.01 34.93 22.91 28.02 22.91 28.02 38.96 11.98'/%3E%3C/svg%3E")
+              center no-repeat;
+            background-size: 30px 30px;
+          }
+          &:active,
+          &.active,
+          &:hover {
+            background: rgba($cor1, 0.8)
+              url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='uuid-57f0a692-ece1-474c-9165-85bf32dc2d11' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3Cstyle%3E .uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592 %7B fill: %2344cc61; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='uuid-dae82fe3-3062-4201-ac8c-17e7c74e5592' points='38.96 11.98 32.05 5.07 16.01 21.11 7.95 13.06 1.04 19.97 9.1 28.02 9.1 28.02 16.01 34.93 22.91 28.02 22.91 28.02 38.96 11.98'/%3E%3C/svg%3E")
+              center no-repeat;
+            background-size: 30px 30px;
+          }
+        }
+        &.disabled {
+          pointer-events: none;
+          background-color: transparent;
+        }
+      }
+
+      img {
+        // margin-right: 20px !important;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .containerThumbs {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+@import "src/styles/default/_init.scss";
+
+.list {
+  @at-root {
+    ul#{&} {
+      margin: 0 0 $espaco-margin;
+      padding: 0 0 0 15px;
+
+      li {
+        font-family: $fonte;
+        font-size: 1em;
+        list-style: none;
+        margin: 5px 0;
+        padding: 0;
+        position: relative;
+        vertical-align: middle;
+
+        &::before {
+          color: $cor3;
+          content: "\2022";
+          display: block;
+          font-size: 24px;
+          line-height: 1;
+          position: absolute;
+          top: 0;
+          left: -15px;
+        }
+      }
+      @media #{$bp-phone} {
+        li {
+          &::before {
+            font-size: 21px;
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+
+    ol#{&} {
+      counter-reset: foo;
+      list-style-type: none;
+      margin: 0 0 $espaco-margin;
+      padding: 0;
+
+      li {
+        font-family: $fonte;
+        font-size: 1em;
+        margin: 5px 0;
+
+        &::before {
+          counter-increment: foo;
+          color: $cor3;
+          content: counter(foo) ". ";
+          display: inline-block;
+          font-weight: 700;
+          position: relative;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+}
+
+@each $tema, $cor in $cores {
+  $cor-texto: map-get($cor, cor-texto);
+  $cor-pagina: map-get($cor, cor-pagina);
+
+  $cor1: map-get($cor, color1);
+  $cor2: map-get($cor, color2);
+  $cor3: map-get($cor, color3);
+  $cor4: map-get($cor, color4);
+  $cor5: map-get($cor, color5);
+
+  $svg1: str_slice(#{$cor1}, 2, 7);
+  $svg2: str_slice(#{$cor2}, 2, 7);
+  $svg3: str_slice(#{$cor3}, 2, 7);
+  $svg4: str_slice(#{$cor4}, 2, 7);
+
+  body,
+  body.#{$tema} {
+    .list {
+      @at-root {
+        ul#{&} {
+          li {
+            &::before {
+              color: $cor3;
+            }
+          }
+        }
+
+        ol#{&} {
+          &.list {
+            li {
+              &::before {
+                color: $cor3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

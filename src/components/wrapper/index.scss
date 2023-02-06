@@ -1,0 +1,13 @@
+@import "src/styles/default/_init.scss";
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  padding-top: $alt-top;
+  padding-bottom: $espaco-margin * 2;
+  // overflow-x: hidden;
+
+  @media #{$bp-phone} {
+    position: relative;
+  }
+}
