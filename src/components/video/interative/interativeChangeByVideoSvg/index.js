@@ -15,6 +15,7 @@ import GlobalState from "contexts/globalState";
 // Components
 import { Container, Row, Col } from "react-bootstrap";
 import SvgInterativo from "components/images/svgInterativo";
+import Transitions from "components/transitions";
 import VideoJS from "components/video/videoJs";
 import Btn from "components/buttons";
 //Services
@@ -67,6 +68,8 @@ function InterativeChangeByVideoSvg(props) {
   const playerRef = useRef(null);
   const elementsRef = useRef(null);
   const [randomId, setRandomId] = useState("");
+  const [lastVideo, setLastVideo] = useState(false);
+  const [closeOnEnd, setCloseOnEnd] = useState(false);
 
   const wrapper = useRef(null);
 
@@ -136,10 +139,15 @@ function InterativeChangeByVideoSvg(props) {
       props.svgInterativeElements.map((interativeElement, id) => {
         return {
           actualVideoId: interativeElement.actualVideoId,
-          gotoVideoId: interativeElement.botoes,
-          timeStart: interativeElement.timeStart,
-          timeEnd: interativeElement.timeEnd,
-          remaingTime: interativeElement.timeEnd - interativeElement.timeStart,
+          gotoVideoId: interativeElement.botoes ? interativeElement.botoes : [],
+          timeStart: interativeElement.timeStart
+            ? interativeElement.timeStart
+            : 0,
+          timeEnd: interativeElement.timeEnd ? interativeElement.timeEnd : 0,
+          remaingTime:
+            (interativeElement.timeEnd ? interativeElement.timeEnd : 0) -
+            (interativeElement.timeStart ? interativeElement.timeStart : 0),
+          lastVideo: interativeElement.lastVideo,
         };
       })
     );
@@ -163,39 +171,46 @@ function InterativeChangeByVideoSvg(props) {
       setInterativeElements(
         props.svgInterativeElements.map((svgInterativeElements, id) => {
           setBotoes(svgInterativeElements.botoes);
-          return (
-            <div
-              ref={svgInterativeElements.ref}
-              key={id}
-              className="interativeElement"
-            >
-              <SvgInterativo
-                className={svgInterativeElements.className}
-                svgName={svgInterativeElements.svgName}
-                svgFullScreenControl={svgFullScreenControl}
-                isTouch={isTouch}
-                svgClick={
-                  svgFunctions({
-                    setActualVideoId,
-                    setTimeActual,
-                    setClassInCounter,
-                    setTimersVisible,
-                    setTimers,
-                    resetTimers,
-                    interativeElementsData,
-                    setCalcRemaingTime,
-                    baseSizeCounter,
-                    dataHd,
-                    dataSd,
-                    playerRef,
-                    dataLeg,
-                    randomId,
-                    setIsEnd,
-                  })["loadVideo"]
-                }
-              />
-            </div>
-          );
+
+          if (
+            svgInterativeElements.svgName != "" &&
+            svgInterativeElements.svgName != null
+          ) {
+            return (
+              <div
+                ref={svgInterativeElements.ref}
+                key={id}
+                className="interativeElement"
+              >
+                <SvgInterativo
+                  className={svgInterativeElements.className}
+                  svgName={svgInterativeElements.svgName}
+                  svgFullScreenControl={svgFullScreenControl}
+                  isTouch={isTouch}
+                  svgClick={
+                    svgFunctions({
+                      setActualVideoId,
+                      setTimeActual,
+                      setClassInCounter,
+                      setTimersVisible,
+                      setTimers,
+                      resetTimers,
+                      interativeElementsData,
+                      setCalcRemaingTime,
+                      baseSizeCounter,
+                      dataHd,
+                      dataSd,
+                      playerRef,
+                      dataLeg,
+                      randomId,
+                      setIsEnd,
+                      setLastVideo,
+                    })["loadVideo"]
+                  }
+                />
+              </div>
+            );
+          }
         })
       );
     }
@@ -334,11 +349,19 @@ function InterativeChangeByVideoSvg(props) {
     });
 
     player.on("ended", function (evt) {
+      console.log("fim");
       setIsEnd(true);
     });
 
     setReady(true);
   };
+
+  //checa se é o vídeo final
+  useEffect(() => {
+    if (lastVideo && isEnd) {
+      setCloseOnEnd((prev) => !prev);
+    }
+  }, [lastVideo, isEnd]);
 
   // reseta os tempos dos contadores atuais
   function resetTimers(interativeElementsData) {
@@ -349,6 +372,8 @@ function InterativeChangeByVideoSvg(props) {
 
   //controla os efeitos de entrada e saida
   function controlInOutElements(type, interativeElement) {
+    if (interativeElement == undefined) return;
+
     if (type == "counter") {
       setTimeout(() => {
         setClassInCounter(true);
@@ -682,6 +707,10 @@ function InterativeChangeByVideoSvg(props) {
     playerRef.current.play();
   }
 
+  useEffect(() => {
+    setCloseOnEnd((prev) => !prev);
+  }, [load]);
+
   if (load == false) {
     return <div>Carregando</div>;
   } else {
@@ -708,7 +737,7 @@ function InterativeChangeByVideoSvg(props) {
                 : undefined
             }
           >
-            {props.options.resetButton && actualVideoId != 0 && (
+            {props.options.resetButton && actualVideoId != 0 && !closeOnEnd && (
               <Btn
                 className={`btn-padrao btn-rounded btn-border icoReiniciar ${
                   props.options.resetButton.position
@@ -723,6 +752,7 @@ function InterativeChangeByVideoSvg(props) {
                 Reiniciar
               </Btn>
             )}
+
             <div className="wrapperElements" ref={wrapper}>
               {interativeElements}
               {props.options.counter && (
@@ -730,16 +760,22 @@ function InterativeChangeByVideoSvg(props) {
               )}
             </div>
 
-            <VideoJS
-              id={randomId}
-              className="mb-0 "
-              videoElements={videoElements}
-              isInteractive
-              dontHideControlBar
-              mobileSvg={true}
-              hideReplayButton={true}
-              onReady={handlePlayerReady}
-            />
+            <Transitions
+              interact={closeOnEnd}
+              options={props.options.animation}
+              typeInteraction={props.options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+            >
+              <VideoJS
+                id={randomId}
+                className="mb-0 "
+                videoElements={videoElements}
+                isInteractive
+                dontHideControlBar
+                mobileSvg={true}
+                hideReplayButton={true}
+                onReady={handlePlayerReady}
+              />
+            </Transitions>
           </div>
         </Row>
       </Fragment>

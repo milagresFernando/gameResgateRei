@@ -116,12 +116,11 @@ function CarouselDoubleWithDrag(props) {
     typeInteraction: props.options.feedBackSelection.animation.typeInteraction,
     scroll: true,
   };
-
   useEffect(() => {
     setInteract((prev) => !prev);
     setTimeout(() => {
       setMinHeight(containerRef.current.clientHeight);
-      scrollTo(confirmContainerRef, 0, 10, "auto");
+      // scrollTo(confirmContainerRef, 0, 10, "auto");
     }, props.options.animation.timeout + 200);
   }, [showComponents]);
 
@@ -223,6 +222,7 @@ function CarouselDoubleWithDrag(props) {
   useEffect(() => {
     if (controlAtive.includes(true)) {
       setShowConfirm(true);
+      scrollTo(confirmContainerRef, 0, 10, "auto");
     } else {
       setShowConfirm(false);
     }
@@ -369,7 +369,6 @@ function CarouselDoubleWithDrag(props) {
     //     })
     // );
   }
-  console.log(finishItems);
 
   return (
     <Fragment>

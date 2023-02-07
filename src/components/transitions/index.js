@@ -1,5 +1,6 @@
 import * as React from "react";
 import Slide from "@mui/material/Slide";
+import Fade from "@mui/material/Fade";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Collapse, Grow, Zoom } from "@mui/material";
@@ -82,6 +83,17 @@ function Transitions(props) {
       >
         <div>{props.children}</div>
       </Grow>
+    ) : props.options.type == "fade" ? (
+      <Fade
+        in={showMessage}
+        easing={props.options.easing && props.options.easing}
+        timeout={props.options.timeout && props.options.timeout}
+        style={style}
+        mountOnEnter
+        unmountOnExit
+      >
+        <div>{props.children}</div>
+      </Fade>
     ) : props.options.type == "zoom" ? (
       <Zoom
         in={showMessage}

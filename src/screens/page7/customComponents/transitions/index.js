@@ -9,6 +9,7 @@ import TransitionsCollapse from "./transitionsCollapse";
 import TransitionsGrow from "./transitionsGrow";
 import TransitionsSlideRelativeContainer from "./transitionsSlideRelativeContainer";
 import TransitionsZoom from "./transitionsZoom";
+import TransitionsFade from "./transitionsFade";
 
 //Imagens
 
@@ -28,6 +29,11 @@ function Transitions(props) {
           </Col>
         </Row>
 
+        <Row className="">
+          <Col xs="12">
+            <TransitionsFade />
+          </Col>
+        </Row>
         <Row className="">
           <Col xs="12">
             <TransitionsCollapse />

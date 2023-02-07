@@ -44,6 +44,7 @@ function svgFunctions(params) {
         dataLeg,
         randomId,
         setIsEnd,
+        setLastVideo,
       } = params;
       let idItem;
       interativeElementsData.forEach((interativeElement, id) => {
@@ -54,12 +55,15 @@ function svgFunctions(params) {
           }
         });
       });
+
       setIsEnd(false);
       setTimeActual(0);
       setClassInCounter(false);
       setTimersVisible([]);
       setTimers(resetTimers(interativeElementsData));
       setCalcRemaingTime(baseSizeCounter);
+
+      interativeElementsData[idItem].lastVideo && setLastVideo(true);
 
       const controlBar = document.querySelector(
         `#${randomId} .vjs-control-bar`

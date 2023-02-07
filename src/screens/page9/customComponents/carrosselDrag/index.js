@@ -9,7 +9,6 @@ import BlocoCarrosselDrag from "./blocoCarrosselDrag";
 
 //Imagens
 
-//TESTE DO TRANSITIONS
 function CarrosselDrag(props) {
   return (
     <section data-secao={props.sectionTitle}>

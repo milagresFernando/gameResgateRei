@@ -38,6 +38,13 @@ function BlocoInterativoSvgs(props) {
       show: "fixed",
       //show: "hover",
     },
+
+    animation: {
+      type: "fade",
+      timeout: { appear: 1, enter: 600, exit: 300 },
+      typeInteraction: "switch",
+      scroll: true,
+    },
   };
 
   const svgInterativeElements = [
@@ -48,49 +55,26 @@ function BlocoInterativoSvgs(props) {
       className: "",
       timeStart: 3,
       timeEnd: 11,
+      lastVideo: false,
       botoes: [{ gotoVideoId: 2 }, { gotoVideoId: 3 }, { gotoVideoId: 4 }],
     },
     {
       actualVideoId: 2,
-      svgName: "InterativoVideoSvg_01",
       ref: useRef(null),
       className: "",
-      timeStart: 1,
-      timeEnd: 8,
-      botoes: [
-        { gotoVideoId: 1 },
-        { gotoVideoId: 2 },
-        { gotoVideoId: 3 },
-        { gotoVideoId: 4 },
-      ],
+      lastVideo: true,
     },
     {
       actualVideoId: 3,
-      svgName: "InterativoVideoSvg_01",
       ref: useRef(null),
       className: "",
-      timeStart: 1,
-      timeEnd: 6,
-      botoes: [
-        { gotoVideoId: 1 },
-        { gotoVideoId: 2 },
-        { gotoVideoId: 3 },
-        { gotoVideoId: 4 },
-      ],
+      lastVideo: true,
     },
     {
       actualVideoId: 4,
-      svgName: "InterativoVideoSvg_01",
       ref: useRef(null),
       className: "",
-      timeStart: 1,
-      timeEnd: 6,
-      botoes: [
-        { gotoVideoId: 1 },
-        { gotoVideoId: 2 },
-        { gotoVideoId: 3 },
-        { gotoVideoId: 4 },
-      ],
+      lastVideo: true,
     },
   ];
   return (
