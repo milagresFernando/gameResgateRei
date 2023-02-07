@@ -69,7 +69,6 @@ function InterativeChangeByVideoSvg(props) {
   const elementsRef = useRef(null);
   const [randomId, setRandomId] = useState("");
   const [lastVideo, setLastVideo] = useState(false);
-  const [closeOnEnd, setCloseOnEnd] = useState(false);
 
   const wrapper = useRef(null);
 
@@ -359,7 +358,8 @@ function InterativeChangeByVideoSvg(props) {
   //checa se é o vídeo final
   useEffect(() => {
     if (lastVideo && isEnd) {
-      setCloseOnEnd((prev) => !prev);
+      props.setControlTransition((prev) => !prev);
+      props.setIsFinished(true);
     }
   }, [lastVideo, isEnd]);
 
@@ -708,7 +708,7 @@ function InterativeChangeByVideoSvg(props) {
   }
 
   useEffect(() => {
-    setCloseOnEnd((prev) => !prev);
+    props.setControlTransition((prev) => !prev);
   }, [load]);
 
   if (load == false) {
@@ -737,7 +737,7 @@ function InterativeChangeByVideoSvg(props) {
                 : undefined
             }
           >
-            {props.options.resetButton && actualVideoId != 0 && !closeOnEnd && (
+            {props.options.resetButton && actualVideoId != 0 && (
               <Btn
                 className={`btn-padrao btn-rounded btn-border icoReiniciar ${
                   props.options.resetButton.position
@@ -760,22 +760,16 @@ function InterativeChangeByVideoSvg(props) {
               )}
             </div>
 
-            <Transitions
-              interact={closeOnEnd}
-              options={props.options.animation}
-              typeInteraction={props.options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
-            >
-              <VideoJS
-                id={randomId}
-                className="mb-0 "
-                videoElements={videoElements}
-                isInteractive
-                dontHideControlBar
-                mobileSvg={true}
-                hideReplayButton={true}
-                onReady={handlePlayerReady}
-              />
-            </Transitions>
+            <VideoJS
+              id={randomId}
+              className="mb-0 "
+              videoElements={videoElements}
+              isInteractive
+              dontHideControlBar
+              mobileSvg={true}
+              hideReplayButton={true}
+              onReady={handlePlayerReady}
+            />
           </div>
         </Row>
       </Fragment>

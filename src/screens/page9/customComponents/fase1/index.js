@@ -1,22 +1,30 @@
 // React Elements/Hooks
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef, useEffect } from "react";
 
 // Components
 import { Container, Row, Col } from "react-bootstrap";
 import InterativeChangeByVideoSvg from "components/video/interative/interativeChangeByVideoSvg";
+import Transitions from "components/transitions";
 
 import Title from "components/texts/title";
 
 //Video Elementos
 import poster from "screens/assets/videos/capaVideo.png";
 
-function BlocoInterativoSvgs(props) {
+function Fase1(props) {
+  console.log("fase1");
   const videosFile = "videosInterativeSvgGame"; //coloque o nome do arquivo JSON
 
   const videoElements = {
     poster,
     videosFile,
   };
+
+  // const [fase1ControlTransition, setFase1ControlTransition] = useState(false);
+
+  useEffect(() => {
+    props.setFase1ControlTransition((prev) => !prev);
+  }, []);
 
   const options = {
     // counter: {
@@ -79,21 +87,21 @@ function BlocoInterativoSvgs(props) {
   ];
   return (
     <Fragment>
-      <Col xs="12">
-        {/* <Title
-          typeH="4"
-          className=""
-          content={<Fragment>Vídeo interativo Svg</Fragment>}
-        /> */}
-      </Col>
-
-      <InterativeChangeByVideoSvg
-        svgInterativeElements={svgInterativeElements}
-        videoElements={videoElements}
-        options={options}
-      />
+      <Transitions
+        interact={props.fase1ControlTransition}
+        options={options.animation}
+        typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+      >
+        <InterativeChangeByVideoSvg
+          svgInterativeElements={svgInterativeElements}
+          videoElements={videoElements}
+          options={options}
+          setControlTransition={props.setFase1ControlTransition}
+          setIsFinished={props.setFimFase1}
+        />
+      </Transitions>
     </Fragment>
   );
 }
 
-export default BlocoInterativoSvgs;
+export default Fase1;
