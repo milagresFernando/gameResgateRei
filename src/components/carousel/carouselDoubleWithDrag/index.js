@@ -195,12 +195,12 @@ function CarouselDoubleWithDrag(props) {
       controlButtonsDisable
     );
 
-    return () => {
-      containerScrollThumb.current.removeEventListener(
-        "scroll",
-        controlButtonsDisable
-      );
-    };
+    // return () => {
+    //   containerScrollThumb.current.removeEventListener(
+    //     "scroll",
+    //     controlButtonsDisable
+    //   );
+    // };
   }, []);
 
   useEffect(() => {
@@ -358,6 +358,8 @@ function CarouselDoubleWithDrag(props) {
   }
   function handleFinish() {
     console.log("finish");
+    props.setControlTransition((prev) => !prev);
+    props.setIsFinished(true);
 
     // setFinishItems(
     //   props.carrosselItems

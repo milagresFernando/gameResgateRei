@@ -162,6 +162,10 @@ function InterativeChangeByVideoSvg(props) {
   }, [interativeElementsData, load]);
 
   useEffect(() => {
+    if (props.setCaminho) props.setCaminho(actualVideoId);
+  }, [actualVideoId]);
+
+  useEffect(() => {
     if (interativeElementsData != false) {
       //reseta o timer toda vez que um elemento novo surge em tela
       setTimers(resetTimers(interativeElementsData));
@@ -762,7 +766,11 @@ function InterativeChangeByVideoSvg(props) {
 
             <VideoJS
               id={randomId}
-              className="mb-0 "
+              className={`${
+                props.options.videoJs.className
+                  ? props.options.videoJs.className
+                  : ""
+              } mb-0`}
               videoElements={videoElements}
               isInteractive
               dontHideControlBar

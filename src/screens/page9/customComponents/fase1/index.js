@@ -12,7 +12,6 @@ import Title from "components/texts/title";
 import poster from "screens/assets/videos/capaVideo.png";
 
 function Fase1(props) {
-  console.log("fase1");
   const videosFile = "videosInterativeSvgGame"; //coloque o nome do arquivo JSON
 
   const videoElements = {
@@ -27,6 +26,9 @@ function Fase1(props) {
   }, []);
 
   const options = {
+    videoJs: {
+      className: "full",
+    },
     // counter: {
     //   // typeCounter: "bar",
     //   // typeCounter: "time",
@@ -98,6 +100,7 @@ function Fase1(props) {
           options={options}
           setControlTransition={props.setFase1ControlTransition}
           setIsFinished={props.setFimFase1}
+          setCaminho={props.setCaminho}
         />
       </Transitions>
     </Fragment>

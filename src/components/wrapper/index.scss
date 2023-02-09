@@ -7,6 +7,9 @@
   // padding-bottom: $espaco-margin * 2;
   // overflow-x: hidden;
 
+  width: auto;
+  height: 100vh;
+
   @media #{$bp-phone} {
     position: relative;
   }

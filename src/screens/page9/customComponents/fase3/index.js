@@ -10,7 +10,7 @@ import BlocoCarrosselDrag from "./blocoCarrosselDrag";
 
 //Imagens
 
-function Fase2(props) {
+function Fase3(props) {
   // useEffect(() => {
   //   props.setFase2ControlTransition((prev) => !prev);
   // }, []);
@@ -27,15 +27,15 @@ function Fase2(props) {
 
   return (
     <Transitions
-      interact={props.fase2ControlTransition}
+      interact={props.fase3ControlTransition}
       options={options.animation}
       typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
     >
       <section data-secao={props.sectionTitle}>
         <Container>
           <BlocoCarrosselDrag
-            setControlTransition={props.setFase2ControlTransition}
-            setIsFinished={props.setFimFase2}
+            setControlTransition={props.setFase3ControlTransition}
+            setIsFinished={props.setFimFase3}
           />
         </Container>
       </section>
@@ -43,4 +43,4 @@ function Fase2(props) {
   );
 }
 
-export default Fase2;
+export default Fase3;
