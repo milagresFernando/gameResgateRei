@@ -1,4 +1,26 @@
 @import "src/styles/default/_init.scss";
+
+.containerCarrosselDrag {
+  position: relative;
+  height: 100vh;
+  .rowCarrosselDrag {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    @include transform(translateX(-50%));
+    &.center {
+      top: 50%;
+      @include transform(translate(-50%, -50%));
+    }
+
+    &.top {
+      top: 0;
+      @include transform(translate(-50%, 0));
+    }
+  }
+}
 .bigItems {
   &.mostra {
     display: block;

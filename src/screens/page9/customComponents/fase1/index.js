@@ -22,12 +22,16 @@ function Fase1(props) {
   // const [fase1ControlTransition, setFase1ControlTransition] = useState(false);
 
   useEffect(() => {
-    props.setFase1ControlTransition((prev) => !prev);
+    props.setControlTransition((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    props.setOverflow(true);
+  }, [props.faseControlTransition]);
 
   const options = {
     videoJs: {
-      className: "full",
+      className: "full hideControlBar",
     },
     // counter: {
     //   // typeCounter: "bar",
@@ -35,12 +39,12 @@ function Fase1(props) {
     //   barSizePx: 100,
     //   typeCounter: "barAndTime",
     // },
-    resetButton: {
-      position: "topLeft",
-      // position: "topRight",
-      show: "fixed",
-      // show: "hover",
-    },
+    // resetButton: {
+    //   position: "topLeft",
+    //   // position: "topRight",
+    //   show: "fixed",
+    //   // show: "hover",
+    // },
 
     backButton: {
       // position: "topLeft",
@@ -90,7 +94,7 @@ function Fase1(props) {
   return (
     <Fragment>
       <Transitions
-        interact={props.fase1ControlTransition}
+        interact={props.faseControlTransition}
         options={options.animation}
         typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
       >
@@ -98,8 +102,8 @@ function Fase1(props) {
           svgInterativeElements={svgInterativeElements}
           videoElements={videoElements}
           options={options}
-          setControlTransition={props.setFase1ControlTransition}
-          setIsFinished={props.setFimFase1}
+          setControlTransition={props.setControlTransition}
+          setIsFinished={props.setIsFinished}
           setCaminho={props.setCaminho}
         />
       </Transitions>

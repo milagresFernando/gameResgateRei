@@ -15,7 +15,7 @@ const carrosselItem = {
       key={0}
       typeH={4}
       className={"d-flex justify-content-center"}
-      content={<Fragment>Escolha 6 itens</Fragment>}
+      content={<Fragment>Selecione um dos personagem abaixo</Fragment>}
     />
   ),
   thumb: thumb,

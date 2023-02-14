@@ -10,7 +10,7 @@ import BlocoCarrosselDrag from "./blocoCarrosselDrag";
 
 //Imagens
 
-function Fase3(props) {
+function Fase5(props) {
   useEffect(() => {
     props.setOverflow(false);
   }, [props.faseControlTransition]);
@@ -43,4 +43,4 @@ function Fase3(props) {
   );
 }
 
-export default Fase3;
+export default Fase5;

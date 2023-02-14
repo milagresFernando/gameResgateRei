@@ -41,8 +41,22 @@
       width: 100%;
       z-index: 60;
 
-      @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));
+      .video-js {
+        &.vjs-has-started {
+          .vjs-tech {
+            pointer-events: none;
+          }
+        }
+      }
 
+      @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));
+      &.hideControlBar {
+        .video-js {
+          .vjs-control-bar {
+            display: none !important;
+          }
+        }
+      }
       &.full {
         padding-bottom: 0;
         .video-js {
@@ -69,6 +83,17 @@
     }
 
     .singleVideoWrapper {
+      &.videoGame {
+        display: flex;
+        position: relative;
+        width: 100vw;
+        height: 100%;
+        .player {
+          .video-js {
+            background-color: transparent;
+          }
+        }
+      }
       &:fullscreen {
         width: 100%;
         video {

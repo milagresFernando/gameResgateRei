@@ -68,6 +68,8 @@ function CarouselDoubleWithDrag(props) {
   const containerFinishRef = useRef(null);
   const containerResetRef = useRef(null);
 
+  const rowCarrosselDrag = useRef(null);
+
   // vars
   const scrollBarHeight = 15;
 
@@ -116,6 +118,20 @@ function CarouselDoubleWithDrag(props) {
     typeInteraction: props.options.feedBackSelection.animation.typeInteraction,
     scroll: true,
   };
+
+  useEffect(() => {
+    if (rowCarrosselDrag?.current != null) {
+      setTimeout(() => {
+        console.log(rowCarrosselDrag.current.clientHeight, window.innerHeight);
+      }, options.timeout);
+    }
+  }, [
+    rowCarrosselDrag.current,
+    props.faseControlTransition,
+    actualItem,
+    controlAtive,
+  ]);
+
   useEffect(() => {
     setInteract((prev) => !prev);
     setTimeout(() => {
@@ -373,7 +389,7 @@ function CarouselDoubleWithDrag(props) {
   }
 
   return (
-    <Fragment>
+    <Row className="rowCarrosselDrag" ref={rowCarrosselDrag}>
       <FeedBackSelection
         finishItems={finishItems}
         options={props.options}
@@ -566,7 +582,7 @@ function CarouselDoubleWithDrag(props) {
           </Transitions>
         </Col>
       </Row>
-    </Fragment>
+    </Row>
   );
 }
 

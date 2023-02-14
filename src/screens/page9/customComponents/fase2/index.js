@@ -11,9 +11,9 @@ import BlocoCarrosselDrag from "./blocoCarrosselDrag";
 //Imagens
 
 function Fase2(props) {
-  // useEffect(() => {
-  //   props.setFase2ControlTransition((prev) => !prev);
-  // }, []);
+  useEffect(() => {
+    props.setOverflow(false);
+  }, [props.faseControlTransition]);
 
   const options = {
     animation: {
@@ -27,15 +27,15 @@ function Fase2(props) {
 
   return (
     <Transitions
-      interact={props.fase2ControlTransition}
+      interact={props.faseControlTransition}
       options={options.animation}
       typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
     >
       <section data-secao={props.sectionTitle}>
-        <Container>
+        <Container className="containerCarrosselDrag">
           <BlocoCarrosselDrag
-            setControlTransition={props.setFase2ControlTransition}
-            setIsFinished={props.setFimFase2}
+            setControlTransition={props.setControlTransition}
+            setIsFinished={props.setIsFinished}
           />
         </Container>
       </section>

@@ -1,11 +1,11 @@
 @import "src/styles/default/_init.scss";
 
 .wrapper {
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
   // padding-top: $alt-top;
   // padding-bottom: $espaco-margin * 2;
-  // overflow-x: hidden;
+  overflow-x: hidden;
 
   width: auto;
   height: 100vh;

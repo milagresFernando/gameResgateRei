@@ -1,5 +1,5 @@
 // React Elements/Hooks
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 
 // Components
 import { Col, Image, Row } from "react-bootstrap";
@@ -117,17 +117,6 @@ function BlocoCarrosselDrag(props) {
 
   return (
     <Fragment>
-      <Row>
-        <Col xs="12" className="relative">
-          <hr />
-          <Title
-            typeH="4"
-            className=""
-            content={<Fragment>Carrossel</Fragment>}
-          />
-        </Col>
-      </Row>
-
       <CarouselDoubleWithDrag
         carrosselItems={carrosselItems}
         options={options}

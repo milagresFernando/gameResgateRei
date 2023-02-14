@@ -1,0 +1,36 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Desafio tempestade",
+		"video": "caminho03Video01",		
+		"id":0
+    },
+        {
+		"name": "Frio da noite",
+		"video": "caminho03Video02",
+        "id":1
+		
+    },
+        {
+		"name": "Tribo com hienas",
+		"video": "caminho03Video03",
+        "id":2
+		
+    }
+	],
+
+    "feeds":[
+        {
+            "correct":"Parabéns você completou o desafio da tempestade de areia",
+            "wrong":"Infelizmente você falhou no desafio da tempestade de areia"
+        },
+        {
+            "correct":"Parabéns você completou o desafio do frio da noite",
+            "wrong":"Infelizmente você falhou no desafio do frio da noite"
+        },
+        {
+            "correct":"Parabéns você completou o desafio da tribo das hienas",
+            "wrong":"Infelizmente você falhou no desafio do tribo das hienas"
+        }
+     ]
+}

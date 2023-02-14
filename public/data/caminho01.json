@@ -1,0 +1,36 @@
+﻿{
+    "videos":[ 
+        {
+		"name": "Desafio tropical",
+		"video": "caminho01Video01",		
+		"id":0
+    },
+        {
+		"name": "Frio da selva",
+		"video": "caminho01Video02",
+        "id":1
+		
+    },
+        {
+		"name": "Tribo com jacarés",
+		"video": "caminho01Video03",
+        "id":2
+		
+    }
+	],
+
+    "feeds":[
+        {
+            "correct":"Parabéns você completou o desafio tropical",
+            "wrong":"Infelizmente você falhou no desafio tropical"
+        },
+        {
+            "correct":"Parabéns você completou o desafio do frio da selva",
+            "wrong":"Infelizmente você falhou no desafio do frio da selva"
+        },
+        {
+            "correct":"Parabéns você completou o desafio da tribo dos jacarés",
+            "wrong":"Infelizmente você falhou no desafio do tribo dos jacarés"
+        }
+     ]
+}

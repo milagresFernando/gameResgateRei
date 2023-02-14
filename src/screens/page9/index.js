@@ -11,8 +11,12 @@ import LoadPage from "components/loadPage";
 import Fase2 from "./customComponents/fase2";
 import Fase1 from "./customComponents/fase1";
 import Fase3 from "./customComponents/fase3";
+import Fase4 from "./customComponents/fase4";
+import Fase5 from "./customComponents/fase5";
 
 function Page9() {
+  const [overflow, setOverflow] = useState(false);
+
   const [temaCor, setTemaCor] = useState("custom"); //seta a cor do tema no body. Passar uma classe aqui caso queira iniciar com um tema
   const [fase1ControlTransition, setFase1ControlTransition] = useState(false);
   const [fimFase1, setFimFase1] = useState(false);
@@ -23,6 +27,13 @@ function Page9() {
 
   const [fase3ControlTransition, setFase3ControlTransition] = useState(false);
   const [fimFase3, setFimFase3] = useState(false);
+
+  const [fase4ControlTransition, setFase4ControlTransition] = useState(false);
+  const [fimFase4, setFimFase4] = useState(false);
+
+  const [fase5ControlTransition, setFase5ControlTransition] = useState(false);
+  const [fimFase5, setFimFase5] = useState(false);
+
   useEffect(() => {
     if (temaCor) {
       document.body.classList.value.search("ios") !== -1
@@ -45,26 +56,59 @@ function Page9() {
     }
   }, [fimFase2]);
 
-  console.log(caminho);
+  useEffect(() => {
+    if (fimFase3) {
+      setFase4ControlTransition((prev) => !prev);
+    }
+  }, [fimFase3]);
+
+  useEffect(() => {
+    if (fimFase4) {
+      setFase5ControlTransition((prev) => !prev);
+    }
+  }, [fimFase4]);
+
+  useEffect(() => {
+    setOverflow(overflow);
+  }, [overflow]);
+
+  console.log(overflow);
 
   return (
     <LoadPage>
-      <Wrapper className="relative overflow-hidden">
+      <Wrapper className={`${overflow ? "overflow" : "overflowX"} relative`}>
         <Fase1
-          fase1ControlTransition={fase1ControlTransition}
-          setFase1ControlTransition={setFase1ControlTransition}
-          setFimFase1={setFimFase1}
+          faseControlTransition={fase1ControlTransition}
+          setControlTransition={setFase1ControlTransition}
+          setIsFinished={setFimFase1}
           setCaminho={setCaminho}
+          setOverflow={setOverflow}
         />
         <Fase2
-          fase2ControlTransition={fase2ControlTransition}
-          setFase2ControlTransition={setFase2ControlTransition}
-          setFimFase2={setFimFase2}
+          faseControlTransition={fase2ControlTransition}
+          setControlTransition={setFase2ControlTransition}
+          setIsFinished={setFimFase2}
+          setOverflow={setOverflow}
         />
         <Fase3
-          fase3ControlTransition={fase3ControlTransition}
-          setFase3ControlTransition={setFase3ControlTransition}
-          setFimFase3={setFimFase3}
+          faseControlTransition={fase3ControlTransition}
+          setControlTransition={setFase3ControlTransition}
+          setIsFinished={setFimFase3}
+          setOverflow={setOverflow}
+        />
+        <Fase4
+          faseControlTransition={fase4ControlTransition}
+          setControlTransition={setFase4ControlTransition}
+          setIsFinished={setFimFase4}
+          setOverflow={setOverflow}
+          caminho={caminho}
+          actualVideo={0}
+        />
+        <Fase5
+          faseControlTransition={fase5ControlTransition}
+          setControlTransition={setFase5ControlTransition}
+          setIsFinished={setFimFase5}
+          setOverflow={setOverflow}
         />
       </Wrapper>
     </LoadPage>

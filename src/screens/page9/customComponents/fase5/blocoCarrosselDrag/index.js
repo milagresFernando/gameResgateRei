@@ -23,7 +23,7 @@ function BlocoCarrosselDrag(props) {
       timeout: 200,
     },
     confirmButton: {
-      maxSelection: 6,
+      maxSelection: 2,
       className: "",
       content: "Confirmar seleção",
       animation: {
@@ -117,6 +117,17 @@ function BlocoCarrosselDrag(props) {
 
   return (
     <Fragment>
+      <Row>
+        <Col xs="12" className="relative">
+          <hr />
+          <Title
+            typeH="4"
+            className=""
+            content={<Fragment>Carrossel</Fragment>}
+          />
+        </Col>
+      </Row>
+
       <CarouselDoubleWithDrag
         carrosselItems={carrosselItems}
         options={options}
