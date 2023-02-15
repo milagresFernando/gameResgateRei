@@ -21,7 +21,7 @@ import FeedBackSelection from "./feedBackSelection";
 
 //Imagens
 
-function CarouselDoubleWithDrag(props) {
+function CarouselDoubleWithDragNoBig(props) {
   //  states
   const [minHeight, setMinHeight] = useState(0);
   const [thumbAbsoluteHeight, setThumbAbsoluteHeight] = useState(0);
@@ -208,7 +208,7 @@ function CarouselDoubleWithDrag(props) {
     setThumbsWrapperWidth(
       thumbsWidth.reduce((partialSum, a) => partialSum + a, -thumbsWidth[1])
     );
-  }, [thumbsWidth, containerScrollThumb]);
+  }, [thumbsWidth]);
 
   useEffect(() => {
     setThumbAbsoluteHeight(thumbsWidth[0]);
@@ -271,19 +271,25 @@ function CarouselDoubleWithDrag(props) {
   }, [firstInteract]);
 
   useEffect(() => {
-    checkHasHorizontalScroll(thumbsWrapperWidth, containerScrollThumb);
-
-    if (firstInteract) {
-      setTimeout(() => {
-        checkHasHorizontalScroll(thumbsWrapperWidth, containerScrollThumb);
-      }, 500);
+    if (thumbsWrapperWidth != 0 && isNaN(thumbsWrapperWidth) == false) {
+      if (containerScrollThumb.current.offsetWidth >= thumbsWrapperWidth) {
+        setHaScroll(false);
+      } else {
+        setHaScroll(true);
+      }
     }
-  }, [thumbsWrapperWidth, firstInteract]);
+  }, [thumbsWrapperWidth]);
 
   useEffect(() => {
     const debouncedHandleResize = debounceTimeOut(function handleResize() {
       setMinHeight(containerRef.current.clientHeight);
-      checkHasHorizontalScroll(thumbsWrapperWidth, containerScrollThumb);
+      if (thumbsWrapperWidth != 0 && isNaN(thumbsWrapperWidth) == false) {
+        if (containerScrollThumb.current.offsetWidth >= thumbsWrapperWidth) {
+          setHaScroll(false);
+        } else {
+          setHaScroll(true);
+        }
+      }
     }, 500);
 
     window.addEventListener("resize", debouncedHandleResize);
@@ -305,18 +311,6 @@ function CarouselDoubleWithDrag(props) {
       );
     }
   }, [countMaxSelected]);
-
-  useEffect(() => {
-    if (finishItems != "") {
-      props.setEscolhidos((oldArray) => {
-        if (oldArray != "") {
-          return [...oldArray, finishItems];
-        } else {
-          return [finishItems];
-        }
-      });
-    }
-  }, [finishItems]);
 
   function controlButtonsDisable() {
     if (containerScrollThumb.current.scrollLeft == 0) {
@@ -342,15 +336,6 @@ function CarouselDoubleWithDrag(props) {
     } else {
       setHasVerticalScroll(false);
       props.setOverflow(true);
-    }
-  }
-  function checkHasHorizontalScroll(thumbsWrapperWidth, containerScrollThumb) {
-    if (thumbsWrapperWidth != 0 && isNaN(thumbsWrapperWidth) == false) {
-      if (containerScrollThumb.current.offsetWidth >= thumbsWrapperWidth) {
-        setHaScroll(false);
-      } else {
-        setHaScroll(true);
-      }
     }
   }
   function handleArrowClick(side) {
@@ -562,7 +547,7 @@ function CarouselDoubleWithDrag(props) {
             md={`${firstInteract ? "10" : "12"}`}
             className="contentCol"
           >
-            <div className="relative" ref={containerRef}>
+            {/* <div className="relative" ref={containerRef}>
               <Transitions
                 interact={interact}
                 options={options}
@@ -571,7 +556,7 @@ function CarouselDoubleWithDrag(props) {
               >
                 {bigItems}
               </Transitions>
-            </div>
+            </div> */}
             <Row>
               <Col xs={12}>
                 <div className="carouselDoubleWithDrag">
@@ -754,4 +739,4 @@ function CarouselDoubleWithDrag(props) {
   );
 }
 
-export default CarouselDoubleWithDrag;
+export default CarouselDoubleWithDragNoBig;

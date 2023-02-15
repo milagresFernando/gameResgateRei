@@ -14,6 +14,7 @@ import Item5 from "./item5";
 import Item6 from "./item6";
 import Item7 from "./item7";
 import Item8 from "./item8";
+import CarouselDoubleWithDragNoBig from "components/carousel/carouselDoubleWithDragNoBig";
 
 function BlocoCarrosselDrag(props) {
   const options = {
@@ -117,24 +118,13 @@ function BlocoCarrosselDrag(props) {
 
   return (
     <Fragment>
-      <Row>
-        <Col xs="12" className="relative">
-          <hr />
-          <Title
-            typeH="4"
-            className=""
-            content={<Fragment>Carrossel</Fragment>}
-          />
-        </Col>
-      </Row>
-
-      <CarouselDoubleWithDrag
+      <CarouselDoubleWithDragNoBig
         carrosselItems={carrosselItems}
         options={options}
         setIsFinished={props.setIsFinished}
         setControlTransition={props.setControlTransition}
+        setOverflow={props.setOverflow}
       />
-      <hr />
     </Fragment>
   );
 }

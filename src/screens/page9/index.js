@@ -34,6 +34,8 @@ function Page9() {
   const [fase5ControlTransition, setFase5ControlTransition] = useState(false);
   const [fimFase5, setFimFase5] = useState(false);
 
+  const [escolhidos, setEscolhidos] = useState([]);
+
   useEffect(() => {
     if (temaCor) {
       document.body.classList.value.search("ios") !== -1
@@ -72,7 +74,9 @@ function Page9() {
     setOverflow(overflow);
   }, [overflow]);
 
-  console.log(overflow);
+  useEffect(() => {
+    setEscolhidos(escolhidos);
+  }, [escolhidos]);
 
   return (
     <LoadPage>
@@ -89,12 +93,14 @@ function Page9() {
           setControlTransition={setFase2ControlTransition}
           setIsFinished={setFimFase2}
           setOverflow={setOverflow}
+          setEscolhidos={setEscolhidos}
         />
         <Fase3
           faseControlTransition={fase3ControlTransition}
           setControlTransition={setFase3ControlTransition}
           setIsFinished={setFimFase3}
           setOverflow={setOverflow}
+          setEscolhidos={setEscolhidos}
         />
         <Fase4
           faseControlTransition={fase4ControlTransition}

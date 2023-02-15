@@ -121,9 +121,11 @@ function BlocoCarrosselDrag(props) {
         carrosselItems={carrosselItems}
         options={options}
         setIsFinished={props.setIsFinished}
+        isFinished={props.isFinished}
         setControlTransition={props.setControlTransition}
+        setOverflow={props.setOverflow}
+        setEscolhidos={props.setEscolhidos}
       />
-      <hr />
     </Fragment>
   );
 }

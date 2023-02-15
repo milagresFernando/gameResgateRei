@@ -23,7 +23,7 @@ function BlocoCarrosselDrag(props) {
       timeout: 200,
     },
     confirmButton: {
-      maxSelection: 6,
+      maxSelection: 2,
       className: "",
       content: "Confirmar seleção",
       animation: {
@@ -61,7 +61,7 @@ function BlocoCarrosselDrag(props) {
     },
     slotSelection: {
       title: {
-        titleContent: "Sua equipe:",
+        titleContent: "Seus itens:",
         tagTitle: "5",
         titleClassName: "",
       },
@@ -122,8 +122,9 @@ function BlocoCarrosselDrag(props) {
         options={options}
         setIsFinished={props.setIsFinished}
         setControlTransition={props.setControlTransition}
+        setOverflow={props.setOverflow}
+        setEscolhidos={props.setEscolhidos}
       />
-      <hr />
     </Fragment>
   );
 }

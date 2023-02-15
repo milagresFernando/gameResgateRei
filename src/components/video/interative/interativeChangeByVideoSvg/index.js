@@ -352,7 +352,6 @@ function InterativeChangeByVideoSvg(props) {
     });
 
     player.on("ended", function (evt) {
-      console.log("fim");
       setIsEnd(true);
     });
 

@@ -36,6 +36,7 @@ function Fase5(props) {
           <BlocoCarrosselDrag
             setControlTransition={props.setControlTransition}
             setIsFinished={props.setIsFinished}
+            setOverflow={props.setOverflow}
           />
         </Container>
       </section>

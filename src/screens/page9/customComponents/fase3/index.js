@@ -11,10 +11,6 @@ import BlocoCarrosselDrag from "./blocoCarrosselDrag";
 //Imagens
 
 function Fase3(props) {
-  useEffect(() => {
-    props.setOverflow(false);
-  }, [props.faseControlTransition]);
-
   const options = {
     animation: {
       type: "fade",
@@ -36,6 +32,8 @@ function Fase3(props) {
           <BlocoCarrosselDrag
             setControlTransition={props.setControlTransition}
             setIsFinished={props.setIsFinished}
+            setOverflow={props.setOverflow}
+            setEscolhidos={props.setEscolhidos}
           />
         </Container>
       </section>
