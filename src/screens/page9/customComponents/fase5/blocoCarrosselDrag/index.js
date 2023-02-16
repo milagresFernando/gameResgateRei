@@ -1,48 +1,44 @@
 // React Elements/Hooks
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 
 // Components
 import { Col, Image, Row } from "react-bootstrap";
 import Title from "components/texts/title";
-import CarouselDoubleWithDrag from "components/carousel/carouselDoubleWithDrag";
 import Item0 from "./item0";
-import Item1 from "./item1";
-import Item2 from "./item2";
-import Item3 from "./item3";
-import Item4 from "./item4";
-import Item5 from "./item5";
-import Item6 from "./item6";
-import Item7 from "./item7";
-import Item8 from "./item8";
 import CarouselDoubleWithDragNoBig from "components/carousel/carouselDoubleWithDragNoBig";
+import Transitions from "components/transitions";
+import FinishButton from "components/carousel/carouselDoubleWithDragNoBig/finishButton";
+import ResetButton from "components/carousel/carouselDoubleWithDragNoBig/resetButton";
 
 function BlocoCarrosselDrag(props) {
-  const options = {
-    animation: {
-      type: "slideRelative",
-      direction: "left", //'down' | 'left' | 'right' | 'up'
-      timeout: 200,
-    },
-    confirmButton: {
-      maxSelection: 2,
-      className: "",
-      content: "Confirmar seleção",
-      animation: {
-        type: "grow",
-        style: { transformOrigin: "0 0 0", height: 0 },
+  const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
 
-        timeout: { appear: 1, enter: 600, exit: 300 },
-        typeInteraction: "switchGrow",
-        scroll: true,
-      },
-    },
+  const [showResetAndFinish, setShowResetAndFinish] = useState(
+    props.escolhidos.map((item, id) => {
+      return false;
+    })
+  );
+
+  const containerPersonagemItem = useRef(null);
+
+  const containerFinishRef = useRef(null);
+  const containerResetRef = useRef(null);
+
+  useEffect(() => {
+    setHasVerticalScroll(hasVerticalScroll);
+  }, [hasVerticalScroll]);
+
+  useEffect(() => {
+    setShowResetAndFinish(showResetAndFinish);
+  }, [showResetAndFinish]);
+
+  const optionsResetFinishButton = {
     finishButton: {
       className: "",
       content: "Prosseguir",
       animation: {
         type: "grow",
         style: { transformOrigin: "0 0 0", height: 0 },
-
         timeout: { appear: 1, enter: 2200, exit: 300 },
         typeInteraction: "switchGrow",
         scroll: true,
@@ -54,20 +50,40 @@ function BlocoCarrosselDrag(props) {
       animation: {
         type: "grow",
         style: { transformOrigin: "0 0 0", height: 0 },
-
         timeout: { appear: 1, enter: 2200, exit: 300 },
         typeInteraction: "switchGrow",
         scroll: true,
       },
     },
+  };
+
+  const optionsPersonagem = {
+    animation: {
+      type: "slideRelative",
+      direction: "left", //'down' | 'left' | 'right' | 'up'
+      timeout: 200,
+    },
+    confirmButton: {
+      maxSelection: 1,
+      className: "",
+      content: "Confirmar seleção",
+      animation: {
+        type: "grow",
+        style: { transformOrigin: "0 0 0", height: 0 },
+        timeout: { appear: 1, enter: 600, exit: 300 },
+        typeInteraction: "switchGrow",
+        scroll: true,
+      },
+    },
+
     slotSelection: {
       title: {
-        titleContent: "Sua equipe:",
+        titleContent: "Personagem:",
         tagTitle: "5",
         titleClassName: "",
       },
 
-      containerSlotClassName: "",
+      containerSlotClassName: "noBig",
       slotClassName: "",
 
       animation: {
@@ -78,7 +94,60 @@ function BlocoCarrosselDrag(props) {
         scroll: true,
       },
     },
-    feedBackSelection: {
+    // feedBackSelection: {
+    //   animation: {
+    //     type: "slide",
+    //     orientation: "vertical", //'vertical' | 'horizontal'
+    //     timeout: { appear: 1, enter: 600, exit: 300 },
+    //     typeInteraction: "switch",
+    //     scroll: true,
+    //   },
+    //   title: {
+    //     tagTitle: "4",
+    //     titleClassName: "mb-0",
+    //     content: "Resumo da sua equipe",
+    //   },
+    //   className: "justify-content-center",
+    //   colMd: "2",
+    //   colLg: "2",
+    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
+    //   items: {
+    //     title: {
+    //       tagTitle: "5",
+    //       titleClassName: "mb-0",
+    //     },
+    //   },
+    // },
+  };
+
+  const optionsItem = {
+    animation: {
+      type: "slideRelative",
+      direction: "left", //'down' | 'left' | 'right' | 'up'
+      timeout: 200,
+    },
+    confirmButton: {
+      maxSelection: 1,
+      className: "",
+      content: "Confirmar seleção",
+      animation: {
+        type: "grow",
+        style: { transformOrigin: "0 0 0", height: 0 },
+        timeout: { appear: 1, enter: 600, exit: 300 },
+        typeInteraction: "switchGrow",
+        scroll: true,
+      },
+    },
+    slotSelection: {
+      title: {
+        titleContent: "Item:",
+        tagTitle: "5",
+        titleClassName: "",
+      },
+
+      containerSlotClassName: "noBig",
+      slotClassName: "",
+
       animation: {
         type: "slide",
         orientation: "vertical", //'vertical' | 'horizontal'
@@ -86,45 +155,147 @@ function BlocoCarrosselDrag(props) {
         typeInteraction: "switch",
         scroll: true,
       },
-      title: {
-        tagTitle: "4",
-        titleClassName: "mb-0",
-        content: "Resumo da sua equipe",
-      },
-      className: "justify-content-center",
-      colMd: "2",
-      colLg: "2",
-      breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
-      items: {
-        title: {
-          tagTitle: "5",
-          titleClassName: "mb-0",
-        },
-      },
     },
+    // feedBackSelection: {
+    //   animation: {
+    //     type: "slide",
+    //     orientation: "vertical", //'vertical' | 'horizontal'
+    //     timeout: { appear: 1, enter: 600, exit: 300 },
+    //     typeInteraction: "switch",
+    //     scroll: true,
+    //   },
+    //   title: {
+    //     tagTitle: "4",
+    //     titleClassName: "mb-0",
+    //     content: "Resumo da sua equipe",
+    //   },
+    //   className: "justify-content-center",
+    //   colMd: "2",
+    //   colLg: "2",
+    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
+    //   items: {
+    //     title: {
+    //       tagTitle: "5",
+    //       titleClassName: "mb-0",
+    //     },
+    //   },
+    // },
   };
 
-  const carrosselItems = [
-    Item0,
-    Item1,
-    Item2,
-    Item3,
-    Item4,
-    Item5,
-    Item6,
-    Item7,
-    Item8,
-  ];
+  function handleReset() {
+    // setFirstInteract(false);
+    // setControlSelected(
+    //   escolhidos.map((carrosselThumb, id) => {
+    //     return false;
+    //   })
+    // );
+    // setReset((prev) => !prev);
+    // setActualItem(0);
+    // setTimeout(() => {
+    //   setMinHeight(containerRef.current.clientHeight);
+    // }, 200);
+    // setTimeout(() => {
+    //   checkHasVerticalScroll(props.refContainer);
+    // }, 500);
+  }
+  function handleFinish() {
+    console.log("confere gabarito");
+    // props.setControlTransition((prev) => !prev);
+    // props.setIsFinished(true);
+  }
+
+  const carrosselItems = [Item0];
+
+  const nextAndClearButtonRow = (
+    <Row>
+      <Col
+        xs={6}
+        className="d-flex justify-content-end"
+        ref={containerResetRef}
+      >
+        <Transitions
+          interact={!showResetAndFinish.includes(false)}
+          options={optionsResetFinishButton.resetButton.animation}
+          typeInteraction={
+            optionsResetFinishButton.resetButton.animation.typeInteraction
+          } //'oneClick', 'switch', 'hideElement'
+        >
+          <ResetButton
+            onClick={() => handleReset()}
+            className={
+              optionsResetFinishButton.resetButton.className
+                ? optionsResetFinishButton.resetButton.className
+                : ""
+            }
+            content={optionsResetFinishButton.resetButton.content}
+          />
+        </Transitions>
+      </Col>
+      <Col
+        xs={6}
+        className="d-flex justify-content-start "
+        ref={containerFinishRef}
+      >
+        <Transitions
+          interact={!showResetAndFinish.includes(false)}
+          options={optionsResetFinishButton.finishButton.animation}
+          typeInteraction={
+            optionsResetFinishButton.finishButton.animation.typeInteraction
+          } //'oneClick', 'switch', 'hideElement'
+        >
+          <FinishButton
+            onClick={() => handleFinish()}
+            className={
+              optionsResetFinishButton.finishButton.className
+                ? optionsResetFinishButton.finishButton.className
+                : ""
+            }
+            content={optionsResetFinishButton.finishButton.content}
+          />
+        </Transitions>
+      </Col>
+    </Row>
+  );
 
   return (
     <Fragment>
-      <CarouselDoubleWithDragNoBig
-        carrosselItems={carrosselItems}
-        options={options}
-        setIsFinished={props.setIsFinished}
-        setControlTransition={props.setControlTransition}
-        setOverflow={props.setOverflow}
-      />
+      <div
+        className={` ${
+          hasVerticalScroll ? "top" : "center"
+        } containerPersonagemItem`}
+        ref={containerPersonagemItem}
+      >
+        <Row className="justify-content-center">
+          <Col className="d-flex justify-content-center">
+            <Title
+              typeH={4}
+              className={""}
+              content={<Fragment>Selecione um personagem e um item:</Fragment>}
+            />
+          </Col>
+        </Row>
+
+        {props.escolhidos.map((item, id) => {
+          return (
+            <CarouselDoubleWithDragNoBig
+              id={id}
+              key={id}
+              carrosselItems={carrosselItems}
+              options={optionsPersonagem}
+              setIsFinished={props.setIsFinished}
+              setControlTransition={props.setControlTransition}
+              setOverflow={props.setOverflow}
+              escolhidos={props.escolhidos[id]}
+              refContainer={containerPersonagemItem}
+              setHasVerticalScroll={setHasVerticalScroll}
+              setShowResetAndFinish={setShowResetAndFinish}
+              showResetAndFinish={showResetAndFinish}
+            />
+          );
+        })}
+
+        {nextAndClearButtonRow}
+      </div>
     </Fragment>
   );
 }

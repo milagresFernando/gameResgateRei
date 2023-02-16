@@ -30,7 +30,7 @@ const descriptionBlock = [
   {
     tagElement: "p",
     className: "",
-    content: <Fragment>pequena descrição do personagem fundo amarelo</Fragment>,
+    content: <Fragment>pequena descrição da cabana fundo amarelo</Fragment>,
   },
   {
     tagElement: "p",
@@ -61,7 +61,7 @@ const carrosselItem = {
   thumb: thumb,
   info: {
     title: {
-      titleContent: "personagem fundo amarelo",
+      titleContent: "cabana fundo amarelo",
       tagTitle: "5",
       titleClassName: "mb-0",
     },

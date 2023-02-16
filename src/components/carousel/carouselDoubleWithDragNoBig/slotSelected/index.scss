@@ -91,4 +91,19 @@
       text-align: center;
     }
   }
+  &.noBig {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    .slotTitle {
+      font-size: 1rem;
+      padding-left: 0px;
+      padding-top: 1rem;
+    }
+    .slotItems {
+      display: flex;
+      .btnSlots {
+        margin: 1rem;
+      }
+    }
+  }
 }

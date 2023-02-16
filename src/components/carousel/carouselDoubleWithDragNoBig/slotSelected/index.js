@@ -164,7 +164,7 @@ function SlotSelected(props) {
           content={<Fragment>{props.title.titleContent}</Fragment>}
         />
       )}
-      {numberSlots}
+      <div className="slotItems">{numberSlots}</div>
     </div>
   );
 }

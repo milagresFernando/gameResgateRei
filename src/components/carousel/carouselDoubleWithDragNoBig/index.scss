@@ -1,10 +1,29 @@
 @import "src/styles/default/_init.scss";
 
-.containerCarrosselDrag {
+.containerCarrosselDragNoBig {
   position: relative;
   height: 100vh;
   .rowCarrosselDrag {
-    position: absolute;
+    // position: relative;
+    // width: 100%;
+    // justify-content: center;
+    // align-items: center;
+    // left: 50%;
+    // @include transform(translateX(-50%));
+    // @include transition(all 0.6s ease);
+    // &.center {
+    //   top: 50%;
+    //   @include transform(translate(-50%, -50%));
+    // }
+
+    // &.top {
+    //   top: 0;
+    //   @include transform(translate(-50%, 0));
+    // }
+  }
+
+  .containerPersonagemItem {
+    position: relative;
     width: 100%;
     justify-content: center;
     align-items: center;

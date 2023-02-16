@@ -32,11 +32,12 @@ function Fase5(props) {
       typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
     >
       <section data-secao={props.sectionTitle}>
-        <Container className="containerCarrosselDrag">
+        <Container className="containerCarrosselDragNoBig">
           <BlocoCarrosselDrag
             setControlTransition={props.setControlTransition}
             setIsFinished={props.setIsFinished}
             setOverflow={props.setOverflow}
+            escolhidos={props.escolhidos}
           />
         </Container>
       </section>

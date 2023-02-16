@@ -42,22 +42,27 @@ function CarouselDoubleWithDragNoBig(props) {
   const [showComponents, setShowComponents] = useState(false);
   const [reset, setReset] = useState(false);
   const [finishItems, setFinishItems] = useState([]);
+
   const [countMaxSelected, setCountMaxSelected] = useState({});
+
+  const [escolhidos, setEscolhidos] = useState([
+    props.carrosselItems[0],
+    ...props.escolhidos,
+  ]);
+
   const [controlAtive, setControlAtive] = useState(
-    props.carrosselItems.map((carrosselThumb, id) => {
+    escolhidos.map((carrosselThumb, id) => {
       return false;
     })
   );
 
   const [controlSelected, setControlSelected] = useState(
-    props.carrosselItems.map((carrosselThumb, id) => {
+    escolhidos.map((carrosselThumb, id) => {
       return false;
     })
   );
 
-  const [bigItems, setBigItems] = useState([
-    props.carrosselItems[actualItem].component,
-  ]);
+  // const [bigItems, setBigItems] = useState([escolhidos[actualItem].component]);
 
   // refs
   const thumbRef = createRef();
@@ -66,10 +71,8 @@ function CarouselDoubleWithDragNoBig(props) {
   const containerScrollThumb = useRef(null);
   const containerSlotRef = useRef(null);
   const confirmContainerRef = useRef(null);
-  const containerFinishRef = useRef(null);
-  const containerResetRef = useRef(null);
 
-  const rowCarrosselDrag = useRef(null);
+  // const props.refContainer = useRef(null);
 
   // vars
   const scrollBarHeight = 15;
@@ -97,20 +100,6 @@ function CarouselDoubleWithDragNoBig(props) {
     typeInteraction: props.options.confirmButton.animation.typeInteraction,
     scroll: true,
   };
-  const resetButtonOptions = props.options.resetButton && {
-    type: props.options.resetButton.animation.type,
-    orientation: props.options.resetButton.animation.orientation,
-    timeout: props.options.resetButton.animation.timeout,
-    typeInteraction: props.options.resetButton.animation.typeInteraction,
-    scroll: true,
-  };
-  const finishButtonOptions = props.options.finishButton && {
-    type: props.options.finishButton.animation.type,
-    orientation: props.options.finishButton.animation.orientation,
-    timeout: props.options.finishButton.animation.timeout,
-    typeInteraction: props.options.finishButton.animation.typeInteraction,
-    scroll: true,
-  };
 
   const feedBackSelectionOptions = props.options.feedBackSelection && {
     type: props.options.feedBackSelection.animation.type,
@@ -121,17 +110,17 @@ function CarouselDoubleWithDragNoBig(props) {
   };
 
   useEffect(() => {
-    if (rowCarrosselDrag?.current != null) {
+    if (props.refContainer?.current != null) {
       setTimeout(() => {
-        checkHasVerticalScroll(rowCarrosselDrag);
+        checkHasVerticalScroll(props.refContainer);
       }, options.timeout);
     }
   }, [actualItem, controlAtive]);
 
   useEffect(() => {
     const debouncedHandleResize = debounceTimeOut(function handleResize() {
-      if (rowCarrosselDrag?.current != null) {
-        checkHasVerticalScroll(rowCarrosselDrag);
+      if (props.refContainer?.current != null) {
+        checkHasVerticalScroll(props.refContainer);
       }
     }, 1000);
 
@@ -144,14 +133,14 @@ function CarouselDoubleWithDragNoBig(props) {
   useEffect(() => {
     setInteract((prev) => !prev);
     setTimeout(() => {
-      setMinHeight(containerRef.current.clientHeight);
+      //setMinHeight(containerRef.current.clientHeight);
       // scrollTo(confirmContainerRef, 0, 10, "auto");
     }, props.options.animation.timeout + 200);
   }, [showComponents]);
 
   useEffect(() => {
     setCarrosselThumbs(
-      props.carrosselItems.map((carrosselThumb, id) => {
+      escolhidos.map((carrosselThumb, id) => {
         if (id == 0) {
           return <div ref={thumbRef} key={id}></div>;
         } else {
@@ -240,9 +229,9 @@ function CarouselDoubleWithDragNoBig(props) {
     setControlAtive(cloneControlAtive);
   }, [actualItem]);
 
-  useEffect(() => {
-    setBigItems([props.carrosselItems[actualItem].component]);
-  }, [actualItem]);
+  // useEffect(() => {
+  //   setBigItems([props.carrosselItems[actualItem].component]);
+  // }, [actualItem]);
 
   useEffect(() => {
     if (controlAtive.includes(true)) {
@@ -261,14 +250,14 @@ function CarouselDoubleWithDragNoBig(props) {
     );
   }, [controlSelected]);
 
-  useEffect(() => {
-    if (firstInteract) {
-      setTimeout(() => {
-        setBigItems([props.carrosselItems[1].component]);
-        setBigItems([props.carrosselItems[actualItem].component]);
-      }, 200);
-    }
-  }, [firstInteract]);
+  // useEffect(() => {
+  //   if (firstInteract) {
+  //     setTimeout(() => {
+  //       setBigItems([props.carrosselItems[1].component]);
+  //       setBigItems([props.carrosselItems[actualItem].component]);
+  //     }, 200);
+  //   }
+  // }, [firstInteract]);
 
   useEffect(() => {
     if (thumbsWrapperWidth != 0 && isNaN(thumbsWrapperWidth) == false) {
@@ -299,16 +288,13 @@ function CarouselDoubleWithDragNoBig(props) {
   }, [thumbsWrapperWidth]);
 
   useEffect(() => {
+    let cloneShowResetAndFinish = [...props.showResetAndFinish];
     if (countMaxSelected.true == props.options.confirmButton.maxSelection) {
-      setFinishItems(
-        props.carrosselItems
-          .filter((selected, id) => {
-            return controlSelected[id] == true;
-          })
-          .map((selected, id) => {
-            return selected.info;
-          })
-      );
+      cloneShowResetAndFinish[props.id] = true;
+      props.setShowResetAndFinish(cloneShowResetAndFinish);
+    } else {
+      cloneShowResetAndFinish[props.id] = false;
+      props.setShowResetAndFinish(cloneShowResetAndFinish);
     }
   }, [countMaxSelected]);
 
@@ -329,12 +315,12 @@ function CarouselDoubleWithDragNoBig(props) {
       setScrollEnd(false);
     }
   }
-  function checkHasVerticalScroll(rowCarrosselDrag) {
-    if (rowCarrosselDrag.current.clientHeight > window.innerHeight) {
+  function checkHasVerticalScroll(refContainer) {
+    if (refContainer.current.clientHeight > window.innerHeight) {
       props.setOverflow(false);
-      setHasVerticalScroll(true);
+      props.setHasVerticalScroll(true);
     } else {
-      setHasVerticalScroll(false);
+      props.setHasVerticalScroll(false);
       props.setOverflow(true);
     }
   }
@@ -370,41 +356,10 @@ function CarouselDoubleWithDragNoBig(props) {
     });
     setControlSelected(cloneSelected);
     setControlAtive(
-      props.carrosselItems.map((carrosselThumb, id) => {
+      escolhidos.map((carrosselThumb, id) => {
         return false;
       })
     );
-  }
-  function handleReset() {
-    setFirstInteract(false);
-    setControlSelected(
-      props.carrosselItems.map((carrosselThumb, id) => {
-        return false;
-      })
-    );
-    setReset((prev) => !prev);
-
-    setActualItem(0);
-    setTimeout(() => {
-      setMinHeight(containerRef.current.clientHeight);
-    }, 200);
-    setTimeout(() => {
-      checkHasVerticalScroll(rowCarrosselDrag);
-    }, 500);
-  }
-  function handleFinish() {
-    props.setControlTransition((prev) => !prev);
-    props.setIsFinished(true);
-
-    // setFinishItems(
-    //   props.carrosselItems
-    //     .filter((selected, id) => {
-    //       return controlSelected[id] == true;
-    //     })
-    //     .map((selected, id) => {
-    //       return selected.info;
-    //     })
-    // );
   }
 
   const confirmButtonRow = (
@@ -432,62 +387,13 @@ function CarouselDoubleWithDragNoBig(props) {
       </Col>
     </Row>
   );
-  const nextAndClearButtonRow = (
-    <Row>
-      <Col
-        xs={6}
-        className="d-flex justify-content-end relative overflow-hidden"
-        ref={containerResetRef}
-      >
-        <Transitions
-          interact={
-            countMaxSelected.true == props.options.confirmButton.maxSelection
-          }
-          options={resetButtonOptions}
-          typeInteraction={resetButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-        >
-          <ResetButton
-            onClick={() => handleReset()}
-            className={
-              props.options.resetButton.className
-                ? props.options.resetButton.className
-                : ""
-            }
-            content={props.options.resetButton.content}
-          />
-        </Transitions>
-      </Col>
-      <Col
-        xs={6}
-        className="d-flex justify-content-start relative overflow-hidden"
-        ref={containerFinishRef}
-      >
-        <Transitions
-          interact={
-            countMaxSelected.true == props.options.confirmButton.maxSelection
-          }
-          options={finishButtonOptions}
-          typeInteraction={finishButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-        >
-          <FinishButton
-            onClick={() => handleFinish()}
-            className={
-              props.options.finishButton.className
-                ? props.options.finishButton.className
-                : ""
-            }
-            content={props.options.finishButton.content}
-          />
-        </Transitions>
-      </Col>
-    </Row>
-  );
 
   return (
-    <Row
-      className={` ${hasVerticalScroll ? "top" : "center"} rowCarrosselDrag`}
-      ref={rowCarrosselDrag}
-    >
+    // <Row
+    //   className={` ${hasVerticalScroll ? "top" : "center"} props.refContainer`}
+    //   ref={props.refContainer}
+    // >
+    <Row className="justify-content-center">
       {props.options.feedBackSelection && (
         <FeedBackSelection
           finishItems={finishItems}
@@ -508,40 +414,38 @@ function CarouselDoubleWithDragNoBig(props) {
       >
         <Row className="">
           {props.options.slotSelection && (
-            <Col className="relative overflow-hidden" ref={containerSlotRef}>
-              <Transitions
-                interact={firstInteract}
-                options={slotOptions}
-                typeInteraction={slotOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-              >
-                <SlotSelected
-                  containerSlotClassName={
-                    props.options.slotSelection.containerSlotClassName
-                      ? props.options.slotSelection.containerSlotClassName
-                      : ""
-                  }
-                  slotClassName={
-                    props.options.slotSelection.slotClassName
-                      ? props.options.slotSelection.slotClassName
-                      : ""
-                  }
-                  title={
-                    props.options.slotSelection.title &&
-                    props.options.slotSelection.title
-                  }
-                  reset={reset}
-                  numberSlots={props.options.confirmButton.maxSelection}
-                  carrosselThumb={props.carrosselItems}
-                  controlSelected={controlSelected}
-                  setControlSelected={setControlSelected}
-                  actualItem={actualItem}
-                  setActualItem={setActualItem}
-                  countMaxSelected={countMaxSelected}
-                />
-              </Transitions>
+            <Col
+              className="relative overflow-hidden d-flex justify-content-center"
+              ref={containerSlotRef}
+            >
+              <SlotSelected
+                containerSlotClassName={
+                  props.options.slotSelection.containerSlotClassName
+                    ? props.options.slotSelection.containerSlotClassName
+                    : ""
+                }
+                slotClassName={
+                  props.options.slotSelection.slotClassName
+                    ? props.options.slotSelection.slotClassName
+                    : ""
+                }
+                title={
+                  props.options.slotSelection.title &&
+                  props.options.slotSelection.title
+                }
+                reset={reset}
+                numberSlots={props.options.confirmButton.maxSelection}
+                carrosselThumb={escolhidos}
+                controlSelected={controlSelected}
+                setControlSelected={setControlSelected}
+                actualItem={actualItem}
+                setActualItem={setActualItem}
+                countMaxSelected={countMaxSelected}
+              />
             </Col>
           )}
-
+        </Row>
+        <Row className="justify-content-center">
           <Col
             xs={12}
             md={`${firstInteract ? "10" : "12"}`}
@@ -557,7 +461,7 @@ function CarouselDoubleWithDragNoBig(props) {
                 {bigItems}
               </Transitions>
             </div> */}
-            <Row>
+            <Row className="">
               <Col xs={12}>
                 <div className="carouselDoubleWithDrag">
                   {hasScroll && (
@@ -579,7 +483,7 @@ function CarouselDoubleWithDragNoBig(props) {
                       props.options.confirmButton.maxSelection
                         ? "disabled"
                         : ""
-                    } ${hasScroll ? "hasScroll" : ""}`}
+                    } ${hasScroll ? "hasScroll" : ""} justify-content-center`}
                     ref={containerScrollThumb}
                     style={{ height: `${thumbsContainerHeight}px` }}
                   >
@@ -609,132 +513,9 @@ function CarouselDoubleWithDragNoBig(props) {
             </Row>
 
             {confirmButtonRow}
-            {!props.options.feedBackSelection && nextAndClearButtonRow}
           </Col>
         </Row>
       </div>
-      {props.options.feedBackSelection && nextAndClearButtonRow}
-      {/* <Row>
-        <Col xs={12}>
-          <div className="carouselDoubleWithDrag">
-            {hasScroll && (
-              <Btn
-                className="controls controlPrev"
-                onClick={() => handleArrowClick("prev")}
-                disabled={
-                  (scrollStart && scrollStart) ||
-                  countMaxSelected.true ==
-                    props.options.confirmButton.maxSelection
-                }
-              >
-                <span className="leitorTela">voltar</span>
-              </Btn>
-            )}
-            <div
-              className={`containerThumbs ${
-                countMaxSelected.true ==
-                props.options.confirmButton.maxSelection
-                  ? "disabled"
-                  : ""
-              } ${hasScroll ? "hasScroll" : ""}`}
-              ref={containerScrollThumb}
-              style={{ height: `${thumbsContainerHeight}px` }}
-            >
-              <div
-                className="thumbsWrapper"
-                ref={scrollThumb}
-                style={{ width: `${thumbsWrapperWidth}px` }}
-              >
-                {carrosselThumbs}
-              </div>
-            </div>
-            {hasScroll && (
-              <Btn
-                className="controls controlNext"
-                onClick={() => handleArrowClick("next")}
-                disabled={
-                  (scrollEnd && scrollEnd) ||
-                  countMaxSelected.true ==
-                    props.options.confirmButton.maxSelection
-                }
-              >
-                <span className="leitorTela">avançar</span>
-              </Btn>
-            )}
-          </div>
-        </Col>
-      </Row> */}
-      {/* <Row>
-        <Col
-          xs={12}
-          className="d-flex justify-content-center relative overflow-hidden"
-          ref={confirmContainerRef}
-        >
-          <Transitions
-            interact={showConfirm}
-            options={confirmButtonOptions}
-            typeInteraction={confirmButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <ConfirmButton
-              onClick={() => handleConfirm()}
-              className={
-                props.options.confirmButton.className
-                  ? props.options.confirmButton.className
-                  : ""
-              }
-              content={props.options.confirmButton.content}
-            />
-          </Transitions>
-        </Col>
-      </Row> */}
-      {/* <Row>
-        <Col
-          xs={6}
-          className="d-flex justify-content-end relative overflow-hidden"
-          ref={containerResetRef}
-        >
-          <Transitions
-            interact={
-              countMaxSelected.true == props.options.confirmButton.maxSelection
-            }
-            options={resetButtonOptions}
-            typeInteraction={resetButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <ResetButton
-              onClick={() => handleReset()}
-              className={
-                props.options.resetButton.className
-                  ? props.options.resetButton.className
-                  : ""
-              }
-              content={props.options.resetButton.content}
-            />
-          </Transitions>
-        </Col>
-        <Col
-          xs={6}
-          className="d-flex justify-content-start relative overflow-hidden"
-          ref={containerFinishRef}
-        >
-          <Transitions
-            interact={
-              countMaxSelected.true == props.options.confirmButton.maxSelection
-            }
-            options={finishButtonOptions}
-            typeInteraction={finishButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <FinishButton
-              onClick={() => handleFinish()}
-              className={
-                props.options.finishButton.className
-                  ? props.options.finishButton.className
-                  : ""
-              }
-              content={props.options.finishButton.content}
-            />
-          </Transitions>
-        </Col>
-      </Row> */}
     </Row>
   );
 }

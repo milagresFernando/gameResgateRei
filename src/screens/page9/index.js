@@ -115,6 +115,7 @@ function Page9() {
           setControlTransition={setFase5ControlTransition}
           setIsFinished={setFimFase5}
           setOverflow={setOverflow}
+          escolhidos={escolhidos}
         />
       </Wrapper>
     </LoadPage>
