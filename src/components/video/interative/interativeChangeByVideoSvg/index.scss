@@ -70,7 +70,7 @@
     .player {
       overflow: initial;
       .video-js {
-        background-color: transparent;
+        background-color: black;
         .vjs-control-bar {
           bottom: -30px;
           @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));

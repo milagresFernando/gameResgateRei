@@ -62,6 +62,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 14,
     title: {
       titleContent: "canivete fundo azul claro",
       tagTitle: "5",

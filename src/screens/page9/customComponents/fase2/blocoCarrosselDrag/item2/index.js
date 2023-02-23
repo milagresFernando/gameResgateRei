@@ -60,6 +60,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 2,
     title: {
       titleContent: "personagem fundo amarelo",
       tagTitle: "5",

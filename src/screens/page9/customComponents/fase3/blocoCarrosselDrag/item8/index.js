@@ -60,6 +60,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 16,
     title: {
       titleContent: "adaga fundo amarelo",
       tagTitle: "5",

@@ -74,6 +74,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 11,
     title: {
       titleContent: "bussula fundo azul",
       tagTitle: "5",

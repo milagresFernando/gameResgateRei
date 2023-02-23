@@ -60,6 +60,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 10,
     title: {
       titleContent: "cabana fundo amarelo",
       tagTitle: "5",

@@ -76,6 +76,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 9,
     title: {
       titleContent: "item barril fundo laranja",
       tagTitle: "5",

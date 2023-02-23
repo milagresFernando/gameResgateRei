@@ -38,6 +38,10 @@ function Fase5(props) {
             setIsFinished={props.setIsFinished}
             setOverflow={props.setOverflow}
             escolhidos={props.escolhidos}
+            caminhoData={props.caminhoData}
+            setEtapa={props.setEtapa}
+            etapa={props.etapa}
+            setFeed={props.setFeed}
           />
         </Container>
       </section>

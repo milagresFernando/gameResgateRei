@@ -60,6 +60,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 4,
     title: {
       titleContent: "personagem fundo salmão",
       tagTitle: "5",

@@ -60,6 +60,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 12,
     title: {
       titleContent: "munição fundo roxo",
       tagTitle: "5",

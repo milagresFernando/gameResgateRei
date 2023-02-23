@@ -32,5 +32,18 @@
             "correct":"Parabéns você completou o desafio da tribo das hienas",
             "wrong":"Infelizmente você falhou no desafio do tribo das hienas"
         }
-     ]
+     ],
+     "gabarito":[
+        { 
+            "personagem":[1],
+            "item":[8,9,10]
+        },
+        { 
+            "item":[8,9,10]
+        },
+        { 
+            "personagem":[1],
+             "item":[8,9,10]
+        }      
+      ]
 }

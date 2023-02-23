@@ -32,7 +32,7 @@
     }
     // PLAYER VIDEO
     .player {
-      border-radius: 8px;
+      border-radius: 0;
       margin: 0 auto ($espaco-margin * 2);
       overflow: hidden;
       padding: 0;
@@ -90,7 +90,7 @@
         height: 100%;
         .player {
           .video-js {
-            background-color: transparent;
+            background-color: black;
           }
         }
       }

@@ -12,6 +12,10 @@ import ResetButton from "components/carousel/carouselDoubleWithDragNoBig/resetBu
 
 function BlocoCarrosselDrag(props) {
   const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
+  const [callReset, setCallReset] = useState(false);
+  const [personagemSelected, setPersonagemSelected] = useState([]);
+  const [itemSelected, setItemSelected] = useState([]);
+  const [verificaFeed, setVerificaFeed] = useState([false, false]);
 
   const [showResetAndFinish, setShowResetAndFinish] = useState(
     props.escolhidos.map((item, id) => {
@@ -20,7 +24,6 @@ function BlocoCarrosselDrag(props) {
   );
 
   const containerPersonagemItem = useRef(null);
-
   const containerFinishRef = useRef(null);
   const containerResetRef = useRef(null);
 
@@ -29,8 +32,26 @@ function BlocoCarrosselDrag(props) {
   }, [hasVerticalScroll]);
 
   useEffect(() => {
+    setPersonagemSelected(personagemSelected);
+  }, [personagemSelected]);
+
+  useEffect(() => {
+    setItemSelected(itemSelected);
+  }, [itemSelected]);
+
+  useEffect(() => {
     setShowResetAndFinish(showResetAndFinish);
   }, [showResetAndFinish]);
+
+  useEffect(() => {
+    if (verificaFeed.includes(false)) {
+      //console.log("errado");
+      props.setFeed(false);
+    } else {
+      props.setFeed(true);
+      //  console.log("certo");
+    }
+  }, [verificaFeed]);
 
   const optionsResetFinishButton = {
     finishButton: {
@@ -119,7 +140,6 @@ function BlocoCarrosselDrag(props) {
     //   },
     // },
   };
-
   const optionsItem = {
     animation: {
       type: "slideRelative",
@@ -138,6 +158,7 @@ function BlocoCarrosselDrag(props) {
         scroll: true,
       },
     },
+
     slotSelection: {
       title: {
         titleContent: "Item:",
@@ -183,25 +204,36 @@ function BlocoCarrosselDrag(props) {
   };
 
   function handleReset() {
-    // setFirstInteract(false);
-    // setControlSelected(
-    //   escolhidos.map((carrosselThumb, id) => {
-    //     return false;
-    //   })
-    // );
-    // setReset((prev) => !prev);
-    // setActualItem(0);
-    // setTimeout(() => {
-    //   setMinHeight(containerRef.current.clientHeight);
-    // }, 200);
-    // setTimeout(() => {
-    //   checkHasVerticalScroll(props.refContainer);
-    // }, 500);
+    setCallReset(true);
   }
   function handleFinish() {
-    console.log("confere gabarito");
-    // props.setControlTransition((prev) => !prev);
-    // props.setIsFinished(true);
+    let cloneVerificaFeed = [...verificaFeed];
+
+    if (props.caminhoData.gabarito[props.etapa].personagem != null) {
+      props.caminhoData.gabarito[props.etapa].personagem.forEach(
+        (personagem, id) => {
+          if (personagem == personagemSelected[0].id) {
+            cloneVerificaFeed[0] = true;
+          }
+        }
+      );
+    } else {
+      cloneVerificaFeed[0] = true;
+    }
+    if (props.caminhoData.gabarito[props.etapa].item != null) {
+      props.caminhoData.gabarito[props.etapa].item.forEach((item, id) => {
+        if (item == itemSelected[0].id) {
+          cloneVerificaFeed[1] = true;
+        }
+      });
+    } else {
+      cloneVerificaFeed[1] = true;
+    }
+
+    setVerificaFeed(cloneVerificaFeed);
+    props.setEtapa(props.etapa + 1);
+    props.setControlTransition((prev) => !prev);
+    props.setIsFinished(true);
   }
 
   const carrosselItems = [Item0];
@@ -281,15 +313,18 @@ function BlocoCarrosselDrag(props) {
               id={id}
               key={id}
               carrosselItems={carrosselItems}
-              options={optionsPersonagem}
-              setIsFinished={props.setIsFinished}
-              setControlTransition={props.setControlTransition}
+              setSelectedDescription={
+                id == 0 ? setPersonagemSelected : setItemSelected
+              }
+              options={id == 0 ? optionsPersonagem : optionsItem}
               setOverflow={props.setOverflow}
               escolhidos={props.escolhidos[id]}
               refContainer={containerPersonagemItem}
               setHasVerticalScroll={setHasVerticalScroll}
               setShowResetAndFinish={setShowResetAndFinish}
               showResetAndFinish={showResetAndFinish}
+              callReset={callReset}
+              setCallReset={setCallReset}
             />
           );
         })}

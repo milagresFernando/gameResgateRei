@@ -45,6 +45,8 @@ function Fase4(props) {
   useEffect(async () => {
     if (props.caminho != 0) {
       const caminhosLoaded = await loadData();
+      props.setCaminhoData(caminhosLoaded);
+
       setActualVideo(caminhosLoaded.videos[props.actualVideo].video);
     }
   }, [props.caminho]);

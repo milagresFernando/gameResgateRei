@@ -13,14 +13,16 @@ import Fase1 from "./customComponents/fase1";
 import Fase3 from "./customComponents/fase3";
 import Fase4 from "./customComponents/fase4";
 import Fase5 from "./customComponents/fase5";
+import Fase6 from "./customComponents/fase6";
 
 function Page9() {
   const [overflow, setOverflow] = useState(false);
+  const [caminho, setCaminho] = useState(0);
+  const [caminhoData, setCaminhoData] = useState({});
 
   const [temaCor, setTemaCor] = useState("custom"); //seta a cor do tema no body. Passar uma classe aqui caso queira iniciar com um tema
   const [fase1ControlTransition, setFase1ControlTransition] = useState(false);
   const [fimFase1, setFimFase1] = useState(false);
-  const [caminho, setCaminho] = useState(0);
 
   const [fase2ControlTransition, setFase2ControlTransition] = useState(false);
   const [fimFase2, setFimFase2] = useState(false);
@@ -34,7 +36,12 @@ function Page9() {
   const [fase5ControlTransition, setFase5ControlTransition] = useState(false);
   const [fimFase5, setFimFase5] = useState(false);
 
+  const [fase6ControlTransition, setFase6ControlTransition] = useState(false);
+  const [fimFase6, setFimFase6] = useState(false);
+
   const [escolhidos, setEscolhidos] = useState([]);
+  const [etapa, setEtapa] = useState(0);
+  const [feedEtapa1, setFeedEtapa1] = useState(false);
 
   useEffect(() => {
     if (temaCor) {
@@ -71,6 +78,12 @@ function Page9() {
   }, [fimFase4]);
 
   useEffect(() => {
+    if (fimFase5) {
+      setFase6ControlTransition((prev) => !prev);
+    }
+  }, [fimFase5]);
+
+  useEffect(() => {
     setOverflow(overflow);
   }, [overflow]);
 
@@ -78,6 +91,15 @@ function Page9() {
     setEscolhidos(escolhidos);
   }, [escolhidos]);
 
+  useEffect(() => {
+    setCaminhoData(caminhoData);
+  }, [caminhoData]);
+
+  useEffect(() => {
+    setFeedEtapa1(feedEtapa1);
+  }, [feedEtapa1]);
+
+  console.log(feedEtapa1);
   return (
     <LoadPage>
       <Wrapper className={`${overflow ? "overflow" : "overflowX"} relative`}>
@@ -108,6 +130,7 @@ function Page9() {
           setIsFinished={setFimFase4}
           setOverflow={setOverflow}
           caminho={caminho}
+          setCaminhoData={setCaminhoData}
           actualVideo={0}
         />
         <Fase5
@@ -116,6 +139,17 @@ function Page9() {
           setIsFinished={setFimFase5}
           setOverflow={setOverflow}
           escolhidos={escolhidos}
+          caminhoData={caminhoData}
+          etapa={etapa}
+          setEtapa={setEtapa}
+          setFeed={setFeedEtapa1}
+        />
+        <Fase6
+          faseControlTransition={fase6ControlTransition}
+          setControlTransition={setFase6ControlTransition}
+          setIsFinished={setFimFase6}
+          setOverflow={setOverflow}
+          feedEtapa={feedEtapa1}
         />
       </Wrapper>
     </LoadPage>

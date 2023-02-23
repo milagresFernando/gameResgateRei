@@ -26,6 +26,7 @@ function CarouselDoubleWithDragNoBig(props) {
   const [minHeight, setMinHeight] = useState(0);
   const [thumbAbsoluteHeight, setThumbAbsoluteHeight] = useState(0);
   const [carrosselThumbs, setCarrosselThumbs] = useState([]);
+  const [selectedDescription, setSelectedDescription] = useState(0);
   const [thumbsWidth, setThumbsWidth] = useState([]);
   const [thumbsWrapperWidth, setThumbsWrapperWidth] = useState(0);
   const [thumbsContainerHeight, setThumbsContainerHeight] = useState(0);
@@ -355,11 +356,49 @@ function CarouselDoubleWithDragNoBig(props) {
       }
     });
     setControlSelected(cloneSelected);
+
+    props.setSelectedDescription(
+      cloneSelected
+        .map((selected, id) => {
+          if (selected == true) {
+            return escolhidos[id];
+          } else {
+            return false;
+          }
+        })
+        .filter((selected, id) => {
+          return selected != false;
+        })
+    );
     setControlAtive(
       escolhidos.map((carrosselThumb, id) => {
         return false;
       })
     );
+  }
+
+  useEffect(() => {
+    if (props.callReset) {
+      handleReset();
+      props.setCallReset(false);
+    }
+  }, [props.callReset]);
+
+  function handleReset() {
+    setFirstInteract(false);
+    setControlSelected(
+      escolhidos.map((carrosselThumb, id) => {
+        return false;
+      })
+    );
+    setReset((prev) => !prev);
+    setActualItem(0);
+    // setTimeout(() => {
+    //   setMinHeight(containerRef.current.clientHeight);
+    // }, 200);
+    setTimeout(() => {
+      checkHasVerticalScroll(props.refContainer);
+    }, 500);
   }
 
   const confirmButtonRow = (

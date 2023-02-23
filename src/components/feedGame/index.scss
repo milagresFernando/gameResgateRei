@@ -1,0 +1,14 @@
+@import "src/styles/default/_init.scss";
+
+.containerFeedGame {
+  height: 100vh;
+  position: relative;
+
+  .wrapperFeedGame {
+    position: relative;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+}

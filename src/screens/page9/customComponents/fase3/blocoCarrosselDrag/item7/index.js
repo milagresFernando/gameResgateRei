@@ -74,6 +74,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 15,
     title: {
       titleContent: "canhao fundo azul",
       tagTitle: "5",

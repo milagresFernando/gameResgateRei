@@ -74,6 +74,7 @@ const carrosselItem = {
   ),
   thumb: thumb,
   info: {
+    id: 13,
     title: {
       titleContent: "alvo fundo roxo",
       tagTitle: "5",
