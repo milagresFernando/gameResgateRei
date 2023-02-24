@@ -2,7 +2,7 @@
 import "./index.scss";
 
 // React Elements/Hooks
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 
 // Components
 import { Container, Row, Col } from "react-bootstrap";
@@ -12,7 +12,7 @@ import { Container, Row, Col } from "react-bootstrap";
 function FeedGame(props) {
   return (
     <div className={`feedGame ${props.feedEtapa ? "correct" : "wrong"}`}>
-      <p>Modelo base de componente</p>
+      {props.children}
     </div>
   );
 }

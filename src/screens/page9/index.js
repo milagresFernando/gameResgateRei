@@ -99,7 +99,6 @@ function Page9() {
     setFeedEtapa1(feedEtapa1);
   }, [feedEtapa1]);
 
-  console.log(feedEtapa1);
   return (
     <LoadPage>
       <Wrapper className={`${overflow ? "overflow" : "overflowX"} relative`}>
@@ -150,6 +149,8 @@ function Page9() {
           setIsFinished={setFimFase6}
           setOverflow={setOverflow}
           feedEtapa={feedEtapa1}
+          etapa={etapa}
+          caminhoData={caminhoData}
         />
       </Wrapper>
     </LoadPage>

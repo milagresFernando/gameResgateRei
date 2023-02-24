@@ -9,13 +9,24 @@ function TextBlock(props) {
   let TagElement;
   const textsBlock = props.textsBlock.map((textBlock, id) => {
     TagElement = textBlock.tagElement;
-    return (
-      <Fragment key={id}>
-        <TagElement className={`textBlock ${textBlock.className}`}>
-          {textBlock.content} {props.children}
-        </TagElement>
-      </Fragment>
-    );
+    if (props.isJson) {
+      return (
+        <Fragment key={id}>
+          <TagElement
+            className={`textBlock ${textBlock.className}`}
+            dangerouslySetInnerHTML={{ __html: textBlock.content }}
+          ></TagElement>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment key={id}>
+          <TagElement className={`textBlock ${textBlock.className}`}>
+            {textBlock.content} {props.children}
+          </TagElement>
+        </Fragment>
+      );
+    }
   });
 
   return textsBlock;

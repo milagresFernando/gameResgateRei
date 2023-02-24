@@ -4,6 +4,7 @@ import React from "react";
 
 // Components
 import { Container, Row, Col } from "react-bootstrap";
+import TextBlock from "components/texts/text_block";
 
 import Transitions from "components/transitions";
 
@@ -14,9 +15,21 @@ import Caminhos from "services/caminhos";
 import FeedGame from "components/feedGame";
 
 function Fase6(props) {
+  const [textBlock, setTextBlock] = useState([]);
+
   useEffect(() => {
     props.setOverflow(false);
   }, [props.faseControlTransition]);
+
+  useEffect(() => {
+    if (props.etapa != 0) {
+      if (props.feedEtapa) {
+        setTextBlock(props.caminhoData.feeds[props.etapa - 1].correct);
+      } else {
+        setTextBlock(props.caminhoData.feeds[props.etapa - 1].wrong);
+      }
+    }
+  }, [props.etapa, props.feedEtapa]);
 
   const options = {
     animation: {
@@ -38,7 +51,9 @@ function Fase6(props) {
         <div className="wrapperFeedGame">
           <Row>
             <Col>
-              <FeedGame feedEtapa={props.feedEtapa} />
+              <FeedGame feedEtapa={props.feedEtapa}>
+                <TextBlock textsBlock={textBlock} isJson />
+              </FeedGame>
             </Col>
           </Row>
         </div>

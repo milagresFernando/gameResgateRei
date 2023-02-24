@@ -21,17 +21,54 @@
 
     "feeds":[
         {
-            "correct":"Parabéns você completou o desafio subaquático",
-            "wrong":"Infelizmente você falhou no desafio subaquático"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio subaquático"
+                }         
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio subaquático"
+                }
+            ]
         },
         {
-            "correct":"Parabéns você completou o desafio do frio do mar",
-            "wrong":"Infelizmente você falhou no desafio do frio do mar"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio do frio do mar"
+                }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do frio do mar"
+                }
+            ]
         },
         {
-            "correct":"Parabéns você completou o desafio da tribo com tubarões",
-            "wrong":"Infelizmente você falhou no desafio do tribo com tubarões"
-        }
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio da tribo com tubarões"
+                }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do tribo com tubarões"
+                }
+            ]      
+        }      
+    
      ],
      "gabarito":[
         { 

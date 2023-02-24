@@ -21,17 +21,55 @@
 
     "feeds":[
         {
-            "correct":"Parabéns você completou o desafio tropical",
-            "wrong":"Infelizmente você falhou no desafio tropical"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio tropical"
+                 }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio tropical"
+                }
+            ]
+           
         },
         {
-            "correct":"Parabéns você completou o desafio do frio da selva",
-            "wrong":"Infelizmente você falhou no desafio do frio da selva"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio do frio da selva"
+                 }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do frio da selva"
+                }
+            ]
+           
         },
         {
-            "correct":"Parabéns você completou o desafio da tribo dos jacarés",
-            "wrong":"Infelizmente você falhou no desafio do tribo dos jacarés"
-        }
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio da tribo dos jacarés"
+                 }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do tribo dos jacarés"
+                }
+            ]           
+        }      
      ],
 
      "gabarito":[

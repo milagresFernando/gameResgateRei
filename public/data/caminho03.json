@@ -20,18 +20,58 @@
 	],
 
     "feeds":[
+
         {
-            "correct":"Parabéns você completou o desafio da tempestade de areia",
-            "wrong":"Infelizmente você falhou no desafio da tempestade de areia"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio da tempestade de areia"
+                }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio da tempestade de areia"
+                }
+            ]
         },
+
         {
-            "correct":"Parabéns você completou o desafio do frio da noite",
-            "wrong":"Infelizmente você falhou no desafio do frio da noite"
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio do frio da noite"
+                }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do frio da noite"
+                }
+            ]
         },
+
+
         {
-            "correct":"Parabéns você completou o desafio da tribo das hienas",
-            "wrong":"Infelizmente você falhou no desafio do tribo das hienas"
-        }
+            "correct":[ 
+                {
+                "tagElement": "p",
+                "className": "",
+                "content": "Parabéns você completou o desafio da tribo das hienas"
+                }
+            ],
+            "wrong":[ 
+                {
+                    "tagElement": "p",
+                    "className": "",
+                    "content": "Infelizmente você falhou no desafio do tribo das hienas"
+                }
+            ]
+        }   
      ],
      "gabarito":[
         { 

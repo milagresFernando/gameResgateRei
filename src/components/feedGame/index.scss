@@ -10,5 +10,15 @@
     top: 50%;
     left: 50%;
     @include transform(translate(-50%, -50%));
+    .feedGame {
+      color: #fff;
+      border-radius: 30px;
+      &.correct {
+        background-color: $cor2;
+      }
+      &.wrong {
+        background-color: $cor6;
+      }
+    }
   }
 }
