@@ -13,15 +13,10 @@ import ResetButton from "components/carousel/carouselDoubleWithDragNoBig/resetBu
 function BlocoCarrosselDrag(props) {
   const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
   const [callReset, setCallReset] = useState(false);
-  const [personagemSelected, setPersonagemSelected] = useState([]);
   const [itemSelected, setItemSelected] = useState([]);
-  const [verificaFeed, setVerificaFeed] = useState([false, false]);
+  const [verificaFeed, setVerificaFeed] = useState(false);
 
-  const [showResetAndFinish, setShowResetAndFinish] = useState(
-    props.escolhidos.map((item, id) => {
-      return false;
-    })
-  );
+  const [showResetAndFinish, setShowResetAndFinish] = useState(false);
 
   const containerPersonagemItem = useRef(null);
   const containerFinishRef = useRef(null);
@@ -32,10 +27,6 @@ function BlocoCarrosselDrag(props) {
   }, [hasVerticalScroll]);
 
   useEffect(() => {
-    setPersonagemSelected(personagemSelected);
-  }, [personagemSelected]);
-
-  useEffect(() => {
     setItemSelected(itemSelected);
   }, [itemSelected]);
 
@@ -44,7 +35,7 @@ function BlocoCarrosselDrag(props) {
   }, [showResetAndFinish]);
 
   useEffect(() => {
-    if (verificaFeed.includes(false)) {
+    if (!verificaFeed) {
       //console.log("errado");
       props.setFeed(false);
     } else {
@@ -78,68 +69,6 @@ function BlocoCarrosselDrag(props) {
     },
   };
 
-  const optionsPersonagem = {
-    animation: {
-      type: "slideRelative",
-      direction: "left", //'down' | 'left' | 'right' | 'up'
-      timeout: 200,
-    },
-    confirmButton: {
-      maxSelection: 1,
-      className: "",
-      content: "Confirmar seleção",
-      animation: {
-        type: "grow",
-        style: { transformOrigin: "0 0 0", height: 0 },
-        timeout: { appear: 1, enter: 600, exit: 300 },
-        typeInteraction: "switchGrow",
-        scroll: true,
-      },
-    },
-
-    slotSelection: {
-      title: {
-        titleContent: "Personagem:",
-        tagTitle: "5",
-        titleClassName: "",
-      },
-
-      containerSlotClassName: "noBig",
-      slotClassName: "",
-
-      animation: {
-        type: "slide",
-        orientation: "vertical", //'vertical' | 'horizontal'
-        timeout: { appear: 1, enter: 600, exit: 300 },
-        typeInteraction: "switch",
-        scroll: true,
-      },
-    },
-    // feedBackSelection: {
-    //   animation: {
-    //     type: "slide",
-    //     orientation: "vertical", //'vertical' | 'horizontal'
-    //     timeout: { appear: 1, enter: 600, exit: 300 },
-    //     typeInteraction: "switch",
-    //     scroll: true,
-    //   },
-    //   title: {
-    //     tagTitle: "4",
-    //     titleClassName: "mb-0",
-    //     content: "Resumo da sua equipe",
-    //   },
-    //   className: "justify-content-center",
-    //   colMd: "2",
-    //   colLg: "2",
-    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
-    //   items: {
-    //     title: {
-    //       tagTitle: "5",
-    //       titleClassName: "mb-0",
-    //     },
-    //   },
-    // },
-  };
   const optionsItem = {
     animation: {
       type: "slideRelative",
@@ -177,60 +106,22 @@ function BlocoCarrosselDrag(props) {
         scroll: true,
       },
     },
-    // feedBackSelection: {
-    //   animation: {
-    //     type: "slide",
-    //     orientation: "vertical", //'vertical' | 'horizontal'
-    //     timeout: { appear: 1, enter: 600, exit: 300 },
-    //     typeInteraction: "switch",
-    //     scroll: true,
-    //   },
-    //   title: {
-    //     tagTitle: "4",
-    //     titleClassName: "mb-0",
-    //     content: "Resumo da sua equipe",
-    //   },
-    //   className: "justify-content-center",
-    //   colMd: "2",
-    //   colLg: "2",
-    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
-    //   items: {
-    //     title: {
-    //       tagTitle: "5",
-    //       titleClassName: "mb-0",
-    //     },
-    //   },
-    // },
   };
 
   function handleReset() {
     setCallReset(true);
   }
   function handleFinish() {
-    let cloneVerificaFeed = [...verificaFeed];
-
-    if (props.caminhoData.gabarito[props.etapa].personagem != null) {
-      props.caminhoData.gabarito[props.etapa].personagem.forEach(
-        (personagem, id) => {
-          if (personagem == personagemSelected[0].id) {
-            cloneVerificaFeed[0] = true;
-          }
-        }
-      );
-    } else {
-      cloneVerificaFeed[0] = true;
-    }
     if (props.caminhoData.gabarito[props.etapa].item != null) {
       props.caminhoData.gabarito[props.etapa].item.forEach((item, id) => {
         if (item == itemSelected[0].id) {
-          cloneVerificaFeed[1] = true;
+          setVerificaFeed(true);
         }
       });
     } else {
-      cloneVerificaFeed[1] = true;
+      setVerificaFeed(true);
     }
 
-    setVerificaFeed(cloneVerificaFeed);
     props.setEtapa(props.etapa + 1);
     props.setControlTransition((prev) => !prev);
     props.setIsFinished(true);
@@ -246,7 +137,7 @@ function BlocoCarrosselDrag(props) {
         ref={containerResetRef}
       >
         <Transitions
-          interact={!showResetAndFinish.includes(false)}
+          interact={showResetAndFinish}
           options={optionsResetFinishButton.resetButton.animation}
           typeInteraction={
             optionsResetFinishButton.resetButton.animation.typeInteraction
@@ -269,7 +160,7 @@ function BlocoCarrosselDrag(props) {
         ref={containerFinishRef}
       >
         <Transitions
-          interact={!showResetAndFinish.includes(false)}
+          interact={showResetAndFinish}
           options={optionsResetFinishButton.finishButton.animation}
           typeInteraction={
             optionsResetFinishButton.finishButton.animation.typeInteraction
@@ -302,33 +193,25 @@ function BlocoCarrosselDrag(props) {
             <Title
               typeH={4}
               className={""}
-              content={<Fragment>Selecione um personagem e um item:</Fragment>}
+              content={<Fragment>Selecione um item:</Fragment>}
             />
           </Col>
         </Row>
 
-        {props.escolhidos.map((item, id) => {
-          return (
-            <CarouselDoubleWithDragNoBig
-              id={id}
-              key={id}
-              type={"personagemAndItem"}
-              carrosselItems={carrosselItems}
-              setSelectedDescription={
-                id == 0 ? setPersonagemSelected : setItemSelected
-              }
-              options={id == 0 ? optionsPersonagem : optionsItem}
-              setOverflow={props.setOverflow}
-              escolhidos={props.escolhidos[id]}
-              refContainer={containerPersonagemItem}
-              setHasVerticalScroll={setHasVerticalScroll}
-              setShowResetAndFinish={setShowResetAndFinish}
-              showResetAndFinish={showResetAndFinish}
-              callReset={callReset}
-              setCallReset={setCallReset}
-            />
-          );
-        })}
+        <CarouselDoubleWithDragNoBig
+          type={"item"}
+          carrosselItems={carrosselItems}
+          setSelectedDescription={setItemSelected}
+          options={optionsItem}
+          setOverflow={props.setOverflow}
+          escolhidos={props.escolhidos[1]}
+          refContainer={containerPersonagemItem}
+          setHasVerticalScroll={setHasVerticalScroll}
+          setShowResetAndFinish={setShowResetAndFinish}
+          showResetAndFinish={showResetAndFinish}
+          callReset={callReset}
+          setCallReset={setCallReset}
+        />
 
         {nextAndClearButtonRow}
       </div>

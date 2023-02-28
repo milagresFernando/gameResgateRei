@@ -11,7 +11,12 @@
     left: 50%;
     @include transform(translate(-50%, -50%));
     .feedGame {
-      color: #fff;
+      .textBlock {
+        color: #fff;
+        margin: 0;
+        text-align: center;
+      }
+      padding: 30px;
       border-radius: 30px;
       &.correct {
         background-color: $cor2;

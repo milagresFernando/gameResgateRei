@@ -289,13 +289,23 @@ function CarouselDoubleWithDragNoBig(props) {
   }, [thumbsWrapperWidth]);
 
   useEffect(() => {
-    let cloneShowResetAndFinish = [...props.showResetAndFinish];
-    if (countMaxSelected.true == props.options.confirmButton.maxSelection) {
-      cloneShowResetAndFinish[props.id] = true;
-      props.setShowResetAndFinish(cloneShowResetAndFinish);
-    } else {
-      cloneShowResetAndFinish[props.id] = false;
-      props.setShowResetAndFinish(cloneShowResetAndFinish);
+    if (props.type == "item") {
+      if (countMaxSelected.true == props.options.confirmButton.maxSelection) {
+        props.setShowResetAndFinish(true);
+      } else {
+        props.setShowResetAndFinish(false);
+      }
+    }
+
+    if (props.type == "personagemAndItem") {
+      let cloneShowResetAndFinish = [...props.showResetAndFinish];
+      if (countMaxSelected.true == props.options.confirmButton.maxSelection) {
+        cloneShowResetAndFinish[props.id] = true;
+        props.setShowResetAndFinish(cloneShowResetAndFinish);
+      } else {
+        cloneShowResetAndFinish[props.id] = false;
+        props.setShowResetAndFinish(cloneShowResetAndFinish);
+      }
     }
   }, [countMaxSelected]);
 

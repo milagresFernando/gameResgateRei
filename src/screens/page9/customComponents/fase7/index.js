@@ -17,7 +17,7 @@ import poster from "screens/assets/videos/capaVideo.png";
 import generateId from "globalFunctions/generateId";
 import GlobalState from "contexts/globalState";
 
-function Fase4(props) {
+function Fase7(props) {
   const [randomId, setRandomId] = useState("");
   const [load, setLoad] = useState(false);
   const [actualVideo, setActualVideo] = useState("");
@@ -32,24 +32,21 @@ function Fase4(props) {
   const elementsRef = useRef(null);
   const playerRef = useRef(null);
 
-  async function loadData() {
-    const data = await Caminhos.getCaminhoById(props.caminho);
-    const caminhoData = data;
-    return caminhoData;
-  }
-
   useEffect(() => {
     props.setOverflow(true);
   }, [props.faseControlTransition]);
 
-  useEffect(async () => {
-    if (props.caminho != 0) {
-      const caminhosLoaded = await loadData();
-      props.setCaminhoData(caminhosLoaded);
-
-      setActualVideo(caminhosLoaded.videosCorrect[props.actualVideo].video);
+  useEffect(() => {
+    if (Object.keys(props.caminhoData).length != 0) {
+      if (props.feedEtapa) {
+        setActualVideo(
+          props.caminhoData.videosCorrect[props.actualVideo].video
+        );
+      } else {
+        setActualVideo(props.caminhoData.videosWrong[props.actualVideo].video);
+      }
     }
-  }, [props.caminho]);
+  }, [props.feedEtapa, props.caminhoData]);
 
   useEffect(async () => {
     if (actualVideo != "") {
@@ -75,17 +72,14 @@ function Fase4(props) {
   //checa se chegou no fim do vídeo
   useEffect(() => {
     if (props.endVideo) {
+      if (!props.feedEtapa) {
+        props.setEtapaWrong(true);
+      }
+
       props.setControlTransition((prev) => !prev);
       props.setIsFinished(true);
-      console.log("aqui");
     }
-  }, [props.endVideo]);
-
-  // useEffect(() => {
-  //   if (load && ready) {
-  //     playerRef.current.play();
-  //   }
-  // }, [load, ready]);
+  }, [props.endVideo, props.feedEtapa]);
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -200,4 +194,4 @@ function Fase4(props) {
   }
 }
 
-export default Fase4;
+export default Fase7;

@@ -1,5 +1,5 @@
 ﻿{
-    "videos":[ 
+    "videosCorrect":[ 
         {
 		"name": "Desafio subaquático",
 		"video": "caminho02Video01",		
@@ -16,6 +16,24 @@
 		"video": "caminho02Video03",
         "id":2
 		
+    }
+	],
+    "videosWrong":[ 
+        {
+		"name": "Tente novamente nível 1",
+		"video": "caminho02Tente01",		
+		"id":0
+    },
+        {
+		"name": "Tente novamente nível 2",
+		"video": "caminho02Tente02",
+        "id":1
+		
+    },
+        {
+		"name": "Tente novamente nível 3",
+		"video": "caminho02Tente03",
+        "id":2		
     }
 	],
 
