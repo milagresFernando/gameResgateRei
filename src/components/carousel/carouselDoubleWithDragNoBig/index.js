@@ -45,7 +45,6 @@ function CarouselDoubleWithDragNoBig(props) {
   const [finishItems, setFinishItems] = useState([]);
 
   const [countMaxSelected, setCountMaxSelected] = useState({});
-
   const [escolhidos, setEscolhidos] = useState([
     props.carrosselItems[0],
     ...props.escolhidos,

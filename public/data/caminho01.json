@@ -16,6 +16,11 @@
 		"video": "caminho01Video03",
         "id":2
 		
+    },
+        {
+		"name": "Finalização",
+		"video": "caminho01Video04",
+        "id":3		
     }
 	],
 

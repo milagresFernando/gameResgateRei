@@ -16,6 +16,11 @@
 		"video": "caminho02Video03",
         "id":2
 		
+    },
+    {
+		"name": "Finalização",
+		"video": "caminho02Video04",
+        "id":3		
     }
 	],
     "videosWrong":[ 
@@ -35,6 +40,7 @@
 		"video": "caminho02Tente03",
         "id":2		
     }
+   
 	],
 
     "feeds":[

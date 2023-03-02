@@ -77,7 +77,6 @@ function Fase4(props) {
     if (props.endVideo) {
       props.setControlTransition((prev) => !prev);
       props.setIsFinished(true);
-      console.log("aqui");
     }
   }, [props.endVideo]);
 
@@ -91,7 +90,6 @@ function Fase4(props) {
     playerRef.current = player;
 
     player.on("ended", function (evt) {
-      console.log("fim");
       props.setEndVideo(true);
     });
 

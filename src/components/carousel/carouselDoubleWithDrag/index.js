@@ -408,7 +408,8 @@ function CarouselDoubleWithDrag(props) {
     }, 500);
   }
   function handleFinish() {
-    props.setControlTransition((prev) => !prev);
+    // props.setControlTransition((prev) => !prev);
+    props.setControlTransition(false);
     props.setIsFinished(true);
 
     // setFinishItems(

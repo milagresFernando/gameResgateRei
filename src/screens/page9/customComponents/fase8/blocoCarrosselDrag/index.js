@@ -123,7 +123,8 @@ function BlocoCarrosselDrag(props) {
     }
 
     props.setEtapa(props.etapa + 1);
-    props.setControlTransition((prev) => !prev);
+    // props.setControlTransition((prev) => !prev);
+    props.setControlTransition(false);
     props.setIsFinished(true);
   }
 

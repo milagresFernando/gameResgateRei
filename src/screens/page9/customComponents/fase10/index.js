@@ -17,7 +17,7 @@ import poster from "screens/assets/videos/capaVideo.png";
 import generateId from "globalFunctions/generateId";
 import GlobalState from "contexts/globalState";
 
-function Fase7(props) {
+function Fase10(props) {
   const [randomId, setRandomId] = useState("");
   const [load, setLoad] = useState(false);
   const [actualVideo, setActualVideo] = useState("");
@@ -195,4 +195,4 @@ function Fase7(props) {
   }
 }
 
-export default Fase7;
+export default Fase10;

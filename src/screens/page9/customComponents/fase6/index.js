@@ -65,7 +65,8 @@ function Fase6(props) {
   };
 
   function handleFinish() {
-    props.setControlTransition((prev) => !prev);
+    props.setControlTransition(false);
+    // props.setControlTransition((prev) => !prev);
     props.setIsFinished(true);
   }
   return (

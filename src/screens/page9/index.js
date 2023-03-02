@@ -17,6 +17,10 @@ import Fase6 from "./customComponents/fase6";
 import Fase7 from "./customComponents/fase7";
 import Fase8 from "./customComponents/fase8";
 import Fase9 from "./customComponents/fase9";
+import Fase10 from "./customComponents/fase10";
+import Fase11 from "./customComponents/fase11";
+import Fase12 from "./customComponents/fase12";
+import Fase13 from "./customComponents/fase13";
 
 function Page9() {
   const [temaCor, setTemaCor] = useState("custom"); //seta a cor do tema no body. Passar uma classe aqui caso queira iniciar com um tema
@@ -26,11 +30,14 @@ function Page9() {
   const [caminhoData, setCaminhoData] = useState({});
 
   const [etapa1Wrong, setEtapa1Wrong] = useState(false);
+  const [etapa2Wrong, setEtapa2Wrong] = useState(false);
+  const [etapa3Wrong, setEtapa3Wrong] = useState(false);
 
   const [escolhidos, setEscolhidos] = useState([]);
   const [etapa, setEtapa] = useState(0);
   const [feedEtapa1, setFeedEtapa1] = useState(false);
   const [feedEtapa2, setFeedEtapa2] = useState(false);
+  const [feedEtapa3, setFeedEtapa3] = useState(false);
 
   const [fase1ControlTransition, setFase1ControlTransition] = useState(false);
   const [fimFase1, setFimFase1] = useState(false);
@@ -61,6 +68,20 @@ function Page9() {
   const [fase9ControlTransition, setFase9ControlTransition] = useState(false);
   const [fimFase9, setFimFase9] = useState(false);
 
+  const [fase10ControlTransition, setFase10ControlTransition] = useState(false);
+  const [fimFase10, setFimFase10] = useState(false);
+  const [endVideoFase10, setEndVideoFase10] = useState(false);
+
+  const [fase11ControlTransition, setFase11ControlTransition] = useState(false);
+  const [fimFase11, setFimFase11] = useState(false);
+
+  const [fase12ControlTransition, setFase12ControlTransition] = useState(false);
+  const [fimFase12, setFimFase12] = useState(false);
+
+  const [fase13ControlTransition, setFase13ControlTransition] = useState(false);
+  const [fimFase13, setFimFase13] = useState(false);
+  const [endVideoFase13, setEndVideoFase13] = useState(false);
+
   useEffect(() => {
     if (temaCor) {
       document.body.classList.value.search("ios") !== -1
@@ -81,7 +102,7 @@ function Page9() {
       setFimFase6(false);
       setFimFase7(false);
       setFase1ControlTransition(false);
-      setFase2ControlTransition(false);
+      // setFase2ControlTransition(false);
       setFase3ControlTransition(false);
       setFase4ControlTransition(false);
       setFase5ControlTransition(false);
@@ -92,58 +113,135 @@ function Page9() {
       setEscolhidos([]);
       setEtapa(0);
       setFeedEtapa1(false);
-      setFase2ControlTransition((prev) => !prev);
+      setFase2ControlTransition(true);
       setEtapa1Wrong(false);
     }
   }, [etapa1Wrong]);
 
   useEffect(() => {
+    if (etapa2Wrong) {
+      setFimFase5(false);
+      setFimFase6(false);
+      setFimFase7(false);
+      setFimFase8(false);
+      setFimFase9(false);
+      setFimFase10(false);
+
+      //setFase5ControlTransition(false);
+      setFase6ControlTransition(false);
+      setFase7ControlTransition(false);
+      setFase8ControlTransition(false);
+      setFase9ControlTransition(false);
+      setFase10ControlTransition(false);
+
+      setEndVideoFase7(false);
+      setEndVideoFase10(false);
+
+      setEtapa(1);
+      setFeedEtapa2(false);
+      setFase5ControlTransition(true);
+      setEtapa2Wrong(false);
+    }
+  }, [etapa2Wrong]);
+  console.log(fimFase11, fase11ControlTransition);
+  useEffect(() => {
+    if (etapa3Wrong) {
+      setFimFase8(false);
+      setFimFase9(false);
+      setFimFase10(false);
+      setFimFase11(false);
+      setFimFase12(false);
+      setFimFase13(false);
+
+      // setFase8ControlTransition(false);
+      setFase9ControlTransition(false);
+      setFase10ControlTransition(false);
+      setFase11ControlTransition(false);
+      setFase12ControlTransition(false);
+      setFase13ControlTransition(false);
+
+      setEndVideoFase10(false);
+      setEndVideoFase13(false);
+
+      setEtapa(1);
+      setFeedEtapa3(false);
+      setFase8ControlTransition(true);
+      setEtapa3Wrong(false);
+    }
+  }, [etapa3Wrong]);
+
+  useEffect(() => {
     if (fimFase1) {
-      setFase2ControlTransition((prev) => !prev);
+      setFase2ControlTransition(true);
     }
   }, [fimFase1]);
 
   useEffect(() => {
     if (fimFase2) {
-      setFase3ControlTransition((prev) => !prev);
+      setFase3ControlTransition(true);
     }
   }, [fimFase2]);
 
   useEffect(() => {
     if (fimFase3) {
-      setFase4ControlTransition((prev) => !prev);
+      setFase4ControlTransition(true);
     }
   }, [fimFase3]);
 
   useEffect(() => {
     if (fimFase4) {
-      setFase5ControlTransition((prev) => !prev);
+      setFase5ControlTransition(true);
     }
   }, [fimFase4]);
 
   useEffect(() => {
     if (fimFase5) {
-      setFase6ControlTransition((prev) => !prev);
+      setFase6ControlTransition(true);
     }
   }, [fimFase5]);
 
   useEffect(() => {
     if (fimFase6) {
-      setFase7ControlTransition((prev) => !prev);
+      setFase7ControlTransition(true);
     }
   }, [fimFase6]);
 
   useEffect(() => {
     if (fimFase7) {
-      setFase8ControlTransition((prev) => !prev);
+      setFase8ControlTransition(true);
     }
   }, [fimFase7]);
 
   useEffect(() => {
     if (fimFase8) {
-      setFase9ControlTransition((prev) => !prev);
+      setFase9ControlTransition(true);
     }
   }, [fimFase8]);
+
+  useEffect(() => {
+    if (fimFase9) {
+      setFase10ControlTransition(true);
+    }
+  }, [fimFase9]);
+
+  useEffect(() => {
+    if (fimFase10) {
+      console.log("estranho", fimFase10);
+      setFase11ControlTransition(true);
+    }
+  }, [fimFase10]);
+
+  useEffect(() => {
+    if (fimFase11) {
+      setFase12ControlTransition(true);
+    }
+  }, [fimFase11]);
+
+  useEffect(() => {
+    if (fimFase12) {
+      setFase13ControlTransition(true);
+    }
+  }, [fimFase12]);
 
   useEffect(() => {
     setOverflow(overflow);
@@ -165,9 +263,14 @@ function Page9() {
     setFeedEtapa2(feedEtapa2);
   }, [feedEtapa2]);
 
+  useEffect(() => {
+    setFeedEtapa3(feedEtapa3);
+  }, [feedEtapa3]);
+
   return (
     <LoadPage>
       <Wrapper className={`${overflow ? "overflow" : "overflowX"} relative`}>
+        {/* Fase 1 - escolha dos caminhos */}
         <Fase1
           faseControlTransition={fase1ControlTransition}
           setControlTransition={setFase1ControlTransition}
@@ -175,6 +278,7 @@ function Page9() {
           setCaminho={setCaminho}
           setOverflow={setOverflow}
         />
+        {/* Fase 2 - escolha dos personagens */}
         <Fase2
           faseControlTransition={fase2ControlTransition}
           setControlTransition={setFase2ControlTransition}
@@ -182,6 +286,7 @@ function Page9() {
           setOverflow={setOverflow}
           setEscolhidos={setEscolhidos}
         />
+        {/* Fase 3 - escolha dos itens */}
         <Fase3
           faseControlTransition={fase3ControlTransition}
           setControlTransition={setFase3ControlTransition}
@@ -189,6 +294,7 @@ function Page9() {
           setOverflow={setOverflow}
           setEscolhidos={setEscolhidos}
         />
+        {/* Fase 4 - vídeo do desafio 1 */}
         <Fase4
           faseControlTransition={fase4ControlTransition}
           setControlTransition={setFase4ControlTransition}
@@ -200,6 +306,7 @@ function Page9() {
           setCaminhoData={setCaminhoData}
           actualVideo={0}
         />
+        {/* Fase 5 - seleção de um personagem e um item */}
         <Fase5
           faseControlTransition={fase5ControlTransition}
           setControlTransition={setFase5ControlTransition}
@@ -211,6 +318,7 @@ function Page9() {
           setEtapa={setEtapa}
           setFeed={setFeedEtapa1}
         />
+        {/* Fase 6 - feedback */}
         <Fase6
           faseControlTransition={fase6ControlTransition}
           setControlTransition={setFase6ControlTransition}
@@ -220,6 +328,7 @@ function Page9() {
           etapa={etapa}
           caminhoData={caminhoData}
         />
+        {/* Fase 7 - vídeo do desafio 2 */}
         <Fase7
           faseControlTransition={fase7ControlTransition}
           setControlTransition={setFase7ControlTransition}
@@ -233,6 +342,7 @@ function Page9() {
           actualVideo={1}
           setEtapaWrong={setEtapa1Wrong}
         />
+        {/* Fase 8 - seleção de um item  */}
         <Fase8
           faseControlTransition={fase8ControlTransition}
           setControlTransition={setFase8ControlTransition}
@@ -244,6 +354,7 @@ function Page9() {
           setEtapa={setEtapa}
           setFeed={setFeedEtapa2}
         />
+        {/* Fase 9 - feedback */}
         <Fase9
           faseControlTransition={fase9ControlTransition}
           setControlTransition={setFase9ControlTransition}
@@ -252,6 +363,59 @@ function Page9() {
           feedEtapa={feedEtapa2}
           etapa={etapa}
           caminhoData={caminhoData}
+        />
+
+        {/* Fase 10 - vídeo do desafio 3 */}
+        <Fase10
+          faseControlTransition={fase10ControlTransition}
+          setControlTransition={setFase10ControlTransition}
+          setIsFinished={setFimFase10}
+          setEndVideo={setEndVideoFase10}
+          endVideo={endVideoFase10}
+          setOverflow={setOverflow}
+          feedEtapa={feedEtapa2}
+          setCaminhoData={setCaminhoData}
+          caminhoData={caminhoData}
+          actualVideo={2}
+          setEtapaWrong={setEtapa2Wrong}
+        />
+        {/* Fase 11 - seleção de um personagem e um item */}
+        <Fase11
+          faseControlTransition={fase11ControlTransition}
+          setControlTransition={setFase11ControlTransition}
+          setIsFinished={setFimFase11}
+          setOverflow={setOverflow}
+          escolhidos={escolhidos}
+          caminhoData={caminhoData}
+          etapa={etapa}
+          setEtapa={setEtapa}
+          setFeed={setFeedEtapa3}
+        />
+
+        {/* Fase 12 - feedback */}
+        <Fase12
+          faseControlTransition={fase12ControlTransition}
+          setControlTransition={setFase12ControlTransition}
+          setIsFinished={setFimFase12}
+          setOverflow={setOverflow}
+          feedEtapa={feedEtapa3}
+          etapa={etapa}
+          caminhoData={caminhoData}
+        />
+
+        {/* Fase 10 - vídeo de finalização*/}
+        <Fase13
+          faseControlTransition={fase13ControlTransition}
+          setControlTransition={setFase13ControlTransition}
+          setIsFinished={setFimFase13}
+          setEndVideo={setEndVideoFase13}
+          endVideo={endVideoFase13}
+          setOverflow={setOverflow}
+          feedEtapa={feedEtapa3}
+          setCaminhoData={setCaminhoData}
+          caminhoData={caminhoData}
+          actualVideo={3}
+          setEtapaWrong={setEtapa3Wrong}
         />
       </Wrapper>
     </LoadPage>

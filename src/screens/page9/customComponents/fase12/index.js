@@ -15,7 +15,7 @@ import Caminhos from "services/caminhos";
 //Functions
 import FeedGame from "components/feedGame";
 
-function Fase9(props) {
+function Fase12(props) {
   const containerFinishRef = useRef(null);
   const [textBlock, setTextBlock] = useState([]);
   const [showFinishButton, setShowFinishButton] = useState(false);
@@ -112,4 +112,4 @@ function Fase9(props) {
   );
 }
 
-export default Fase9;
+export default Fase12;
