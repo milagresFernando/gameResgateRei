@@ -219,13 +219,6 @@ function CarouselDoubleWithDrag(props) {
       "scroll",
       controlButtonsDisable
     );
-
-    // return () => {
-    //   containerScrollThumb.current.removeEventListener(
-    //     "scroll",
-    //     controlButtonsDisable
-    //   );
-    // };
   }, []);
 
   useEffect(() => {
@@ -408,19 +401,8 @@ function CarouselDoubleWithDrag(props) {
     }, 500);
   }
   function handleFinish() {
-    // props.setControlTransition((prev) => !prev);
     props.setControlTransition(false);
     props.setIsFinished(true);
-
-    // setFinishItems(
-    //   props.carrosselItems
-    //     .filter((selected, id) => {
-    //       return controlSelected[id] == true;
-    //     })
-    //     .map((selected, id) => {
-    //       return selected.info;
-    //     })
-    // );
   }
 
   const confirmButtonRow = (
@@ -630,127 +612,6 @@ function CarouselDoubleWithDrag(props) {
         </Row>
       </div>
       {props.options.feedBackSelection && nextAndClearButtonRow}
-      {/* <Row>
-        <Col xs={12}>
-          <div className="carouselDoubleWithDrag">
-            {hasScroll && (
-              <Btn
-                className="controls controlPrev"
-                onClick={() => handleArrowClick("prev")}
-                disabled={
-                  (scrollStart && scrollStart) ||
-                  countMaxSelected.true ==
-                    props.options.confirmButton.maxSelection
-                }
-              >
-                <span className="leitorTela">voltar</span>
-              </Btn>
-            )}
-            <div
-              className={`containerThumbs ${
-                countMaxSelected.true ==
-                props.options.confirmButton.maxSelection
-                  ? "disabled"
-                  : ""
-              } ${hasScroll ? "hasScroll" : ""}`}
-              ref={containerScrollThumb}
-              style={{ height: `${thumbsContainerHeight}px` }}
-            >
-              <div
-                className="thumbsWrapper"
-                ref={scrollThumb}
-                style={{ width: `${thumbsWrapperWidth}px` }}
-              >
-                {carrosselThumbs}
-              </div>
-            </div>
-            {hasScroll && (
-              <Btn
-                className="controls controlNext"
-                onClick={() => handleArrowClick("next")}
-                disabled={
-                  (scrollEnd && scrollEnd) ||
-                  countMaxSelected.true ==
-                    props.options.confirmButton.maxSelection
-                }
-              >
-                <span className="leitorTela">avançar</span>
-              </Btn>
-            )}
-          </div>
-        </Col>
-      </Row> */}
-      {/* <Row>
-        <Col
-          xs={12}
-          className="d-flex justify-content-center relative overflow-hidden"
-          ref={confirmContainerRef}
-        >
-          <Transitions
-            interact={showConfirm}
-            options={confirmButtonOptions}
-            typeInteraction={confirmButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <ConfirmButton
-              onClick={() => handleConfirm()}
-              className={
-                props.options.confirmButton.className
-                  ? props.options.confirmButton.className
-                  : ""
-              }
-              content={props.options.confirmButton.content}
-            />
-          </Transitions>
-        </Col>
-      </Row> */}
-      {/* <Row>
-        <Col
-          xs={6}
-          className="d-flex justify-content-end relative overflow-hidden"
-          ref={containerResetRef}
-        >
-          <Transitions
-            interact={
-              countMaxSelected.true == props.options.confirmButton.maxSelection
-            }
-            options={resetButtonOptions}
-            typeInteraction={resetButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <ResetButton
-              onClick={() => handleReset()}
-              className={
-                props.options.resetButton.className
-                  ? props.options.resetButton.className
-                  : ""
-              }
-              content={props.options.resetButton.content}
-            />
-          </Transitions>
-        </Col>
-        <Col
-          xs={6}
-          className="d-flex justify-content-start relative overflow-hidden"
-          ref={containerFinishRef}
-        >
-          <Transitions
-            interact={
-              countMaxSelected.true == props.options.confirmButton.maxSelection
-            }
-            options={finishButtonOptions}
-            typeInteraction={finishButtonOptions.typeInteraction} //'oneClick', 'switch', 'hideElement'
-          >
-            <FinishButton
-              onClick={() => handleFinish()}
-              className={
-                props.options.finishButton.className
-                  ? props.options.finishButton.className
-                  : ""
-              }
-              content={props.options.finishButton.content}
-            />
-          </Transitions>
-        </Col>
-      </Row> */}
     </Row>
   );
 }

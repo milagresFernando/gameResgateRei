@@ -58,13 +58,13 @@ function Fase13(props) {
       pathRes = await resultVideoData.videoHd;
       const videoHd = pathRes.default;
 
-      pathRes = await resultVideoData.videoSd;
-      const videoSd = pathRes.default;
+      // pathRes = await resultVideoData.videoSd;
+      // const videoSd = pathRes.default;
 
       pathRes = await resultVideoData.legenda;
       const legenda = pathRes.default;
 
-      setVideoElements({ videoHd, videoSd, poster, legenda, autoplay: true });
+      setVideoElements({ videoHd, poster, legenda, autoplay: true });
 
       setRandomId(generateId());
       setLoad(true);
@@ -78,7 +78,7 @@ function Fase13(props) {
         props.setEtapaWrong(true);
       }
 
-      props.setControlTransition((prev) => !prev);
+      props.setControlTransition(false);
       props.setIsFinished(true);
     }
   }, [props.endVideo, props.feedEtapa]);
@@ -105,7 +105,7 @@ function Fase13(props) {
   function loadVideosPaths(video) {
     const videosPaths = {
       videoHd: import(`screens/assets/videos/${video}.mp4`),
-      videoSd: import(`screens/assets/videos/${video}_360p.mp4`),
+      // videoSd: import(`screens/assets/videos/${video}_360p.mp4`),
       legenda: import(`screens/assets/videos/${video}.vtt`),
     };
 

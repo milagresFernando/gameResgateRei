@@ -115,30 +115,6 @@ function BlocoCarrosselDrag(props) {
         scroll: true,
       },
     },
-    // feedBackSelection: {
-    //   animation: {
-    //     type: "slide",
-    //     orientation: "vertical", //'vertical' | 'horizontal'
-    //     timeout: { appear: 1, enter: 600, exit: 300 },
-    //     typeInteraction: "switch",
-    //     scroll: true,
-    //   },
-    //   title: {
-    //     tagTitle: "4",
-    //     titleClassName: "mb-0",
-    //     content: "Resumo da sua equipe",
-    //   },
-    //   className: "justify-content-center",
-    //   colMd: "2",
-    //   colLg: "2",
-    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
-    //   items: {
-    //     title: {
-    //       tagTitle: "5",
-    //       titleClassName: "mb-0",
-    //     },
-    //   },
-    // },
   };
   const optionsItem = {
     animation: {
@@ -177,30 +153,6 @@ function BlocoCarrosselDrag(props) {
         scroll: true,
       },
     },
-    // feedBackSelection: {
-    //   animation: {
-    //     type: "slide",
-    //     orientation: "vertical", //'vertical' | 'horizontal'
-    //     timeout: { appear: 1, enter: 600, exit: 300 },
-    //     typeInteraction: "switch",
-    //     scroll: true,
-    //   },
-    //   title: {
-    //     tagTitle: "4",
-    //     titleClassName: "mb-0",
-    //     content: "Resumo da sua equipe",
-    //   },
-    //   className: "justify-content-center",
-    //   colMd: "2",
-    //   colLg: "2",
-    //   breakContent: "md", // parametro obrigatório, você deve definir em qual breakpoint o elemento vai quebrar e ficar vertical. Passe "sm","md","lg","xl","xxl".
-    //   items: {
-    //     title: {
-    //       tagTitle: "5",
-    //       titleClassName: "mb-0",
-    //     },
-    //   },
-    // },
   };
 
   function handleReset() {
@@ -233,7 +185,6 @@ function BlocoCarrosselDrag(props) {
     setVerificaFeed(cloneVerificaFeed);
     props.setEtapa(props.etapa + 1);
     props.setControlTransition(false);
-    // props.setControlTransition((prev) => !prev);
     props.setIsFinished(true);
   }
 

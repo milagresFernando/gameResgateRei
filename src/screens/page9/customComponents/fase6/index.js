@@ -66,49 +66,52 @@ function Fase6(props) {
 
   function handleFinish() {
     props.setControlTransition(false);
-    // props.setControlTransition((prev) => !prev);
     props.setIsFinished(true);
   }
   return (
-    <Transitions
-      interact={props.faseControlTransition}
-      options={options.animation}
-      typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
-    >
-      <Container className="containerFeedGame">
-        <div className="wrapperFeedGame">
-          <Row>
-            <Col>
-              <FeedGame feedEtapa={props.feedEtapa}>
-                <TextBlock textsBlock={textBlock} isJson />
-              </FeedGame>
-            </Col>
-          </Row>
-          <Row>
-            <Col
-              className="d-flex justify-content-center "
-              ref={containerFinishRef}
-            >
-              <Transitions
-                interact={showFinishButton}
-                options={optionsFinishButton.animation}
-                typeInteraction={optionsFinishButton.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+    <>
+      <Transitions
+        interact={props.faseControlTransition}
+        options={options.animation}
+        typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+      >
+        <Container className="containerFeedGame">
+          <div className="wrapperFeedGame">
+            <Row>
+              <Col>
+                <FeedGame feedEtapa={props.feedEtapa}>
+                  <TextBlock textsBlock={textBlock} isJson />
+                </FeedGame>
+              </Col>
+            </Row>
+            <Row>
+              <Col
+                className="d-flex justify-content-center "
+                ref={containerFinishRef}
               >
-                <FinishButton
-                  onClick={() => handleFinish()}
-                  className={
-                    optionsFinishButton.className
-                      ? optionsFinishButton.className
-                      : ""
-                  }
-                  content={optionsFinishButton.content}
-                />
-              </Transitions>
-            </Col>
-          </Row>
-        </div>
-      </Container>
-    </Transitions>
+                <Transitions
+                  interact={showFinishButton}
+                  options={optionsFinishButton.animation}
+                  typeInteraction={
+                    optionsFinishButton.animation.typeInteraction
+                  } //'oneClick', 'switch', 'hideElement'
+                >
+                  <FinishButton
+                    onClick={() => handleFinish()}
+                    className={
+                      optionsFinishButton.className
+                        ? optionsFinishButton.className
+                        : ""
+                    }
+                    content={optionsFinishButton.content}
+                  />
+                </Transitions>
+              </Col>
+            </Row>
+          </div>
+        </Container>
+      </Transitions>
+    </>
   );
 }
 

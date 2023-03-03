@@ -94,6 +94,7 @@ function Page9() {
 
   useEffect(() => {
     if (etapa1Wrong) {
+      // volta para a fase 2
       setFimFase1(false);
       setFimFase2(false);
       setFimFase3(false);
@@ -102,7 +103,7 @@ function Page9() {
       setFimFase6(false);
       setFimFase7(false);
       setFase1ControlTransition(false);
-      // setFase2ControlTransition(false);
+
       setFase3ControlTransition(false);
       setFase4ControlTransition(false);
       setFase5ControlTransition(false);
@@ -120,6 +121,8 @@ function Page9() {
 
   useEffect(() => {
     if (etapa2Wrong) {
+      // volta para a fase 5
+
       setFimFase5(false);
       setFimFase6(false);
       setFimFase7(false);
@@ -127,7 +130,6 @@ function Page9() {
       setFimFase9(false);
       setFimFase10(false);
 
-      //setFase5ControlTransition(false);
       setFase6ControlTransition(false);
       setFase7ControlTransition(false);
       setFase8ControlTransition(false);
@@ -143,9 +145,10 @@ function Page9() {
       setEtapa2Wrong(false);
     }
   }, [etapa2Wrong]);
-  console.log(fimFase11, fase11ControlTransition);
+
   useEffect(() => {
     if (etapa3Wrong) {
+      // volta para a fase 8
       setFimFase8(false);
       setFimFase9(false);
       setFimFase10(false);
@@ -153,7 +156,6 @@ function Page9() {
       setFimFase12(false);
       setFimFase13(false);
 
-      // setFase8ControlTransition(false);
       setFase9ControlTransition(false);
       setFase10ControlTransition(false);
       setFase11ControlTransition(false);
@@ -207,10 +209,10 @@ function Page9() {
   }, [fimFase6]);
 
   useEffect(() => {
-    if (fimFase7) {
+    if (fimFase7 && !etapa1Wrong) {
       setFase8ControlTransition(true);
     }
-  }, [fimFase7]);
+  }, [fimFase7, etapa1Wrong]);
 
   useEffect(() => {
     if (fimFase8) {
@@ -225,11 +227,10 @@ function Page9() {
   }, [fimFase9]);
 
   useEffect(() => {
-    if (fimFase10) {
-      console.log("estranho", fimFase10);
+    if (fimFase10 && !etapa2Wrong) {
       setFase11ControlTransition(true);
     }
-  }, [fimFase10]);
+  }, [fimFase10, etapa2Wrong]);
 
   useEffect(() => {
     if (fimFase11) {
@@ -403,7 +404,7 @@ function Page9() {
           caminhoData={caminhoData}
         />
 
-        {/* Fase 10 - vídeo de finalização*/}
+        {/* Fase 13 - vídeo de finalização*/}
         <Fase13
           faseControlTransition={fase13ControlTransition}
           setControlTransition={setFase13ControlTransition}

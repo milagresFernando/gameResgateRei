@@ -111,6 +111,7 @@ function BlocoCarrosselDrag(props) {
   function handleReset() {
     setCallReset(true);
   }
+
   function handleFinish() {
     if (props.caminhoData.gabarito[props.etapa].item != null) {
       props.caminhoData.gabarito[props.etapa].item.forEach((item, id) => {
@@ -123,7 +124,6 @@ function BlocoCarrosselDrag(props) {
     }
 
     props.setEtapa(props.etapa + 1);
-    // props.setControlTransition((prev) => !prev);
     props.setControlTransition(false);
     props.setIsFinished(true);
   }

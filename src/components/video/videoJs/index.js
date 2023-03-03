@@ -97,11 +97,11 @@ export const VideoJS = (props) => {
         label: "HD",
         selected: true,
       },
-      {
-        src: props.videoElements.videoSd,
-        type: "video/mp4",
-        label: "SD",
-      },
+      // {
+      //   src: props.videoElements.videoSd,
+      //   type: "video/mp4",
+      //   label: "SD",
+      // },
     ],
     tracks: [
       {
@@ -150,11 +150,39 @@ export const VideoJS = (props) => {
   }
 
   React.useEffect(() => {
+    const startWrapper = document.createElement("div");
+    startWrapper.classList.add("startWrapper");
+    const startButton = document.createElement(
+      props.startButtonCustom.tagElement
+        ? props.startButtonCustom.tagElement
+        : "btn"
+    );
+    if (props.startButtonCustom != null) {
+      const startButtonContent = document.createTextNode(
+        props.startButtonCustom.content ? props.startButtonCustom.content : ""
+      );
+      startButton.classList.add(
+        props.startButtonCustom.className
+          ? props.startButtonCustom.className
+          : ""
+      );
+      startButton.appendChild(startButtonContent);
+      startWrapper.appendChild(startButton);
+
+      startWrapper.addEventListener("click", function () {
+        playerRef.current.play();
+        this.style.display = "none";
+      });
+    }
+
     // make sure Video.js player is only initialized once
     if (!playerRef.current) {
       const videoElement = document.createElement("video-js");
       videoElement.classList.add("vjs-big-play-centered");
       videoElement.setAttribute("data-setup", dataSetup);
+
+      props.startButtonCustom != null &&
+        videoRef.current.appendChild(startWrapper);
       videoRef.current.appendChild(videoElement);
 
       const player = (playerRef.current = videojs(videoElement, options, () => {

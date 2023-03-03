@@ -39,7 +39,6 @@ function svgFunctions(params) {
         setCalcRemaingTime,
         baseSizeCounter,
         dataHd,
-        dataSd,
         playerRef,
         dataLeg,
         randomId,
@@ -81,11 +80,11 @@ function svgFunctions(params) {
           label: "HD",
           selected: true,
         },
-        {
-          src: dataSd[idItem],
-          type: "video/mp4",
-          label: "SD",
-        },
+        // {
+        //   src: dataSd[idItem],
+        //   type: "video/mp4",
+        //   label: "SD",
+        // },
       ]);
       let oldTrack = playerRef.current.remoteTextTracks();
       playerRef.current.removeRemoteTextTrack(oldTrack[0]);

@@ -208,13 +208,6 @@ function CarouselDoubleWithDragNoBig(props) {
       "scroll",
       controlButtonsDisable
     );
-
-    // return () => {
-    //   containerScrollThumb.current.removeEventListener(
-    //     "scroll",
-    //     controlButtonsDisable
-    //   );
-    // };
   }, []);
 
   useEffect(() => {
@@ -228,10 +221,6 @@ function CarouselDoubleWithDragNoBig(props) {
     });
     setControlAtive(cloneControlAtive);
   }, [actualItem]);
-
-  // useEffect(() => {
-  //   setBigItems([props.carrosselItems[actualItem].component]);
-  // }, [actualItem]);
 
   useEffect(() => {
     if (controlAtive.includes(true)) {
@@ -249,15 +238,6 @@ function CarouselDoubleWithDragNoBig(props) {
       }, {})
     );
   }, [controlSelected]);
-
-  // useEffect(() => {
-  //   if (firstInteract) {
-  //     setTimeout(() => {
-  //       setBigItems([props.carrosselItems[1].component]);
-  //       setBigItems([props.carrosselItems[actualItem].component]);
-  //     }, 200);
-  //   }
-  // }, [firstInteract]);
 
   useEffect(() => {
     if (thumbsWrapperWidth != 0 && isNaN(thumbsWrapperWidth) == false) {
@@ -402,9 +382,6 @@ function CarouselDoubleWithDragNoBig(props) {
     );
     setReset((prev) => !prev);
     setActualItem(0);
-    // setTimeout(() => {
-    //   setMinHeight(containerRef.current.clientHeight);
-    // }, 200);
     setTimeout(() => {
       checkHasVerticalScroll(props.refContainer);
     }, 500);
@@ -437,10 +414,6 @@ function CarouselDoubleWithDragNoBig(props) {
   );
 
   return (
-    // <Row
-    //   className={` ${hasVerticalScroll ? "top" : "center"} props.refContainer`}
-    //   ref={props.refContainer}
-    // >
     <Row className="justify-content-center">
       {props.options.feedBackSelection && (
         <FeedBackSelection
@@ -499,16 +472,6 @@ function CarouselDoubleWithDragNoBig(props) {
             md={`${firstInteract ? "10" : "12"}`}
             className="contentCol"
           >
-            {/* <div className="relative" ref={containerRef}>
-              <Transitions
-                interact={interact}
-                options={options}
-                typeInteraction={options.typeInteraction} //'oneClick', 'switch', 'hideElement'
-                containerRef={containerRef} //IMPORTANTE para ser relativo ao container
-              >
-                {bigItems}
-              </Transitions>
-            </div> */}
             <Row className="">
               <Col xs={12}>
                 <div className="carouselDoubleWithDrag">

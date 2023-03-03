@@ -57,7 +57,7 @@ function InterativeChangeByVideoSvg(props) {
   const [timers, setTimers] = useState([]);
   const [timersVisible, setTimersVisible] = useState([]);
   const [dataHd, setDataHd] = useState([]);
-  const [dataSd, setDataSd] = useState([]);
+  // const [dataSd, setDataSd] = useState([]);
   const [dataLeg, setDataLeg] = useState([]);
   const [actualVideoId, setActualVideoId] = useState(0);
   const [videoElements, setVideoElements] = useState({});
@@ -87,7 +87,7 @@ function InterativeChangeByVideoSvg(props) {
     const videosPaths = videos.map((video) => {
       return {
         videoHd: import(`screens/assets/videos/${video.video}.mp4`),
-        videoSd: import(`screens/assets/videos/${video.video}_360p.mp4`),
+        // videoSd: import(`screens/assets/videos/${video.video}_360p.mp4`),
         legenda: import(`screens/assets/videos/${video.video}.vtt`),
         id: video.id,
       };
@@ -105,13 +105,13 @@ function InterativeChangeByVideoSvg(props) {
     const cloneVideoElements = { ...videoElements };
     let dataPath;
     let pathRes;
-
+    console.log(cloneVideoElements);
     resultPath.forEach(async (path, id) => {
       pathRes = await path.videoHd;
       cloneDataHd.push(pathRes.default);
 
-      pathRes = await path.videoSd;
-      cloneDataSd.push(pathRes.default);
+      // pathRes = await path.videoSd;
+      // cloneDataSd.push(pathRes.default);
 
       pathRes = await path.legenda;
       cloneDataLeg.push(pathRes.default);
@@ -120,14 +120,15 @@ function InterativeChangeByVideoSvg(props) {
     });
 
     setDataHd(cloneDataHd);
-    setDataSd(cloneDataSd);
+    // setDataSd(cloneDataSd);
     setDataLeg(cloneDataLeg);
 
     dataPath = await resultPath[0].videoHd;
     cloneVideoElements.videoHd = dataPath.default;
+    cloneVideoElements.poster = props.videoElements.poster;
 
-    dataPath = await resultPath[0].videoSd;
-    cloneVideoElements.videoSd = dataPath.default;
+    // dataPath = await resultPath[0].videoSd;
+    // cloneVideoElements.videoSd = dataPath.default;
 
     dataPath = await resultPath[0].legenda;
     cloneVideoElements.legenda = dataPath.default;
@@ -202,7 +203,7 @@ function InterativeChangeByVideoSvg(props) {
                       setCalcRemaingTime,
                       baseSizeCounter,
                       dataHd,
-                      dataSd,
+
                       playerRef,
                       dataLeg,
                       randomId,
@@ -361,7 +362,7 @@ function InterativeChangeByVideoSvg(props) {
   //checa se é o vídeo final
   useEffect(() => {
     if (lastVideo && isEnd) {
-      props.setControlTransition((prev) => !prev);
+      props.setControlTransition(false);
       props.setIsFinished(true);
     }
   }, [lastVideo, isEnd]);
@@ -688,11 +689,11 @@ function InterativeChangeByVideoSvg(props) {
         label: "HD",
         selected: true,
       },
-      {
-        src: dataSd[0],
-        type: "video/mp4",
-        label: "SD",
-      },
+      // {
+      //   src: dataSd[0],
+      //   type: "video/mp4",
+      //   label: "SD",
+      // },
     ]);
 
     let oldTrack = playerRef.current.remoteTextTracks();
@@ -711,7 +712,7 @@ function InterativeChangeByVideoSvg(props) {
   }
 
   useEffect(() => {
-    props.setControlTransition((prev) => !prev);
+    props.setControlTransition(true);
   }, [load]);
 
   if (load == false) {
@@ -765,6 +766,9 @@ function InterativeChangeByVideoSvg(props) {
 
             <VideoJS
               id={randomId}
+              startButtonCustom={
+                props.options.startButton && props.options.startButton
+              }
               className={`${
                 props.options.videoJs.className
                   ? props.options.videoJs.className

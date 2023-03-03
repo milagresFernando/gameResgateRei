@@ -80,6 +80,49 @@
           }
         }
       }
+
+      .startWrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        .startButton {
+          background: $cor3;
+          border: none;
+          color: #fff;
+          display: block;
+          font-family: $fonte2;
+          padding: 1rem;
+          border-radius: 0;
+          height: auto;
+          position: relative;
+          text-transform: uppercase;
+          border-radius: $radius-padrao;
+          cursor: pointer;
+          @include transition(all 0.5s);
+
+          &:hover,
+          &:active,
+          &:focus {
+            @include box-shadow(0 0 0 0.15rem rgba($cor3, 0.5));
+            background: darken($color: $cor3, $amount: 10);
+            color: darken($color: #ffffff, $amount: 10);
+
+            &.btn-border {
+              background: darken($color: #ffffff, $amount: 10);
+              color: darken($color: $cor3, $amount: 10);
+            }
+          }
+        }
+        & + .video-js {
+          .vjs-big-play-button {
+            display: none;
+          }
+        }
+      }
     }
 
     .singleVideoWrapper {

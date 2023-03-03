@@ -22,22 +22,24 @@ function Fase2(props) {
   };
 
   return (
-    <Transitions
-      interact={props.faseControlTransition}
-      options={options.animation}
-      typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
-    >
-      <section data-secao={props.sectionTitle}>
-        <Container className="containerCarrosselDrag">
-          <BlocoCarrosselDrag
-            setControlTransition={props.setControlTransition}
-            setIsFinished={props.setIsFinished}
-            setOverflow={props.setOverflow}
-            setEscolhidos={props.setEscolhidos}
-          />
-        </Container>
-      </section>
-    </Transitions>
+    <>
+      <Transitions
+        interact={props.faseControlTransition}
+        options={options.animation}
+        typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+      >
+        <section data-secao={props.sectionTitle}>
+          <Container className="containerCarrosselDrag">
+            <BlocoCarrosselDrag
+              setControlTransition={props.setControlTransition}
+              setIsFinished={props.setIsFinished}
+              setOverflow={props.setOverflow}
+              setEscolhidos={props.setEscolhidos}
+            />
+          </Container>
+        </section>
+      </Transitions>
+    </>
   );
 }
 

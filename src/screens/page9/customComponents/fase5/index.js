@@ -26,26 +26,28 @@ function Fase5(props) {
   };
 
   return (
-    <Transitions
-      interact={props.faseControlTransition}
-      options={options.animation}
-      typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
-    >
-      <section>
-        <Container className="containerCarrosselDragNoBig">
-          <BlocoCarrosselDrag
-            setControlTransition={props.setControlTransition}
-            setIsFinished={props.setIsFinished}
-            setOverflow={props.setOverflow}
-            escolhidos={props.escolhidos}
-            caminhoData={props.caminhoData}
-            setEtapa={props.setEtapa}
-            etapa={props.etapa}
-            setFeed={props.setFeed}
-          />
-        </Container>
-      </section>
-    </Transitions>
+    <>
+      <Transitions
+        interact={props.faseControlTransition}
+        options={options.animation}
+        typeInteraction={options.animation.typeInteraction} //'oneClick', 'switch', 'hideElement'
+      >
+        <section>
+          <Container className="containerCarrosselDragNoBig">
+            <BlocoCarrosselDrag
+              setControlTransition={props.setControlTransition}
+              setIsFinished={props.setIsFinished}
+              setOverflow={props.setOverflow}
+              escolhidos={props.escolhidos}
+              caminhoData={props.caminhoData}
+              setEtapa={props.setEtapa}
+              etapa={props.etapa}
+              setFeed={props.setFeed}
+            />
+          </Container>
+        </section>
+      </Transitions>
+    </>
   );
 }
 

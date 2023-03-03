@@ -33,18 +33,12 @@ function Fase1(props) {
     videoJs: {
       className: "full hideControlBar",
     },
-    // counter: {
-    //   // typeCounter: "bar",
-    //   // typeCounter: "time",
-    //   barSizePx: 100,
-    //   typeCounter: "barAndTime",
-    // },
-    // resetButton: {
-    //   position: "topLeft",
-    //   // position: "topRight",
-    //   show: "fixed",
-    //   // show: "hover",
-    // },
+
+    startButton: {
+      tagElement: "btn",
+      className: "startButton",
+      content: "Começar",
+    },
 
     backButton: {
       // position: "topLeft",
